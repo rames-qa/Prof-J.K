@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prof. K. Jayaraman - Resume</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -38,7 +37,11 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* Strict Standard A4 Paper Container */
+        .download-btn:hover {
+            background-color: #0a3578;
+        }
+
+        /* Strict A4 Container */
         .resume-card {
             width: 210mm;
             height: 296mm;
@@ -93,7 +96,7 @@
             color: #b0bec5;
         }
 
-        /* Content Section */
+        /* Content Area Layout */
         .content {
             padding: 22px 35px;
             display: flex;
@@ -187,15 +190,41 @@
             line-height: 1.35;
             display: block;
         }
+
+        /* Direct Print Rules (Solves Shift, Blurring, and Extra Pages) */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+            body {
+                background: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .actions {
+                display: none !important;
+            }
+            .resume-card {
+                box-shadow: none !important;
+                margin: 0 !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="actions">
-        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF (HD 1-Page Fixed)</button>
+        <button class="download-btn" onclick="window.print()">📄 Save as PDF (Native HD 1-Page)</button>
     </div>
 
-    <div class="resume-card" id="resume">
+    <div class="resume-card">
         <div class="header-banner">
             <div class="avatar-container">
                 <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
@@ -268,41 +297,5 @@
         </div>
     </div>
 
-    <script>
-        function downloadPDF() {
-            const original = document.getElementById('resume');
-            
-            // 1. Clone element to avoid page center offsets during rendering
-            const clone = original.cloneNode(true);
-            clone.style.position = 'fixed';
-            clone.style.top = '0';
-            clone.style.left = '0';
-            clone.style.margin = '0';
-            clone.style.zIndex = '-9999';
-            document.body.appendChild(clone);
-
-            const opt = {
-                margin: 0,
-                filename: 'Prof_K_Jayaraman_Resume.pdf',
-                image: { type: 'jpeg', quality: 1.0 },
-                html2canvas: {
-                    scale: 3,             // High resolution 300DPI
-                    useCORS: true,       // Load GitHub profile image properly
-                    scrollX: 0,
-                    scrollY: 0
-                },
-                jsPDF: {
-                    unit: 'mm',
-                    format: 'a4',
-                    orientation: 'portrait'
-                }
-            };
-
-            // 2. Generate PDF from isolated clone, then clean up memory
-            html2pdf().set(opt).from(clone).save().then(() => {
-                document.body.removeChild(clone);
-            });
-        }
-    </script>
 </body>
 </html>
