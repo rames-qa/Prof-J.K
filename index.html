@@ -12,10 +12,11 @@
             margin: 0;
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
 
         body {
-            background-color: #f4f4f4;
+            background-color: #525659;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -23,7 +24,7 @@
         }
 
         .actions {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .download-btn {
@@ -35,37 +36,39 @@
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background 0.2s;
         }
 
         .download-btn:hover {
             background-color: #0a3578;
         }
 
-        /* Fixed A4 Page Setup */
+        /* Fixed Strict A4 Canvas Container */
         .resume-card {
             width: 210mm;
             height: 297mm;
+            max-height: 297mm;
             background: #ffffff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            box-shadow: 0 0 12px rgba(0,0,0,0.25);
             margin: 0 auto;
-            overflow: hidden;
+            overflow: hidden; /* Prevents overflow into page 2 */
             display: flex;
             flex-direction: column;
         }
 
-        /* Header Banner */
+        /* Top Header Banner */
         .header-banner {
             background-color: #124673;
             color: #ffffff;
             text-align: center;
-            padding: 35px 20px 25px 20px;
+            padding: 24px 20px 18px 20px;
         }
 
         .avatar-container {
-            width: 110px;
-            height: 110px;
-            margin: 0 auto 15px auto;
+            width: 95px;
+            height: 95px;
+            margin: 0 auto 12px auto;
             border-radius: 50%;
             border: 3px solid #ffffff;
             overflow: hidden;
@@ -79,41 +82,44 @@
         }
 
         .header-banner h1 {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: bold;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .header-banner .subtitle {
-            font-size: 13.5px;
+            font-size: 12.5px;
             font-weight: normal;
             color: #e0e0e0;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .header-banner .sub-tags {
-            font-size: 12px;
+            font-size: 11px;
             color: #b0bec5;
         }
 
-        /* Content Area */
+        /* Main Content Styling */
         .content {
-            padding: 25px 40px;
+            padding: 20px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             flex-grow: 1;
         }
 
         .section {
-            margin-bottom: 22px;
+            margin-bottom: 14px;
         }
 
         .section-title {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
             color: #111111;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 8px;
-            padding-bottom: 4px;
+            margin-bottom: 6px;
+            padding-bottom: 3px;
             border-bottom: 1.5px solid #2e7d32;
         }
 
@@ -123,10 +129,10 @@
         }
 
         .bullet-list li {
-            font-size: 12.5px;
+            font-size: 11.5px;
             color: #333333;
-            line-height: 1.5;
-            margin-bottom: 8px;
+            line-height: 1.45;
+            margin-bottom: 5px;
             position: relative;
             padding-left: 14px;
         }
@@ -147,14 +153,14 @@
         .expertise-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px 30px;
-            margin-top: 10px;
+            gap: 8px 25px;
+            margin-top: 6px;
         }
 
         .tag-item {
             display: flex;
             align-items: center;
-            font-size: 12.5px;
+            font-size: 11.5px;
             color: #222222;
         }
 
@@ -162,31 +168,31 @@
             content: "";
             display: inline-block;
             width: 4px;
-            height: 20px;
+            height: 16px;
             background-color: #00b0ff;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
-        /* Contact Details 3-Column Layout */
+        /* Contact Details Layout */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr;
-            gap: 15px;
-            margin-top: 10px;
+            gap: 10px;
+            margin-top: 6px;
         }
 
         .contact-col strong {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             color: #111111;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .contact-col p, .contact-col a {
-            font-size: 12px;
+            font-size: 11px;
             color: #444444;
             text-decoration: none;
-            line-height: 1.4;
+            line-height: 1.35;
             display: block;
         }
 
@@ -201,8 +207,8 @@
             .resume-card {
                 box-shadow: none;
                 margin: 0;
-                width: 100%;
-                height: 100vh;
+                width: 210mm;
+                height: 297mm;
             }
         }
     </style>
@@ -210,14 +216,13 @@
 <body>
 
     <div class="actions">
-        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
+        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF (HD 1-Page)</button>
     </div>
 
     <div class="resume-card" id="resume">
-        <!-- Blue Header -->
+        <!-- Header Section -->
         <div class="header-banner">
             <div class="avatar-container">
-                <!-- Using raw GitHub image URL -->
                 <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
             </div>
             <h1>Prof. K. Jayaraman (Prof KJ)</h1>
@@ -225,7 +230,7 @@
             <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
         </div>
 
-        <!-- Resume Content -->
+        <!-- Content Area -->
         <div class="content">
             
             <!-- CURRENT ROLE & OVERVIEW -->
@@ -296,6 +301,7 @@
         </div>
     </div>
 
+    <!-- High-Resolution Export Script -->
     <script>
         function downloadPDF() {
             const element = document.getElementById('resume');
@@ -303,13 +309,20 @@
             const opt = {
                 margin:       0,
                 filename:     'Prof_K_Jayaraman_Resume.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
+                image:        { type: 'jpeg', quality: 1.0 },
                 html2canvas:  { 
-                    scale: 2, 
-                    useCORS: true,
-                    logging: false 
+                    scale: 3,             // Renders at 3x scale for ultra-crisp HD text & image
+                    useCORS: true,        // Correctly loads GitHub picture
+                    letterRendering: true,
+                    scrollX: 0,
+                    scrollY: 0
                 },
-                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                jsPDF:        { 
+                    unit: 'mm', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                }
             };
 
             html2pdf().set(opt).from(element).save();
