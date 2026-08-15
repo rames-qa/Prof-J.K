@@ -41,7 +41,7 @@
             background-color: #0a3578;
         }
 
-        /* Strict A4 Container */
+        /* Strict Single A4 Page Container */
         .resume-card {
             width: 210mm;
             height: 296mm;
@@ -53,21 +53,21 @@
             flex-direction: column;
         }
 
-        /* Header Banner */
+        /* Top Banner */
         .header-banner {
             background-color: #124673;
             color: #ffffff;
             text-align: center;
-            padding: 26px 20px 18px 20px;
+            padding: 18px 20px 14px 20px;
             width: 100%;
         }
 
         .avatar-container {
-            width: 95px;
-            height: 95px;
-            margin: 0 auto 12px auto;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 8px auto;
             border-radius: 50%;
-            border: 3px solid #ffffff;
+            border: 2.5px solid #ffffff;
             overflow: hidden;
             background-color: #cccccc;
         }
@@ -79,26 +79,26 @@
         }
 
         .header-banner h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: bold;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .header-banner .subtitle {
-            font-size: 12.5px;
+            font-size: 12px;
             font-weight: normal;
             color: #e0e0e0;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .header-banner .sub-tags {
-            font-size: 11px;
+            font-size: 10.5px;
             color: #b0bec5;
         }
 
-        /* Content Area Layout */
+        /* Compact Layout Content Area */
         .content {
-            padding: 22px 35px;
+            padding: 16px 30px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -106,17 +106,17 @@
         }
 
         .section {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .section-title {
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             color: #111111;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 6px;
-            padding-bottom: 3px;
+            margin-bottom: 5px;
+            padding-bottom: 2px;
             border-bottom: 1.5px solid #2e7d32;
         }
 
@@ -126,12 +126,12 @@
         }
 
         .bullet-list li {
-            font-size: 11.5px;
+            font-size: 10.5px;
             color: #333333;
-            line-height: 1.45;
-            margin-bottom: 5px;
+            line-height: 1.35;
+            margin-bottom: 3.5px;
             position: relative;
-            padding-left: 14px;
+            padding-left: 12px;
         }
 
         .bullet-list li::before {
@@ -146,17 +146,50 @@
             color: #111111;
         }
 
+        /* Know Thy Speaker Timeline Boxes */
+        .timeline-box {
+            background-color: #f7f9fa;
+            border: 1px solid #dcdcdc;
+            padding: 6px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-size: 10.5px;
+            font-weight: bold;
+            color: #124673;
+            margin-bottom: 3px;
+        }
+
+        .timeline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+        }
+
+        .timeline-tag {
+            background-color: #e3f2fd;
+            color: #0d47a1;
+            font-size: 9.5px;
+            padding: 2px 6px;
+            border-radius: 3px;
+            border: 1px solid #bbdefb;
+            font-weight: 600;
+        }
+
+        /* Domain Expertise Grid */
         .expertise-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px 25px;
-            margin-top: 6px;
+            gap: 5px 20px;
+            margin-top: 4px;
         }
 
         .tag-item {
             display: flex;
             align-items: center;
-            font-size: 11.5px;
+            font-size: 10.5px;
             color: #222222;
         }
 
@@ -164,34 +197,35 @@
             content: "";
             display: inline-block;
             width: 4px;
-            height: 16px;
+            height: 14px;
             background-color: #00b0ff;
-            margin-right: 8px;
+            margin-right: 6px;
         }
 
+        /* Contact Details Layout */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr;
             gap: 10px;
-            margin-top: 6px;
+            margin-top: 4px;
         }
 
         .contact-col strong {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             color: #111111;
-            margin-bottom: 2px;
+            margin-bottom: 1px;
         }
 
         .contact-col p, .contact-col a {
-            font-size: 11px;
+            font-size: 10px;
             color: #444444;
             text-decoration: none;
-            line-height: 1.35;
+            line-height: 1.25;
             display: block;
         }
 
-        /* Direct Print Rules (Solves Shift, Blurring, and Extra Pages) */
+        /* Native Print Adjustments */
         @media print {
             @page {
                 size: A4 portrait;
@@ -221,10 +255,11 @@
 <body>
 
     <div class="actions">
-        <button class="download-btn" onclick="window.print()">📄 Save as PDF (Native HD 1-Page)</button>
+        <button class="download-btn" onclick="window.print()">📄 Save as PDF (Strict 1-Page HD)</button>
     </div>
 
     <div class="resume-card">
+        <!-- Header Section -->
         <div class="header-banner">
             <div class="avatar-container">
                 <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
@@ -234,18 +269,61 @@
             <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
         </div>
 
+        <!-- Content Area -->
         <div class="content">
+            
+            <!-- CURRENT ROLE & OVERVIEW -->
             <div class="section">
                 <div class="section-title">CURRENT ROLE & OVERVIEW</div>
                 <ul class="bullet-list">
                     <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
                     <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
                     <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
-                    <li><strong>Industry Leadership:</strong> ~15 years in private industries, including roles as Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
+                    <li><strong>Industry Leadership:</strong> ~15 years in private industries, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
                     <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
                 </ul>
             </div>
 
+            <!-- KNOW THY SPEAKER: EVOLUTIONARY TRAJECTORY -->
+            <div class="section">
+                <div class="section-title">KNOW THY SPEAKER — SURVIVING "SCIENCE - ENGINEERING - TECHNOLOGY" MUTATION</div>
+                
+                <div class="timeline-box">
+                    <div class="timeline-title">Emission Technology & Semiconductor (SEMCON) Evolution (1962–2026+)</div>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Thermionic Emission (1962–1969)</span>
+                        <span class="timeline-tag">Electronic Emission (1969–2026+)</span>
+                        <span class="timeline-tag">Photonic Emission (2022+)</span>
+                        <span class="timeline-tag">Vacuum Tubes</span>
+                        <span class="timeline-tag">Bipolar Family</span>
+                        <span class="timeline-tag">JFET / MOS FET (N/P/C)</span>
+                        <span class="timeline-tag">IC OPAMP / SSI / MSI / LSI / VLSI</span>
+                        <span class="timeline-tag">ROM / PROM / EEROM / PLD / PAL / FPGA</span>
+                        <span class="timeline-tag">ASIC</span>
+                    </div>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="timeline-title">Telephone Voice Communication Era</div>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Analog & Electromechanical (1870s–1950s)</span>
+                        <span class="timeline-tag">Automation & Touch-Tone (1960s–1980s)</span>
+                        <span class="timeline-tag">Digital & Mobile Cellular (1990s+)</span>
+                    </div>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="timeline-title">Propulsion Technologies</div>
+                    <div class="timeline-tags">
+                        <span class="timeline-tag">Solid Propulsion</span>
+                        <span class="timeline-tag">Liquid Propulsion</span>
+                        <span class="timeline-tag">Electric Propulsion</span>
+                        <span class="timeline-tag">Cryogenic Propulsion</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MAJOR PROFESSIONAL PURSUITS -->
             <div class="section">
                 <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
                 <ul class="bullet-list">
@@ -255,6 +333,7 @@
                 </ul>
             </div>
 
+            <!-- DOMAIN EXPERTISE -->
             <div class="section">
                 <div class="section-title">DOMAIN EXPERTISE</div>
                 <div class="expertise-grid">
@@ -267,15 +346,17 @@
                 </div>
             </div>
 
+            <!-- SERVICES FOR ACADEMIC INSTITUTIONS -->
             <div class="section">
                 <div class="section-title">SERVICES FOR ACADEMIC INSTITUTIONS</div>
                 <ul class="bullet-list">
                     <li><strong>Laboratory Reorientation:</strong> Modernizing existing lab sessions to make learners industry-ready.</li>
-                    <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding them through internships and academic projects.</li>
+                    <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding through projects.</li>
                     <li><strong>Faculty & Student Development:</strong> Conceptualizing and delivering SDPs and FDPs across institutions.</li>
                 </ul>
             </div>
 
+            <!-- CONTACT INFORMATION -->
             <div class="section" style="margin-bottom: 0;">
                 <div class="section-title">CONTACT INFORMATION</div>
                 <div class="contact-grid">
@@ -294,6 +375,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
