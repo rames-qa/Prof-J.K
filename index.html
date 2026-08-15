@@ -38,29 +38,24 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
 
-        /* Strict Fixed Canvas (794px x 1120px = Exact A4 ratio at 96DPI) */
-        #resume-wrapper {
-            width: 794px;
-            height: 1120px;
-            background: #ffffff;
-            overflow: hidden;
-            position: relative;
-        }
-
+        /* Strict Standard A4 Paper Container */
         .resume-card {
-            width: 100%;
-            height: 100%;
+            width: 210mm;
+            height: 296mm;
             background: #ffffff;
+            box-shadow: 0 0 12px rgba(0,0,0,0.25);
+            margin: 0 auto;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        /* Top Header Banner */
+        /* Header Banner */
         .header-banner {
             background-color: #124673;
             color: #ffffff;
             text-align: center;
-            padding: 30px 20px 20px 20px;
+            padding: 26px 20px 18px 20px;
             width: 100%;
         }
 
@@ -87,7 +82,7 @@
         }
 
         .header-banner .subtitle {
-            font-size: 13px;
+            font-size: 12.5px;
             font-weight: normal;
             color: #e0e0e0;
             margin-bottom: 6px;
@@ -100,7 +95,7 @@
 
         /* Content Section */
         .content {
-            padding: 25px 40px;
+            padding: 22px 35px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -108,7 +103,7 @@
         }
 
         .section {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .section-title {
@@ -130,7 +125,7 @@
         .bullet-list li {
             font-size: 11.5px;
             color: #333333;
-            line-height: 1.4;
+            line-height: 1.45;
             margin-bottom: 5px;
             position: relative;
             padding-left: 14px;
@@ -197,79 +192,76 @@
 <body>
 
     <div class="actions">
-        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF (Strict 1-Page)</button>
+        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF (HD 1-Page Fixed)</button>
     </div>
 
-    <!-- Wrapping in an isolated container prevents offset shifts -->
-    <div id="resume-wrapper">
-        <div class="resume-card" id="resume">
-            <div class="header-banner">
-                <div class="avatar-container">
-                    <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
-                </div>
-                <h1>Prof. K. Jayaraman (Prof KJ)</h1>
-                <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
-                <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
+    <div class="resume-card" id="resume">
+        <div class="header-banner">
+            <div class="avatar-container">
+                <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
+            </div>
+            <h1>Prof. K. Jayaraman (Prof KJ)</h1>
+            <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
+            <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <div class="section-title">CURRENT ROLE & OVERVIEW</div>
+                <ul class="bullet-list">
+                    <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
+                    <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
+                    <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
+                    <li><strong>Industry Leadership:</strong> ~15 years in private industries, including roles as Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
+                    <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
+                </ul>
             </div>
 
-            <div class="content">
-                <div class="section">
-                    <div class="section-title">CURRENT ROLE & OVERVIEW</div>
-                    <ul class="bullet-list">
-                        <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
-                        <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
-                        <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
-                        <li><strong>Industry Leadership:</strong> ~15 years in private industries, including roles as Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
-                        <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
-                    </ul>
-                </div>
+            <div class="section">
+                <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
+                <ul class="bullet-list">
+                    <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
+                    <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
+                    <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
+                </ul>
+            </div>
 
-                <div class="section">
-                    <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
-                    <ul class="bullet-list">
-                        <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
-                        <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
-                        <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
-                    </ul>
+            <div class="section">
+                <div class="section-title">DOMAIN EXPERTISE</div>
+                <div class="expertise-grid">
+                    <div class="tag-item">Systems Approach to Solutions Engineering</div>
+                    <div class="tag-item">Automation Engineering</div>
+                    <div class="tag-item">Embedded Solutions Engineering</div>
+                    <div class="tag-item">IIoT & Industry 4.0 / 5.0</div>
+                    <div class="tag-item">Cyber-Physical Systems (CPS)</div>
+                    <div class="tag-item">Wired & Wireless Protocols</div>
                 </div>
+            </div>
 
-                <div class="section">
-                    <div class="section-title">DOMAIN EXPERTISE</div>
-                    <div class="expertise-grid">
-                        <div class="tag-item">Systems Approach to Solutions Engineering</div>
-                        <div class="tag-item">Automation Engineering</div>
-                        <div class="tag-item">Embedded Solutions Engineering</div>
-                        <div class="tag-item">IIoT & Industry 4.0 / 5.0</div>
-                        <div class="tag-item">Cyber-Physical Systems (CPS)</div>
-                        <div class="tag-item">Wired & Wireless Protocols</div>
+            <div class="section">
+                <div class="section-title">SERVICES FOR ACADEMIC INSTITUTIONS</div>
+                <ul class="bullet-list">
+                    <li><strong>Laboratory Reorientation:</strong> Modernizing existing lab sessions to make learners industry-ready.</li>
+                    <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding them through internships and academic projects.</li>
+                    <li><strong>Faculty & Student Development:</strong> Conceptualizing and delivering SDPs and FDPs across institutions.</li>
+                </ul>
+            </div>
+
+            <div class="section" style="margin-bottom: 0;">
+                <div class="section-title">CONTACT INFORMATION</div>
+                <div class="contact-grid">
+                    <div class="contact-col">
+                        <strong>Location</strong>
+                        <p>Bengaluru, India</p>
                     </div>
-                </div>
-
-                <div class="section">
-                    <div class="section-title">SERVICES FOR ACADEMIC INSTITUTIONS</div>
-                    <ul class="bullet-list">
-                        <li><strong>Laboratory Reorientation:</strong> Modernizing existing lab sessions to make learners industry-ready.</li>
-                        <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding them through internships and academic projects.</li>
-                        <li><strong>Faculty & Student Development:</strong> Conceptualizing and delivering SDPs and FDPs across institutions.</li>
-                    </ul>
-                </div>
-
-                <div class="section" style="margin-bottom: 0;">
-                    <div class="section-title">CONTACT INFORMATION</div>
-                    <div class="contact-grid">
-                        <div class="contact-col">
-                            <strong>Location</strong>
-                            <p>Bengaluru, India</p>
-                        </div>
-                        <div class="contact-col">
-                            <strong>Email</strong>
-                            <p>kjicet@gmail.com</p>
-                            <p>profkj@tridenttechlabs.com</p>
-                        </div>
-                        <div class="contact-col">
-                            <strong>Phone</strong>
-                            <p>+91 94490 50624</p>
-                        </div>
+                    <div class="contact-col">
+                        <strong>Email</strong>
+                        <p>kjicet@gmail.com</p>
+                        <p>profkj@tridenttechlabs.com</p>
+                    </div>
+                    <div class="contact-col">
+                        <strong>Phone</strong>
+                        <p>+91 94490 50624</p>
                     </div>
                 </div>
             </div>
@@ -278,32 +270,38 @@
 
     <script>
         function downloadPDF() {
-            // Scroll target into view before capturing to prevent horizontal/vertical displacement
-            window.scrollTo(0, 0);
+            const original = document.getElementById('resume');
             
-            const element = document.getElementById('resume-wrapper');
-            
+            // 1. Clone element to avoid page center offsets during rendering
+            const clone = original.cloneNode(true);
+            clone.style.position = 'fixed';
+            clone.style.top = '0';
+            clone.style.left = '0';
+            clone.style.margin = '0';
+            clone.style.zIndex = '-9999';
+            document.body.appendChild(clone);
+
             const opt = {
-                margin:       0,
-                filename:     'Prof_K_Jayaraman_Resume.pdf',
-                image:        { type: 'jpeg', quality: 1.0 },
-                html2canvas:  { 
-                    scale: 2,               // Clean high-resolution capture
-                    useCORS: true,          // Ensures GitHub image loads
-                    scrollX: 0, 
-                    scrollY: 0, 
-                    windowWidth: 794,       // Locks render width to prevent rightward shift
-                    windowHeight: 1120      // Locks render height to avoid page-2 break
+                margin: 0,
+                filename: 'Prof_K_Jayaraman_Resume.pdf',
+                image: { type: 'jpeg', quality: 1.0 },
+                html2canvas: {
+                    scale: 3,             // High resolution 300DPI
+                    useCORS: true,       // Load GitHub profile image properly
+                    scrollX: 0,
+                    scrollY: 0
                 },
-                jsPDF: { 
-                    unit: 'px', 
-                    format: [794, 1120],     // Custom PDF page matching the container resolution 1:1
-                    orientation: 'portrait',
-                    hotfixes: ["px_scaling"]
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
                 }
             };
 
-            html2pdf().set(opt).from(element).save();
+            // 2. Generate PDF from isolated clone, then clean up memory
+            html2pdf().set(opt).from(clone).save().then(() => {
+                document.body.removeChild(clone);
+            });
         }
     </script>
 </body>
