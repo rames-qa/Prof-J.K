@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prof. K. Jayaraman - Resume</title>
-    <!-- html2pdf.js Bundle CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
@@ -37,26 +36,23 @@
             border-radius: 4px;
             cursor: pointer;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: background 0.2s;
         }
 
-        .download-btn:hover {
-            background-color: #0a3578;
-        }
-
-        /* Fixed Strict A4 Canvas Container with Precise Aspect Ratio */
-        .resume-card {
-            width: 210mm;
-            height: 296mm; /* Reduced by 1mm to prevent phantom page triggers */
+        /* Strict Fixed Canvas (794px x 1120px = Exact A4 ratio at 96DPI) */
+        #resume-wrapper {
+            width: 794px;
+            height: 1120px;
             background: #ffffff;
-            box-shadow: 0 0 12px rgba(0,0,0,0.25);
-            margin: 0 auto;
-            overflow: hidden; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resume-card {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
             display: flex;
             flex-direction: column;
-            position: relative;
-            left: 0;
-            top: 0;
         }
 
         /* Top Header Banner */
@@ -64,7 +60,7 @@
             background-color: #124673;
             color: #ffffff;
             text-align: center;
-            padding: 26px 20px 18px 20px;
+            padding: 30px 20px 20px 20px;
             width: 100%;
         }
 
@@ -91,7 +87,7 @@
         }
 
         .header-banner .subtitle {
-            font-size: 12.5px;
+            font-size: 13px;
             font-weight: normal;
             color: #e0e0e0;
             margin-bottom: 6px;
@@ -102,9 +98,9 @@
             color: #b0bec5;
         }
 
-        /* Main Content Layout */
+        /* Content Section */
         .content {
-            padding: 22px 35px;
+            padding: 25px 40px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -112,7 +108,7 @@
         }
 
         .section {
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .section-title {
@@ -134,7 +130,7 @@
         .bullet-list li {
             font-size: 11.5px;
             color: #333333;
-            line-height: 1.45;
+            line-height: 1.4;
             margin-bottom: 5px;
             position: relative;
             padding-left: 14px;
@@ -152,7 +148,6 @@
             color: #111111;
         }
 
-        /* Domain Expertise Grid */
         .expertise-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -176,7 +171,6 @@
             margin-right: 8px;
         }
 
-        /* Contact Details Layout */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr;
@@ -203,114 +197,110 @@
 <body>
 
     <div class="actions">
-        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF (HD 1-Page)</button>
+        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF (Strict 1-Page)</button>
     </div>
 
-    <div class="resume-card" id="resume">
-        <!-- Header Section -->
-        <div class="header-banner">
-            <div class="avatar-container">
-                <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
-            </div>
-            <h1>Prof. K. Jayaraman (Prof KJ)</h1>
-            <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
-            <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
-        </div>
-
-        <!-- Content Area -->
-        <div class="content">
-            
-            <!-- CURRENT ROLE & OVERVIEW -->
-            <div class="section">
-                <div class="section-title">CURRENT ROLE & OVERVIEW</div>
-                <ul class="bullet-list">
-                    <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
-                    <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
-                    <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
-                    <li><strong>Industry Leadership:</strong> ~15 years in private industries, including roles as Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
-                    <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
-                </ul>
-            </div>
-
-            <!-- MAJOR PROFESSIONAL PURSUITS -->
-            <div class="section">
-                <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
-                <ul class="bullet-list">
-                    <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
-                    <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
-                    <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
-                </ul>
-            </div>
-
-            <!-- DOMAIN EXPERTISE -->
-            <div class="section">
-                <div class="section-title">DOMAIN EXPERTISE</div>
-                <div class="expertise-grid">
-                    <div class="tag-item">Systems Approach to Solutions Engineering</div>
-                    <div class="tag-item">Automation Engineering</div>
-                    <div class="tag-item">Embedded Solutions Engineering</div>
-                    <div class="tag-item">IIoT & Industry 4.0 / 5.0</div>
-                    <div class="tag-item">Cyber-Physical Systems (CPS)</div>
-                    <div class="tag-item">Wired & Wireless Protocols</div>
+    <!-- Wrapping in an isolated container prevents offset shifts -->
+    <div id="resume-wrapper">
+        <div class="resume-card" id="resume">
+            <div class="header-banner">
+                <div class="avatar-container">
+                    <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
                 </div>
+                <h1>Prof. K. Jayaraman (Prof KJ)</h1>
+                <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
+                <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
             </div>
 
-            <!-- SERVICES FOR ACADEMIC INSTITUTIONS -->
-            <div class="section">
-                <div class="section-title">SERVICES FOR ACADEMIC INSTITUTIONS</div>
-                <ul class="bullet-list">
-                    <li><strong>Laboratory Reorientation:</strong> Modernizing existing lab sessions to make learners industry-ready.</li>
-                    <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding them through internships and academic projects.</li>
-                    <li><strong>Faculty & Student Development:</strong> Conceptualizing and delivering SDPs and FDPs across institutions.</li>
-                </ul>
-            </div>
+            <div class="content">
+                <div class="section">
+                    <div class="section-title">CURRENT ROLE & OVERVIEW</div>
+                    <ul class="bullet-list">
+                        <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
+                        <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
+                        <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
+                        <li><strong>Industry Leadership:</strong> ~15 years in private industries, including roles as Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
+                        <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
+                    </ul>
+                </div>
 
-            <!-- CONTACT INFORMATION -->
-            <div class="section" style="margin-bottom: 0;">
-                <div class="section-title">CONTACT INFORMATION</div>
-                <div class="contact-grid">
-                    <div class="contact-col">
-                        <strong>Location</strong>
-                        <p>Bengaluru, India</p>
+                <div class="section">
+                    <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
+                    <ul class="bullet-list">
+                        <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
+                        <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
+                        <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">DOMAIN EXPERTISE</div>
+                    <div class="expertise-grid">
+                        <div class="tag-item">Systems Approach to Solutions Engineering</div>
+                        <div class="tag-item">Automation Engineering</div>
+                        <div class="tag-item">Embedded Solutions Engineering</div>
+                        <div class="tag-item">IIoT & Industry 4.0 / 5.0</div>
+                        <div class="tag-item">Cyber-Physical Systems (CPS)</div>
+                        <div class="tag-item">Wired & Wireless Protocols</div>
                     </div>
-                    <div class="contact-col">
-                        <strong>Email</strong>
-                        <p>kjicet@gmail.com</p>
-                        <p>profkj@tridenttechlabs.com</p>
-                    </div>
-                    <div class="contact-col">
-                        <strong>Phone</strong>
-                        <p>+91 94490 50624</p>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">SERVICES FOR ACADEMIC INSTITUTIONS</div>
+                    <ul class="bullet-list">
+                        <li><strong>Laboratory Reorientation:</strong> Modernizing existing lab sessions to make learners industry-ready.</li>
+                        <li><strong>Employability & Mentoring:</strong> Preparing students for core company interviews and handholding them through internships and academic projects.</li>
+                        <li><strong>Faculty & Student Development:</strong> Conceptualizing and delivering SDPs and FDPs across institutions.</li>
+                    </ul>
+                </div>
+
+                <div class="section" style="margin-bottom: 0;">
+                    <div class="section-title">CONTACT INFORMATION</div>
+                    <div class="contact-grid">
+                        <div class="contact-col">
+                            <strong>Location</strong>
+                            <p>Bengaluru, India</p>
+                        </div>
+                        <div class="contact-col">
+                            <strong>Email</strong>
+                            <p>kjicet@gmail.com</p>
+                            <p>profkj@tridenttechlabs.com</p>
+                        </div>
+                        <div class="contact-col">
+                            <strong>Phone</strong>
+                            <p>+91 94490 50624</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Corrected Export Configuration Script -->
     <script>
         function downloadPDF() {
-            const element = document.getElementById('resume');
+            // Scroll target into view before capturing to prevent horizontal/vertical displacement
+            window.scrollTo(0, 0);
+            
+            const element = document.getElementById('resume-wrapper');
             
             const opt = {
                 margin:       0,
                 filename:     'Prof_K_Jayaraman_Resume.pdf',
                 image:        { type: 'jpeg', quality: 1.0 },
                 html2canvas:  { 
-                    scale: 2.5,          // Crisp vector-like text output
-                    useCORS: true,       // Properly renders external image assets
-                    scrollY: 0,          // Fixes vertical shift/offset issues
-                    scrollX: 0,          // Fixes horizontal shift/offset issues
-                    windowWidth: document.documentElement.offsetWidth
+                    scale: 2,               // Clean high-resolution capture
+                    useCORS: true,          // Ensures GitHub image loads
+                    scrollX: 0, 
+                    scrollY: 0, 
+                    windowWidth: 794,       // Locks render width to prevent rightward shift
+                    windowHeight: 1120      // Locks render height to avoid page-2 break
                 },
-                jsPDF:        { 
-                    unit: 'mm', 
-                    format: 'a4', 
+                jsPDF: { 
+                    unit: 'px', 
+                    format: [794, 1120],     // Custom PDF page matching the container resolution 1:1
                     orientation: 'portrait',
-                    compress: true
-                },
-                pagebreak: { mode: ['avoid-all'] } // Forces single-page rendering boundary
+                    hotfixes: ["px_scaling"]
+                }
             };
 
             html2pdf().set(opt).from(element).save();
