@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. K. Jayaraman (Prof KJ) - Resume</title>
+    <!-- html2pdf.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        /* Base Setup & A4 Dimension Locking */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        /* Action Bar for PDF Generation */
+        .actions {
+            margin-bottom: 20px;
+        }
+
+        .download-btn {
+            background-color: #0d47a1;
+            color: #ffffff;
+            border: none;
+            padding: 10px 24px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background-color 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #0a3578;
+        }
+
+        /* Resume A4 Container */
+        .resume-card {
+            width: 210mm;
+            min-height: 297mm;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Top Header Banner */
+        .header-banner {
+            background-color: #124673;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px 25px 20px;
+        }
+
+        .avatar-container {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px auto;
+            border-radius: 50%;
+            border: 3px solid #ffffff;
+            overflow: hidden;
+            background-color: #e0e0e0;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-banner h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .header-banner .subtitle {
+            font-size: 13px;
+            font-weight: 500;
+            color: #e0e0e0;
+            margin-bottom: 6px;
+        }
+
+        .header-banner .sub-tags {
+            font-size: 12px;
+            color: #b0bec5;
+        }
+
+        /* Main Content Styling */
+        .content {
+            padding: 25px 35px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #222222;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid #2e7d32; /* Accent line */
+        }
+
+        .section {
+            margin-bottom: 22px;
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .bullet-list li {
+            font-size: 12.5px;
+            color: #333333;
+            line-height: 1.55;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 14px;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #333333;
+            font-weight: bold;
+        }
+
+        .bullet-list strong {
+            color: #111111;
+        }
+
+        /* Grid for Domain Expertise Tags */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px 25px;
+            margin-top: 10px;
+        }
+
+        .tag-item {
+            display: flex;
+            align-items: center;
+            font-size: 12.5px;
+            color: #222222;
+        }
+
+        .tag-item::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 22px;
+            background-color: #00b0ff; /* Bright blue tag indicator */
+            margin-right: 10px;
+            border-radius: 1px;
+        }
+
+        /* Contact Details 3-Column Layout */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .contact-col strong {
+            display: block;
+            font-size: 13px;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+
+        .contact-col p, .contact-col a {
+            font-size: 12px;
+            color: #444444;
+            text-decoration: none;
+            line-height: 1.4;
+            display: block;
+        }
+
+        .contact-col a {
+            color: #0277bd;
+        }
+
+        /* Print Settings for standard 1-Page PDF Export */
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .actions {
+                display: none !important;
+            }
+            .resume-card {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="actions">
+        <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
+    </div>
+
+    <div class="resume-card" id="resume">
+        <!-- Blue Header Section -->
+        <div class="header-banner">
+            <div class="avatar-container">
+                <!-- Replace 'profile.jpg' with your image path or Base64 string -->
+                <img src="profile.jpg" alt="Profile Picture" id="userPhoto">
+            </div>
+            <h1>Ramesh Kumar K</h1>
+            <div class="subtitle">Software Automation Engineer | Quality Driven | Automation Enthusiast</div>
+            <div class="sub-tags">Java • Python • Selenium • TestNG • STLC • API & CI/CD</div>
+        </div>
+
+        <!-- Body Section -->
+        <div class="content">
+            
+            <!-- CURRENT ROLE & OVERVIEW -->
+            <div class="section">
+                <div class="section-title">CURRENT ROLE & OVERVIEW</div>
+                <ul class="bullet-list">
+                    <li><strong>Current Designation:</strong> Software Automation Engineer — Designing scalable testing suites and robust test execution frameworks.</li>
+                    <li><strong>Professional Experience:</strong> 4.7+ years of experience in both Manual and Automated software testing methodologies.</li>
+                    <li><strong>Core Capabilities:</strong> Expert in STLC end-to-end management, framework development, script optimization, and defect lifecycle management.</li>
+                    <li><strong>Technical Stack:</strong> Hands-on expertise with Java, Python, Selenium WebDriver, TestNG, Cucumber, and API testing.</li>
+                </ul>
+            </div>
+
+            <!-- MAJOR PROFESSIONAL PURSUITS -->
+            <div class="section">
+                <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
+                <ul class="bullet-list">
+                    <li>Transforming software validation procedures through scalable "Learn by Doing" automated test automation practices.</li>
+                    <li>Designing robust Data-Driven and Page Object Model (POM) automation frameworks for Web & API applications.</li>
+                    <li>Implementing Continuous Integration / Continuous Deployment (CI/CD) pipelines for seamless automated regression runs.</li>
+                </ul>
+            </div>
+
+            <!-- DOMAIN EXPERTISE -->
+            <div class="section">
+                <div class="section-title">DOMAIN EXPERTISE</div>
+                <div class="expertise-grid">
+                    <div class="tag-item">Automation Engineering & Frameworks</div>
+                    <div class="tag-item">Web & REST API Testing</div>
+                    <div class="tag-item">Selenium WebDriver & TestNG</div>
+                    <div class="tag-item">CI/CD Pipeline Integration</div>
+                    <div class="tag-item">STLC & Defect Management</div>
+                    <div class="tag-item">Java & Python Test Scripting</div>
+                </div>
+            </div>
+
+            <!-- KEY RESPONSIBILITIES & DELIVERABLES -->
+            <div class="section">
+                <div class="section-title">KEY RESPONSIBILITIES & SERVICES</div>
+                <ul class="bullet-list">
+                    <li><strong>Framework Modernization:</strong> Migrating legacy manual test cases into scalable automated execution suites.</li>
+                    <li><strong>Quality Assurance & Mentoring:</strong> Standardizing code quality for automation workflows and guiding team deliverables.</li>
+                    <li><strong>Cross-Browser & Parallel Execution:</strong> Implementing distributed test execution to maximize release speed and coverage.</li>
+                </ul>
+            </div>
+
+            <!-- CONTACT INFORMATION -->
+            <div class="section" style="margin-bottom: 0;">
+                <div class="section-title">CONTACT INFORMATION</div>
+                <div class="contact-grid">
+                    <div class="contact-col">
+                        <strong>Location</strong>
+                        <p>Bangalore, Karnataka, India</p>
+                    </div>
+                    <div class="contact-col">
+                        <strong>Email</strong>
+                        <a href="mailto:rameshkumar@example.com">rameshkumar@example.com</a>
+                    </div>
+                    <div class="contact-col">
+                        <strong>Phone</strong>
+                        <p>+91 XXXXX XXXXX</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script to Trigger Clean Single-Page A4 Export -->
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('resume');
+            
+            const opt = {
+                margin:       0,
+                filename:     'Ramesh_Kumar_K_Resume.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { 
+                    scale: 2, 
+                    useCORS: true,
+                    logging: false 
+                },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
