@@ -151,63 +151,56 @@
         .timeline-box {
             background-color: #f8f9fa;
             border: 1px solid #d1d5db;
-            padding: 4px 6px;
+            padding: 6px 8px;
             border-radius: 3px;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
 
         .timeline-title {
             font-size: 9px;
             font-weight: bold;
             color: #111111;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
         }
 
         .timeline-subhead {
             font-size: 9px;
             font-weight: bold;
             color: #333333;
-            margin-bottom: 3px;
+            margin-top: 4px;
+            margin-bottom: 4px;
             padding-bottom: 2px;
             border-bottom: 1px dashed #cccccc;
         }
 
-        .timeline-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 3px;
+        /* Two-Column Alignment Grid */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px 15px;
         }
 
-        .timeline-tag {
-            background-color: #ffffff;
-            color: #222222;
+        .timeline-item {
             font-size: 9px;
-            padding: 1px 5px;
-            border-radius: 2px;
-            border: 1px solid #cccccc;
-            font-weight: 500;
+            color: #222222;
+            position: relative;
+            padding-left: 8px;
         }
 
-        /* Grid Layouts */
+        .timeline-item::before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #124673;
+            font-size: 8px;
+        }
+
+        /* General Grid Layouts */
         .expertise-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3px 15px;
             margin-top: 2px;
-        }
-
-        .tag-item {
-            display: flex;
-            align-items: center;
-            font-size: 9px;
-            color: #222222;
-        }
-
-        .tag-item::before {
-            content: "▪";
-            font-size: 8px;
-            color: #111111;
-            margin-right: 5px;
         }
 
         .contact-grid {
@@ -279,56 +272,56 @@
             
             <!-- CURRENT ROLE & OVERVIEW -->
             <div class="section">
-                <div class="section-title">CURRENT ROLE & OVERVIEW</div>
+                <div class="section-title">PROFESSIONAL PROFILE</div>
                 <ul class="bullet-list">
                     <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
                     <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
                     <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
                     <li><strong>Industry Leadership:</strong> ~15 years in private industries, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
-                    <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
+                    <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani.</li>
                 </ul>
             </div>
 
             <!-- YOUR ACADEMIC AND INDUSTRIAL GUIDE -->
             <div class="section">
-                <div class="section-title">YOUR ACADEMIC AND INDUSTRIAL GUIDE — SURVIVING "SCIENCE – ENGINEERING – TECHNOLOGY" MUTATION / EVOLUTION</div>
+                <div class="section-title">YOUR ACADEMIC & INDUSTRIAL GUIDE:NAVIGATING THE EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY</div>
                 
                 <div class="timeline-box">
                     <div class="timeline-title">Emission Trajectory</div>
-                    <div class="timeline-tags" style="margin-bottom: 4px;">
-                        <span class="timeline-tag">Thermionic Emission (1962–1969)</span>
-                        <span class="timeline-tag">Electronic Emission (1969–2026+)</span>
-                        <span class="timeline-tag">Photonic Emission (2022+)</span>
+                    <div class="timeline-grid">
+                        <div class="timeline-item">Thermionic Emission (1962–1969)</div>
+                        <div class="timeline-item">Electronic Emission (1969–2026+)</div>
+                        <div class="timeline-item">Photonic Emission (2022+)</div>
                     </div>
                     
                     <div class="timeline-subhead">Semiconductor (SEMCON) Evolution</div>
-                    <div class="timeline-tags">
-                        <span class="timeline-tag">Vacuum Tubes</span>
-                        <span class="timeline-tag">Transistor Bipolar Family</span>
-                        <span class="timeline-tag">Transistor JFET</span>
-                        <span class="timeline-tag">Transistor (N/P/C) MOS FET</span>
-                        <span class="timeline-tag">IC OPAMP / SSI / MSI / LSI / VLSI</span>
-                        <span class="timeline-tag">ROM / PROM / EEROM / PLD / PAL / FPGA</span>
-                        <span class="timeline-tag">ASIC</span>
+                    <div class="timeline-grid">
+                        <div class="timeline-item">Vacuum Tubes</div>
+                        <div class="timeline-item">Transistor Bipolar Family</div>
+                        <div class="timeline-item">Transistor JFET</div>
+                        <div class="timeline-item">Transistor (N/P/C) MOS FET</div>
+                        <div class="timeline-item">IC OPAMP / SSI / MSI / LSI / VLSI</div>
+                        <div class="timeline-item">ROM / PROM / EEROM / PLD / PAL / FPGA</div>
+                        <div class="timeline-item">ASIC</div>
                     </div>
                 </div>
 
                 <div class="timeline-box">
                     <div class="timeline-title">Telephone Voice Communication Era</div>
-                    <div class="timeline-tags">
-                        <span class="timeline-tag">Analog & Electromechanical (1870s–1950s)</span>
-                        <span class="timeline-tag">Automation & Touch-Tone (1960s–1980s)</span>
-                        <span class="timeline-tag">Digital & Mobile Cellular (1990s+)</span>
+                    <div class="timeline-grid">
+                        <div class="timeline-item">Analog & Electromechanical (1870s–1950s)</div>
+                        <div class="timeline-item">Automation & Touch-Tone (1960s–1980s)</div>
+                        <div class="timeline-item">Digital & Mobile Cellular (1990s+)</div>
                     </div>
                 </div>
 
                 <div class="timeline-box">
                     <div class="timeline-title">Propulsion Evolution</div>
-                    <div class="timeline-tags">
-                        <span class="timeline-tag">Solid Propulsion</span>
-                        <span class="timeline-tag">Liquid Propulsion</span>
-                        <span class="timeline-tag">Electric Propulsion</span>
-                        <span class="timeline-tag">Cryogenic Propulsion</span>
+                    <div class="timeline-grid">
+                        <div class="timeline-item">Solid Propulsion</div>
+                        <div class="timeline-item">Liquid Propulsion</div>
+                        <div class="timeline-item">Electric Propulsion</div>
+                        <div class="timeline-item">Cryogenic Propulsion</div>
                     </div>
                 </div>
             </div>
@@ -346,13 +339,13 @@
             <!-- DOMAIN EXPERTISE -->
             <div class="section">
                 <div class="section-title">DOMAIN EXPERTISE</div>
-                <div class="expertise-grid">
-                    <div class="tag-item">Systems Approach to Solutions Engineering</div>
-                    <div class="tag-item">Automation Engineering</div>
-                    <div class="tag-item">Embedded Solutions Engineering</div>
-                    <div class="tag-item">IIoT & Industry 4.0 / 5.0</div>
-                    <div class="tag-item">Cyber-Physical Systems (CPS)</div>
-                    <div class="tag-item">Wired & Wireless Protocols</div>
+                <div class="timeline-grid">
+                    <div class="timeline-item">Systems Approach to Solutions Engineering</div>
+                    <div class="timeline-item">Automation Engineering</div>
+                    <div class="timeline-item">Embedded Solutions Engineering</div>
+                    <div class="timeline-item">IIoT & Industry 4.0 / 5.0</div>
+                    <div class="timeline-item">Cyber-Physical Systems (CPS)</div>
+                    <div class="timeline-item">Wired & Wireless Protocols</div>
                 </div>
             </div>
 
