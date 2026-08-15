@@ -18,56 +18,56 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px 0;
+            padding: 15px 0;
         }
 
         .actions {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .download-btn {
             background-color: #124673;
             color: #ffffff;
             border: none;
-            padding: 10px 24px;
-            font-size: 14px;
+            padding: 8px 20px;
+            font-size: 13px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .download-btn:hover {
             background-color: #0a3578;
         }
 
-        /* Strict Single A4 Page Container */
+        /* Strict Single A4 Container with No Wasted Height */
         .resume-card {
             width: 210mm;
             height: 296mm;
             background: #ffffff;
-            box-shadow: 0 0 12px rgba(0,0,0,0.25);
+            box-shadow: 0 0 10px rgba(0,0,0,0.25);
             margin: 0 auto;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        /* Top Banner */
+        /* Compact Header Banner */
         .header-banner {
             background-color: #124673;
             color: #ffffff;
             text-align: center;
-            padding: 18px 20px 14px 20px;
+            padding: 14px 15px 10px 15px;
             width: 100%;
         }
 
         .avatar-container {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 8px auto;
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 6px auto;
             border-radius: 50%;
-            border: 2.5px solid #ffffff;
+            border: 2px solid #ffffff;
             overflow: hidden;
             background-color: #cccccc;
         }
@@ -79,44 +79,45 @@
         }
 
         .header-banner h1 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .header-banner .subtitle {
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: normal;
             color: #e0e0e0;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .header-banner .sub-tags {
-            font-size: 10.5px;
+            font-size: 10px;
             color: #b0bec5;
         }
 
-        /* Compact Layout Content Area */
+        /* Content Area with Tight Spacing */
         .content {
-            padding: 16px 30px;
+            padding: 12px 25px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 6px;
             flex-grow: 1;
         }
 
         .section {
-            margin-bottom: 8px;
+            margin-bottom: 2px;
         }
 
         .section-title {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             color: #111111;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 5px;
-            padding-bottom: 2px;
+            margin-bottom: 3px;
+            padding-bottom: 1px;
             border-bottom: 1.5px solid #2e7d32;
         }
 
@@ -126,12 +127,12 @@
         }
 
         .bullet-list li {
-            font-size: 10.5px;
+            font-size: 10px;
             color: #333333;
-            line-height: 1.35;
-            margin-bottom: 3.5px;
+            line-height: 1.3;
+            margin-bottom: 2px;
             position: relative;
-            padding-left: 12px;
+            padding-left: 10px;
         }
 
         .bullet-list li::before {
@@ -146,83 +147,80 @@
             color: #111111;
         }
 
-        /* Know Thy Speaker Timeline Boxes */
+        /* Compact Timeline Container */
         .timeline-box {
             background-color: #f7f9fa;
-            border: 1px solid #dcdcdc;
-            padding: 6px;
-            border-radius: 4px;
-            margin-bottom: 4px;
+            border: 1px solid #e0e0e0;
+            padding: 4px 6px;
+            border-radius: 3px;
+            margin-bottom: 3px;
         }
 
         .timeline-title {
-            font-size: 10.5px;
+            font-size: 9.5px;
             font-weight: bold;
             color: #124673;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .timeline-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 4px;
+            gap: 3px;
         }
 
         .timeline-tag {
             background-color: #e3f2fd;
             color: #0d47a1;
-            font-size: 9.5px;
-            padding: 2px 6px;
-            border-radius: 3px;
+            font-size: 9px;
+            padding: 1px 5px;
+            border-radius: 2px;
             border: 1px solid #bbdefb;
             font-weight: 600;
         }
 
-        /* Domain Expertise Grid */
+        /* Grid Layouts */
         .expertise-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5px 20px;
-            margin-top: 4px;
+            gap: 3px 15px;
+            margin-top: 2px;
         }
 
         .tag-item {
             display: flex;
             align-items: center;
-            font-size: 10.5px;
+            font-size: 9.5px;
             color: #222222;
         }
 
         .tag-item::before {
             content: "";
             display: inline-block;
-            width: 4px;
-            height: 14px;
+            width: 3px;
+            height: 12px;
             background-color: #00b0ff;
-            margin-right: 6px;
+            margin-right: 5px;
         }
 
-        /* Contact Details Layout */
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1.5fr 1fr;
-            gap: 10px;
-            margin-top: 4px;
+            gap: 6px;
+            margin-top: 2px;
         }
 
         .contact-col strong {
             display: block;
-            font-size: 11px;
+            font-size: 10px;
             color: #111111;
             margin-bottom: 1px;
         }
 
-        .contact-col p, .contact-col a {
-            font-size: 10px;
+        .contact-col p {
+            font-size: 9.5px;
             color: #444444;
-            text-decoration: none;
-            line-height: 1.25;
-            display: block;
+            line-height: 1.2;
         }
 
         /* Native Print Adjustments */
@@ -259,7 +257,7 @@
     </div>
 
     <div class="resume-card">
-        <!-- Header Section -->
+        <!-- Header Banner -->
         <div class="header-banner">
             <div class="avatar-container">
                 <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
@@ -276,49 +274,50 @@
             <div class="section">
                 <div class="section-title">CURRENT ROLE & OVERVIEW</div>
                 <ul class="bullet-list">
-                    <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
+                    <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.[cite: 5]</li>
                     <li><strong>Academia & Industry Experience:</strong> 30+ years spanning Research, Academia, Industry, and Business.</li>
                     <li><strong>Defense & Space R&D:</strong> ~10 years of service as a Former Scientist at ISRO and DRDO.</li>
                     <li><strong>Industry Leadership:</strong> ~15 years in private industries, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
-                    <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).</li>
+                    <li><strong>Education:</strong> Graduated and Post Graduated from BITS, Pilani (1967 / 1969).[cite: 5]</li>
                 </ul>
             </div>
 
-            <!-- KNOW THY SPEAKER: EVOLUTIONARY TRAJECTORY -->
+            <!-- KNOW THY SPEAKER TRAJECTORY -->
             <div class="section">
-                <div class="section-title">KNOW THY SPEAKER — SURVIVING "SCIENCE - ENGINEERING - TECHNOLOGY" MUTATION</div>
+                <div class="section-title">KNOW THY SPEAKER — SURVIVING "SCIENCE – ENGINEERING – TECHNOLOGY" MUTATION / EVOLUTION[cite: 5]</div>
                 
                 <div class="timeline-box">
-                    <div class="timeline-title">Emission Technology & Semiconductor (SEMCON) Evolution (1962–2026+)</div>
+                    <div class="timeline-title">Emission & Semiconductor (SEMCON) Trajectory[cite: 5]</div>
                     <div class="timeline-tags">
-                        <span class="timeline-tag">Thermionic Emission (1962–1969)</span>
-                        <span class="timeline-tag">Electronic Emission (1969–2026+)</span>
-                        <span class="timeline-tag">Photonic Emission (2022+)</span>
-                        <span class="timeline-tag">Vacuum Tubes</span>
-                        <span class="timeline-tag">Bipolar Family</span>
-                        <span class="timeline-tag">JFET / MOS FET (N/P/C)</span>
-                        <span class="timeline-tag">IC OPAMP / SSI / MSI / LSI / VLSI</span>
-                        <span class="timeline-tag">ROM / PROM / EEROM / PLD / PAL / FPGA</span>
-                        <span class="timeline-tag">ASIC</span>
+                        <span class="timeline-tag">Thermionic Emission (1962–1969)[cite: 5]</span>
+                        <span class="timeline-tag">Electronic Emission (1969–2026+)[cite: 5]</span>
+                        <span class="timeline-tag">Photonic Emission (2022+)[cite: 5]</span>
+                        <span class="timeline-tag">Vacuum Tubes[cite: 5]</span>
+                        <span class="timeline-tag">Transistor Bipolar Family[cite: 5]</span>
+                        <span class="timeline-tag">Transistor JFET[cite: 5]</span>
+                        <span class="timeline-tag">Transistor (N/P/C) MOS FET[cite: 5]</span>
+                        <span class="timeline-tag">IC OPAMP / SSI / MSI / LSI / VLSI[cite: 5]</span>
+                        <span class="timeline-tag">ROM / PROM / EEROM / PLD / PAL / FPGA[cite: 5]</span>
+                        <span class="timeline-tag">ASIC[cite: 5]</span>
                     </div>
                 </div>
 
                 <div class="timeline-box">
-                    <div class="timeline-title">Telephone Voice Communication Era</div>
+                    <div class="timeline-title">Telephone Voice Communication Era[cite: 5]</div>
                     <div class="timeline-tags">
-                        <span class="timeline-tag">Analog & Electromechanical (1870s–1950s)</span>
-                        <span class="timeline-tag">Automation & Touch-Tone (1960s–1980s)</span>
-                        <span class="timeline-tag">Digital & Mobile Cellular (1990s+)</span>
+                        <span class="timeline-tag">Analog & Electromechanical (1870s–1950s)[cite: 5]</span>
+                        <span class="timeline-tag">Automation & Touch-Tone (1960s–1980s)[cite: 5]</span>
+                        <span class="timeline-tag">Digital & Mobile Cellular (1990s+)[cite: 5]</span>
                     </div>
                 </div>
 
                 <div class="timeline-box">
-                    <div class="timeline-title">Propulsion Technologies</div>
+                    <div class="timeline-title">Propulsion Evolution[cite: 5]</div>
                     <div class="timeline-tags">
-                        <span class="timeline-tag">Solid Propulsion</span>
-                        <span class="timeline-tag">Liquid Propulsion</span>
-                        <span class="timeline-tag">Electric Propulsion</span>
-                        <span class="timeline-tag">Cryogenic Propulsion</span>
+                        <span class="timeline-tag">Solid Propulsion[cite: 5]</span>
+                        <span class="timeline-tag">Liquid Propulsion[cite: 5]</span>
+                        <span class="timeline-tag">Electric Propulsion[cite: 5]</span>
+                        <span class="timeline-tag">Cryogenic Propulsion[cite: 5]</span>
                     </div>
                 </div>
             </div>
@@ -327,7 +326,7 @@
             <div class="section">
                 <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
                 <ul class="bullet-list">
-                    <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
+                    <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.[cite: 5]</li>
                     <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
                     <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
                 </ul>
@@ -357,7 +356,7 @@
             </div>
 
             <!-- CONTACT INFORMATION -->
-            <div class="section" style="margin-bottom: 0;">
+            <div class="section">
                 <div class="section-title">CONTACT INFORMATION</div>
                 <div class="contact-grid">
                     <div class="contact-col">
@@ -367,7 +366,7 @@
                     <div class="contact-col">
                         <strong>Email</strong>
                         <p>kjicet@gmail.com</p>
-                        <p>profkj@tridenttechlabs.com</p>
+                        <p>profkj@tridenttechlabs.com[cite: 5]</p>
                     </div>
                     <div class="contact-col">
                         <strong>Phone</strong>
