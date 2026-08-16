@@ -4,53 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prof. K. Jayaraman - Professional Profile</title>
+    <!-- xmlns:o and xmlns:w namespaces enable native Microsoft Word rendering when opened in Word -->
+    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
     <style>
+        @page {
+            size: A4 portrait;
+            margin: 10mm;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: normal;
-            color: #000000; /* Pure black font for all standard text */
-            -webkit-font-smoothing: antialiased;
+            color: #000000;
         }
 
         body {
-            background-color: #525659;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 15px 0;
+            padding: 0;
+            margin: 0 auto;
         }
 
         .actions {
-            margin-bottom: 10px;
+            margin: 15px 0;
         }
 
         .download-btn {
             background-color: #124673;
             color: #ffffff;
             border: none;
-            padding: 8px 20px;
+            padding: 10px 20px;
             font-size: 13px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin: 0 5px;
         }
 
         .download-btn:hover {
             background-color: #0a3578;
         }
 
-        /* Single A4 Container */
         .resume-card {
             width: 210mm;
-            height: 296mm;
+            min-height: 296mm;
             background: #ffffff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.25);
             margin: 0 auto;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
         }
@@ -59,14 +64,14 @@
         .header-banner {
             background-color: #124673;
             text-align: center;
-            padding: 14px 15px 10px 15px;
+            padding: 16px 15px 12px 15px;
             width: 100%;
         }
 
         .avatar-container {
-            width: 85px;
-            height: 85px;
-            margin: 0 auto 6px auto;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 8px auto;
             border-radius: 50%;
             border: 2px solid #ffffff;
             overflow: hidden;
@@ -77,20 +82,21 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 50%;
         }
 
         .header-banner h1 {
             font-size: 18px;
             font-weight: bold;
             color: #ffffff;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .header-banner .subtitle {
             font-size: 10.5px;
             font-weight: normal;
             color: #ffffff;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .header-banner .sub-tags {
@@ -101,27 +107,25 @@
 
         /* Content Area */
         .content {
-            padding: 10px 25px;
+            padding: 12px 25px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
-            gap: 5px;
+            gap: 6px;
             flex-grow: 1;
         }
 
         .section {
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
-        /* Main Section Headings (Bold) */
         .section-title {
             font-size: 10.5px;
             font-weight: bold;
             color: #000000;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            margin-bottom: 3px;
-            padding-bottom: 1px;
+            margin-bottom: 4px;
+            padding-bottom: 2px;
             border-bottom: 1.5px solid #124673;
         }
 
@@ -134,10 +138,10 @@
             font-size: 9px;
             font-weight: normal;
             color: #000000;
-            line-height: 1.3;
-            margin-bottom: 2px;
+            line-height: 1.35;
+            margin-bottom: 3px;
             position: relative;
-            padding-left: 10px;
+            padding-left: 12px;
         }
 
         .bullet-list li::before {
@@ -147,25 +151,27 @@
             color: #000000;
         }
 
-        /* Grid Layout & Subheadings */
-        .timeline-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px 15px;
-            margin-top: 2px;
+        /* Tables formatted for clean MS Word output */
+        .word-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3px;
         }
 
-        /* Subheadings (Bold) */
-        .timeline-header {
-            grid-column: 1 / -1;
+        .word-table td {
+            vertical-align: top;
+            padding: 2px 4px;
+            font-size: 9px;
+        }
+
+        .timeline-header-td {
             font-size: 9px;
             font-weight: bold;
             color: #000000;
             text-transform: uppercase;
-            margin-top: 3px;
-            margin-bottom: 1px;
             border-bottom: 1px dashed #000000;
-            padding-bottom: 1px;
+            padding-top: 4px !important;
+            padding-bottom: 2px !important;
         }
 
         .timeline-item {
@@ -173,8 +179,8 @@
             font-weight: normal;
             color: #000000;
             position: relative;
-            padding-left: 8px;
-            line-height: 1.25;
+            padding-left: 10px;
+            line-height: 1.3;
         }
 
         .timeline-item::before {
@@ -185,20 +191,12 @@
             font-size: 8px;
         }
 
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.5fr 1fr;
-            gap: 6px;
-            margin-top: 2px;
-        }
-
-        /* Subheadings in Contact (Bold) */
         .contact-col strong {
             display: block;
             font-size: 9px;
             font-weight: bold;
             color: #000000;
-            margin-bottom: 1px;
+            margin-bottom: 2px;
             text-transform: uppercase;
         }
 
@@ -206,32 +204,20 @@
             font-size: 9px;
             font-weight: normal;
             color: #000000;
-            line-height: 1.2;
+            line-height: 1.25;
         }
 
-        /* Native Print Adjustments */
         @media print {
-            @page {
-                size: A4 portrait;
-                margin: 0;
+            .actions {
+                display: none !important;
             }
             body {
                 background: none !important;
                 padding: 0 !important;
-                margin: 0 !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
-            .actions {
-                display: none !important;
             }
             .resume-card {
                 box-shadow: none !important;
-                margin: 0 !important;
-                width: 210mm !important;
-                height: 297mm !important;
-                page-break-after: avoid !important;
-                page-break-inside: avoid !important;
+                width: 100% !important;
             }
         }
     </style>
@@ -239,10 +225,11 @@
 <body>
 
     <div class="actions">
-        <button class="download-btn" onclick="window.print()">📄 Save as PDF (Strict 1-Page HD)</button>
+        <button class="download-btn" onclick="downloadWordDoc()">📥 Export as MS Word (.doc)</button>
+        <button class="download-btn" onclick="window.print()">📄 Save as PDF</button>
     </div>
 
-    <div class="resume-card">
+    <div class="resume-card" id="document-content">
         <!-- Header Banner -->
         <div class="header-banner">
             <div class="avatar-container">
@@ -270,34 +257,58 @@
 
             <!-- ACADEMIC & INDUSTRIAL GUIDE -->
             <div class="section">
-                <div class="section-title">KNOW ME—YOUR ACADEMIC & INDUSTRIAL GUIDE:NAVIGATING THE EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY</div>
-                <div class="timeline-grid">
-                    
-                    <div class="timeline-header">Emission</div>
-                    <div class="timeline-item">Thermionic Emission (1962–1969)</div>
-                    <div class="timeline-item">Electronic Emission (1969–2026+)</div>
-                    <div class="timeline-item">Photonic Emission (2022+)</div>
-                    
-                    <div class="timeline-header">Propulsion Evolution</div>
-                    <div class="timeline-item">Solid Propulsion</div>
-                    <div class="timeline-item">Liquid Propulsion</div>
-                    <div class="timeline-item">Electric Propulsion</div>
-                    <div class="timeline-item">Cryogenic Propulsion</div>
-
-                    <div class="timeline-header">Telephone Voice Communication Era</div>
-                    <div class="timeline-item">Analog & Electromechanical (1870s–1950s)</div>
-                    <div class="timeline-item">Automation & Touch-Tone (1960s–1980s)</div>
-                    <div class="timeline-item">Digital & Mobile Cellular (1990s+)</div>
-
-                    <div class="timeline-header">Semiconductor (SEMCON) Trajectory</div>
-                    <div class="timeline-item">Vacuum Tubes</div>
-                    <div class="timeline-item">Bipolar Transistors</div>
-                    <div class="timeline-item">JFET</div>
-                    <div class="timeline-item">N/P/C MOSFET</div>
-                    <div class="timeline-item">IC OPAMP / SSI / MSI / LSI / VLSI</div>
-                    <div class="timeline-item">ROM / PROM / EEROM / PLD / PAL / FPGA</div>
-                    <div class="timeline-item">ASIC</div>
-                </div>
+                <div class="section-title">KNOW ME—YOUR ACADEMIC & INDUSTRIAL GUIDE: NAVIGATING THE EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY</div>
+                <table class="word-table">
+                    <tr>
+                        <td colspan="2" class="timeline-header-td">Emission</td>
+                    </tr>
+                    <tr>
+                        <td width="50%"><div class="timeline-item">Thermionic Emission (1962–1969)</div></td>
+                        <td width="50%"><div class="timeline-item">Electronic Emission (1969–2026+)</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div class="timeline-item">Photonic Emission (2022+)</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="timeline-header-td">Propulsion Evolution</td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">Solid Propulsion</div></td>
+                        <td><div class="timeline-item">Liquid Propulsion</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">Electric Propulsion</div></td>
+                        <td><div class="timeline-item">Cryogenic Propulsion</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="timeline-header-td">Telephone Voice Communication Era</td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">Analog & Electromechanical (1870s–1950s)</div></td>
+                        <td><div class="timeline-item">Automation & Touch-Tone (1960s–1980s)</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div class="timeline-item">Digital & Mobile Cellular (1990s+)</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="timeline-header-td">Semiconductor (SEMCON) Trajectory</td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">Vacuum Tubes</div></td>
+                        <td><div class="timeline-item">Bipolar Transistors</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">JFET</div></td>
+                        <td><div class="timeline-item">N/P/C MOSFET</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">IC OPAMP / SSI / MSI / LSI / VLSI</div></td>
+                        <td><div class="timeline-item">ROM / PROM / EEROM / PLD / PAL / FPGA</div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><div class="timeline-item">ASIC</div></td>
+                    </tr>
+                </table>
             </div>
 
             <!-- MAJOR PROFESSIONAL PURSUITS -->
@@ -313,14 +324,20 @@
             <!-- DOMAIN EXPERTISE -->
             <div class="section">
                 <div class="section-title">DOMAIN EXPERTISE</div>
-                <div class="timeline-grid">
-                    <div class="timeline-item">Systems Approach to Solutions Engineering</div>
-                    <div class="timeline-item">Automation Engineering</div>
-                    <div class="timeline-item">Embedded Solutions Engineering</div>
-                    <div class="timeline-item">IIoT & Industry 4.0 / 5.0</div>
-                    <div class="timeline-item">Cyber-Physical Systems (CPS)</div>
-                    <div class="timeline-item">Wired & Wireless Protocols</div>
-                </div>
+                <table class="word-table">
+                    <tr>
+                        <td width="50%"><div class="timeline-item">Systems Approach to Solutions Engineering</div></td>
+                        <td width="50%"><div class="timeline-item">Automation Engineering</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">Embedded Solutions Engineering</div></td>
+                        <td><div class="timeline-item">IIoT & Industry 4.0 / 5.0</div></td>
+                    </tr>
+                    <tr>
+                        <td><div class="timeline-item">Cyber-Physical Systems (CPS)</div></td>
+                        <td><div class="timeline-item">Wired & Wireless Protocols</div></td>
+                    </tr>
+                </table>
             </div>
 
             <!-- SERVICES FOR ACADEMIC INSTITUTIONS -->
@@ -336,25 +353,45 @@
             <!-- CONTACT INFORMATION -->
             <div class="section">
                 <div class="section-title">CONTACT INFORMATION</div>
-                <div class="contact-grid">
-                    <div class="contact-col">
-                        <strong>Location</strong>
-                        <p>Bengaluru, India</p>
-                    </div>
-                    <div class="contact-col">
-                        <strong>Email</strong>
-                        <p>kjicet@gmail.com</p>
-                        <p>profkj@tridenttechlabs.com</p>
-                    </div>
-                    <div class="contact-col">
-                        <strong>Phone</strong>
-                        <p>+91 94490 50624</p>
-                    </div>
-                </div>
+                <table class="word-table">
+                    <tr>
+                        <td width="33%" class="contact-col">
+                            <strong>Location</strong>
+                            <p>Bengaluru, India</p>
+                        </td>
+                        <td width="34%" class="contact-col">
+                            <strong>Email</strong>
+                            <p>kjicet@gmail.com</p>
+                            <p>profkj@tridenttechlabs.com</p>
+                        </td>
+                        <td width="33%" class="contact-col">
+                            <strong>Phone</strong>
+                            <p>+91 94490 50624</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
         </div>
     </div>
 
+    <script>
+        function downloadWordDoc() {
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+                "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                "<head><meta charset='utf-8'><title>Prof. K. Jayaraman Profile</title></head><body>";
+            var footer = "</body></html>";
+            var sourceHTML = header + document.getElementById("document-content").innerHTML + footer;
+            
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'Prof_K_Jayaraman_Profile.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+    </script>
 </body>
 </html>
