@@ -102,7 +102,7 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 4px;
+            gap: 5px;
             flex-grow: 1;
         }
 
@@ -147,48 +147,20 @@
             color: #111111;
         }
 
-        /* Compacted Evolution Block Layout */
-        .evolution-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            background-color: #f8f9fa;
-            border: 1px solid #d1d5db;
-            padding: 6px 8px;
-            border-radius: 3px;
-        }
-
-        .evolution-block {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .evolution-block.full-width {
-            grid-column: span 2;
-        }
-
-        .timeline-title {
-            font-size: 9px;
-            font-weight: bold;
-            color: #124673;
-            margin-bottom: 2px;
-            text-transform: uppercase;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 1px;
-        }
-
+        /* Standardized Grid Layout */
         .timeline-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2px 10px;
+            gap: 3px 15px;
+            margin-top: 2px;
         }
 
         .timeline-item {
-            font-size: 8.5px;
+            font-size: 9px;
             color: #222222;
             position: relative;
             padding-left: 8px;
-            line-height: 1.25;
+            line-height: 1.3;
         }
 
         .timeline-item::before {
@@ -196,7 +168,7 @@
             position: absolute;
             left: 0;
             color: #124673;
-            font-size: 7px;
+            font-size: 8px;
         }
 
         .contact-grid {
@@ -278,51 +250,34 @@
                 </ul>
             </div>
 
-            <!-- COMPACTED EVOLUTION BLOCK -->
+            <!-- ACADEMIC & INDUSTRIAL GUIDE -->
             <div class="section">
-                <div class="section-title">KNOW ME — YOUR ACADEMIC & INDUSTRIAL GUIDE: NAVIGATING THE EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY</div>
-                
-                <div class="evolution-wrapper">
-                    <!-- Column 1: Emission -->
-                    <div class="evolution-block">
-                        <div class="timeline-title">Emission</div>
-                        <div class="timeline-item">Thermionic Emission (1962–1969)</div>
-                        <div class="timeline-item">Electronic Emission (1969–2026+)</div>
-                        <div class="timeline-item">Photonic Emission (2022+)</div>
-                    </div>
+                <div class="section-title">KNOW ME: YOUR ACADEMIC & INDUSTRIAL GUIDE-NAVIGATING THE EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY</div>
+                <div class="timeline-grid">
+                    <!-- Emission -->
+                    <div class="timeline-item">Thermionic Emission (1962–1969)</div>
+                    <div class="timeline-item">Electronic Emission (1969–2026+)</div>
+                    <div class="timeline-item">Photonic Emission (2022+)</div>
+                    
+                    <!-- Propulsion -->
+                    <div class="timeline-item">Solid Propulsion</div>
+                    <div class="timeline-item">Liquid Propulsion</div>
+                    <div class="timeline-item">Electric Propulsion</div>
+                    <div class="timeline-item">Cryogenic Propulsion</div>
 
-                    <!-- Column 2: Propulsion Evolution -->
-                    <div class="evolution-block">
-                        <div class="timeline-title">Propulsion Evolution</div>
-                        <div class="timeline-grid">
-                            <div class="timeline-item">Solid Propulsion</div>
-                            <div class="timeline-item">Liquid Propulsion</div>
-                            <div class="timeline-item">Electric Propulsion</div>
-                            <div class="timeline-item">Cryogenic Propulsion</div>
-                        </div>
-                    </div>
+                    <!-- Telephone Era -->
+                    <div class="timeline-item">Analog & Electromechanical (1870s–1950s)</div>
+                    <div class="timeline-item">Automation & Touch-Tone (1960s–1980s)</div>
+                    <div class="timeline-item">Digital & Mobile Cellular (1990s+)</div>
 
-                    <!-- Column 1: Telephone Communication Era -->
-                    <div class="evolution-block">
-                        <div class="timeline-title">Telephone Voice Communication Era</div>
-                        <div class="timeline-item">Analog & Electromechanical (1870s–1950s)</div>
-                        <div class="timeline-item">Automation & Touch-Tone (1960s–1980s)</div>
-                        <div class="timeline-item">Digital & Mobile Cellular (1990s+)</div>
-                    </div>
-
-                    <!-- Full Width Bottom Section: Semiconductor Evolution -->
-                    <div class="evolution-block full-width">
-                        <div class="timeline-title">Semiconductor (SEMCON) Evolution</div>
-                        <div class="timeline-grid">
-                            <div class="timeline-item">Vacuum Tubes</div>
-                            <div class="timeline-item">Bipolar Transistors</div>
-                            <div class="timeline-item">JFET</div>
-                            <div class="timeline-item">N/P/C MOSFET</div>
-                            <div class="timeline-item">IC OPAMP / SSI / MSI / LSI / VLSI</div>
-                            <div class="timeline-item">ROM / PROM / EEROM / PLD / PAL / FPGA</div>
-                            <div class="timeline-item">ASIC</div>
-                        </div>
-                    </div>
+                    <!-- Semiconductor Evolution -->
+                    <div class="timeline-item">Vacuum Tubes</div>
+                    <div class="timeline-item">Bipolar Transistors</div>
+                    <div class="timeline-item">JFET</div>
+                    <div class="timeline-item">N/P/C MOSFET</div>
+                    <div class="timeline-item">IC OPAMP / SSI / MSI / LSI / VLSI</div>
+                    <div class="timeline-item">ROM / PROM / EEROM / PLD / PAL / FPGA</div>
+                    <div class="timeline-item">ASIC</div>
                 </div>
             </div>
 
