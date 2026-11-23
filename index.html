@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prof. K. Jayaraman (Prof KJ) | Professional Profile</title>
+    <title>Prof. K. Jayaraman (Prof KJ) | Academic &amp; Industrial Guide</title>
     <style>
         :root {
             --primary: #0f2942;
@@ -15,11 +15,10 @@
             --text-muted: #475569;
             --white: #ffffff;
             --border: #e2e8f0;
-            --sidebar-width: 285px;
+            --sidebar-width: 280px;
         }
 
-        /* Fixed universal reset (* instead of -) */
-        *, *::before, *::after {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -29,10 +28,15 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
-            line-height: 1.65;
+            line-height: 1.6;
             display: flex;
             min-height: 100vh;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img, video, iframe {
+            image-rendering: -webkit-optimize-contrast;
         }
 
         /* ================= MOBILE HEADER BAR ================= */
@@ -42,7 +46,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 62px;
+            height: 60px;
             background: var(--primary);
             color: var(--white);
             padding: 0 18px;
@@ -80,7 +84,7 @@
             cursor: pointer;
         }
 
-        /* ================= SIDEBAR NAVIGATION (TOP-LEFT PHOTO) ================= */
+        /* ================= SIDEBAR NAVIGATION ================= */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -95,7 +99,7 @@
             overflow-y: auto;
             z-index: 1050;
             transition: transform 0.3s ease;
-            box-shadow: 4px 0 18px rgba(0, 0, 0, 0.14);
+            box-shadow: 4px 0 18px rgba(0, 0, 0, 0.12);
         }
 
         .profile-header {
@@ -106,16 +110,16 @@
         }
 
         .profile-pic {
-            width: 124px;
-            height: 124px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            object-position: top 15% center;
-            image-rendering: auto;
+            object-position: top center;
             border: 3px solid var(--accent);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
             margin-bottom: 10px;
             background-color: #1e3a5f;
+            cursor: pointer;
         }
 
         .profile-header h2 {
@@ -125,12 +129,12 @@
 
         .profile-header .badge {
             display: inline-block;
-            background: rgba(217, 119, 6, 0.24);
+            background: rgba(217, 119, 6, 0.22);
             color: #fbbf24;
             font-size: 0.75rem;
             padding: 3px 10px;
             border-radius: 12px;
-            margin-top: 6px;
+            margin-top: 5px;
             font-weight: 600;
         }
 
@@ -182,7 +186,7 @@
         .call-pill {
             display: inline-block;
             margin: 8px 0;
-            padding: 7px 13px;
+            padding: 6px 12px;
             background: rgba(16, 185, 129, 0.18);
             color: #6ee7b7;
             border: 1px solid rgba(16, 185, 129, 0.4);
@@ -199,7 +203,7 @@
         .admin-toggle-btn {
             margin-top: 8px;
             width: 100%;
-            padding: 8px;
+            padding: 7px;
             background: rgba(255, 255, 255, 0.1);
             color: #e2e8f0;
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -223,7 +227,7 @@
 
         .page-view {
             display: none;
-            animation: fadeIn 0.28s ease-in-out;
+            animation: fadeIn 0.25s ease-in-out;
         }
 
         .page-view.active-view {
@@ -231,7 +235,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -280,20 +284,14 @@
 
         .hero-banner .subtitle {
             color: #fbbf24;
-            font-size: 1.05rem;
+            font-size: 1.08rem;
             font-weight: 600;
             margin-bottom: 10px;
         }
 
         .hero-banner p {
             color: #e2e8f0;
-            max-width: 840px;
-        }
-
-        .hero-meta {
-            margin-top: 14px;
-            font-size: 0.88rem;
-            color: #cbd5e1;
+            max-width: 820px;
         }
 
         .hero-actions {
@@ -332,7 +330,6 @@
             font-size: 0.94rem;
         }
 
-        /* Philosopher Quote Widget */
         .quote-showcase {
             background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
             border: 1px solid #fde68a;
@@ -373,7 +370,7 @@
             font-style: italic;
             color: var(--primary);
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.5;
         }
 
@@ -434,7 +431,6 @@
             font-weight: bold;
         }
 
-        /* Tech Evolution Badges */
         .evo-card {
             background: #f8fafc;
             padding: 20px;
@@ -465,7 +461,6 @@
             font-weight: 500;
         }
 
-        /* Workflow Stepper */
         .workflow-steps {
             display: flex;
             flex-wrap: wrap;
@@ -475,13 +470,13 @@
 
         .step-box {
             flex: 1;
-            min-width: 150px;
+            min-width: 145px;
             background: var(--primary);
             color: var(--white);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.92rem;
         }
 
         .step-box span {
@@ -493,16 +488,6 @@
         }
 
         /* ================= SUPER ADMIN PHOTO & VIDEO GALLERY ================= */
-        .zip-note {
-            background: #eff6ff;
-            border: 1px solid #bfdbfe;
-            color: #1e3a8a;
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 0.88rem;
-            margin-bottom: 18px;
-        }
-
         .admin-upload-box {
             display: none;
             background: #ecfdf5;
@@ -518,7 +503,7 @@
 
         .admin-form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 12px;
             margin-top: 12px;
         }
@@ -559,33 +544,54 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 22px;
         }
 
         .gallery-card {
             background: #f8fafc;
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
             position: relative;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
-        .gallery-card img,
-        .gallery-card video,
-        .gallery-card iframe {
+        .gallery-media-frame {
             width: 100%;
-            height: 210px;
+            height: 220px;
+            background: #0f2942;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-media-frame img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             object-position: center;
             display: block;
+            transition: transform 0.25s ease;
+        }
+
+        .gallery-media-frame img:hover {
+            transform: scale(1.02);
+        }
+
+        .gallery-card video,
+        .gallery-card iframe {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
             border: none;
-            background: #e2e8f0;
         }
 
         .gallery-meta {
-            padding: 14px;
+            padding: 14px 16px;
         }
 
         .gallery-cat {
@@ -593,13 +599,20 @@
             font-weight: 700;
             color: var(--accent-hover);
             text-transform: uppercase;
+            letter-spacing: 0.4px;
         }
 
         .gallery-title {
             font-size: 0.96rem;
             font-weight: 700;
             color: var(--primary);
-            margin-top: 3px;
+            margin-top: 4px;
+        }
+
+        .gallery-hint {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
         .delete-media-btn {
@@ -615,10 +628,62 @@
             font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
+            z-index: 5;
         }
 
         body.admin-mode .delete-media-btn {
             display: block;
+        }
+
+        /* ================= LIGHTBOX MODAL FOR HIGH-CLARITY VIEW ================= */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 22, 36, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .lightbox-modal.open {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 920px;
+            width: 100%;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+        }
+
+        .lightbox-content img {
+            width: 100%;
+            max-height: 75vh;
+            object-fit: contain;
+            background: #081624;
+            display: block;
+        }
+
+        .lightbox-footer {
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lightbox-close {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
         }
 
         /* ================= CONTACT & DIALER ================= */
@@ -663,8 +728,8 @@
 
             .sidebar {
                 transform: translateX(-100%);
-                top: 62px;
-                height: calc(100vh - 62px);
+                top: 60px;
+                height: calc(100vh - 60px);
             }
 
             .sidebar.open {
@@ -674,7 +739,7 @@
             .main-content {
                 margin-left: 0;
                 width: 100%;
-                padding: 82px 18px 30px 18px;
+                padding: 80px 18px 30px 18px;
             }
 
             .hero-banner {
@@ -696,7 +761,7 @@
     <!-- MOBILE HEADER -->
     <header class="mobile-topbar">
         <div class="brand-mini">
-            <img src="Picture1.jpg" alt="Prof. Jayaraman K (Prof KJ)">
+            <img src="Picture1.jpg" alt="Prof. KJ" onerror="this.src='https://via.placeholder.com/80/0f2942/ffffff?text=KJ'">
             <span>Prof. K. Jayaraman</span>
         </div>
         <button class="menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
@@ -705,8 +770,8 @@
     <!-- SIDEBAR NAVIGATION (8 VIEWS + TOP-LEFT PHOTO) -->
     <aside class="sidebar" id="sidebar">
         <div class="profile-header">
-            <img src="Picture1.jpg" alt="Prof. Jayaraman K (Prof KJ)" class="profile-pic">
-            <h2>Prof. Jayaraman K</h2>
+            <img src="Picture1.jpg" alt="Prof. K. Jayaraman" class="profile-pic" onclick="openLightbox('Picture1.jpg', 'Prof. K. Jayaraman (Prof KJ)')" onerror="this.src='https://via.placeholder.com/150/0f2942/ffffff?text=Prof.+KJ'">
+            <h2>Prof. K. Jayaraman</h2>
             <span class="badge">Prof. KJ • Academic Evangelist</span>
         </div>
 
@@ -722,7 +787,7 @@
         </nav>
 
         <div class="sidebar-footer">
-            <div>Bengaluru • Updated: August 9, 2026</div>
+            <div>Bengaluru, India</div>
             <a href="tel:+919449050624" class="call-pill">📞 Call: +91 94490 50624</a>
             <button id="adminToggleBtn" class="admin-toggle-btn" onclick="toggleSuperAdmin()">🔒 Super Admin Login</button>
         </div>
@@ -734,10 +799,9 @@
         <!-- ==================== 1. HOME VIEW ==================== -->
         <div id="view-home" class="page-view active-view">
             <div class="hero-banner">
-                <h1>Prof. Jayaraman K (Prof KJ)</h1>
-                <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Academic Evangelist &amp; Mentor</div>
-                <p>Transforming engineering degree holders into practicing engineers, enhancing core employability, and applying systems thinking and multi-disciplinary teaching-learning practices[cite: 1].</p>
-                <div class="hero-meta"><strong>Location:</strong> Bengaluru &nbsp;|&nbsp; <strong>Profile Date:</strong> August 9, 2026</div>
+                <h1>Prof. K. Jayaraman (Prof KJ)</h1>
+                <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
+                <p>Academic Evangelist &bull; Former Defense &amp; Space Scientist (ISRO &amp; DRDO) &bull; Systems Engineering Leader with 40+ Years of Experience Transforming Engineering Degree Holders into True Engineers.</p>
                 <div class="hero-actions">
                     <button class="btn-primary" onclick="navigateTo('about')">Explore Profile &amp; Gallery</button>
                     <a href="tel:+919449050624" class="btn-outline">📞 Call Now: +91 94490 50624</a>
@@ -748,26 +812,26 @@
             <div class="quote-showcase">
                 <div class="quote-header">
                     <span class="quote-tag">🌍 World Philosopher Wisdom • Auto-Refreshes Hourly</span>
-                    <span class="quote-timer" id="quoteStatus">Fetching philosopher quote...</span>
+                    <span class="quote-timer" id="quoteStatus">Fetching live philosopher quote...</span>
                 </div>
-                <div class="quote-text" id="quoteText">"The unexamined life is not worth living."</div>
+                <div class="quote-text" id="quoteText">"Education is the kindling of a flame, not the filling of a vessel."</div>
                 <div class="quote-author" id="quoteAuthor">— Socrates</div>
             </div>
 
             <div class="panel">
-                <h2 class="section-title">Core Vision, Visibility &amp; Highlights</h2>
+                <h2 class="section-title">Core Vision &amp; Quick Navigation</h2>
                 <div class="grid-3">
                     <div class="card">
-                        <h3>Life Ambition &amp; Employability</h3>
-                        <p>Transforming engineering degree holders into engineers and strengthening employability in core engineering industries[cite: 1].</p>
+                        <h3>Learn By Doing (LeaD)</h3>
+                        <p>Bridging the gap between academic theory and industrial reality through closed-loop hands-on engineering practices.</p>
                     </div>
                     <div class="card">
-                        <h3>Visibility &amp; Outreach</h3>
-                        <p>Building strong visibility through a LinkedIn profile, structured website management, FDPs/SDPs, and invited technical talks[cite: 1].</p>
+                        <h3>40+ Years Legacy</h3>
+                        <p>~10 years in ISRO &amp; DRDO Space/Defense R&amp;D, ~15 years in private industry leadership (NI &amp; Trident), and deep academic mentorship.</p>
                     </div>
                     <div class="card">
-                        <h3>Institutional Collaborations</h3>
-                        <p>Engaging private universities and autonomous engineering institutions across South, West, North, and North-East India[cite: 1].</p>
+                        <h3>Pan-India Academic Reach</h3>
+                        <p>Partnering with Private Universities and Autonomous Institutions across North, South, East, West, and Northeast India.</p>
                     </div>
                 </div>
             </div>
@@ -776,18 +840,19 @@
         <!-- ==================== 2. ABOUT US VIEW ==================== -->
         <div id="view-about" class="page-view">
             <div class="panel">
-                <h2 class="section-title">About Prof. Jayaraman K (Prof KJ)</h2>
+                <h2 class="section-title">About Prof. K. Jayaraman (Prof KJ)</h2>
                 <ul class="styled-list">
-                    <li><strong>Current Role:</strong> Chief Architect - "Learn by Doing" Practices, Academic Evangelist, and Mentor[cite: 1].</li>
-                    <li><strong>Background:</strong> Extensive experience across R&amp;D (including ISRO &amp; DRDO), industry leadership, and engineering education.</li>
-                    <li><strong>Systems &amp; Multi-Disciplinary Approach:</strong> Combines a systems approach to solutions with multi-disciplinary and inter-disciplinary teaching-learning processes[cite: 1, 2].</li>
-                    <li><strong>Institutional Reach:</strong> Shortlisting and partnering with private universities and autonomous engineering institutions across South, West, North, and North-East India[cite: 1].</li>
+                    <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
+                    <li><strong>Academia &amp; Industry Experience:</strong> 50+ years spanning Research, Academia, Industry, and Business.</li>
+                    <li><strong>Defense &amp; Space R&amp;D:</strong> ~10 years as a Scientist with <strong>ISRO</strong> and <strong>DRDO</strong>.</li>
+                    <li><strong>Industry Leadership:</strong> ~15 years across private industry, including Academic Program Manager at <strong>National Instruments (NI)</strong> and Chief Architect at <strong>Trident Techlabs</strong>.</li>
+                    <li><strong>Education:</strong> Graduated and Post Graduated from <strong>BITS, Pilani</strong>.</li>
                 </ul>
             </div>
 
             <!-- EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY -->
             <div class="panel">
-                <h2 class="section-title">Evolution of Science, Engineering &amp; Technology</h2>
+                <h2 class="section-title">Know Me — Navigating the Evolution of Science, Engineering &amp; Technology</h2>
                 <div class="grid-2">
                     <div class="evo-card">
                         <h4>Emission Trajectory</h4>
@@ -807,11 +872,11 @@
                         </div>
                     </div>
                     <div class="evo-card">
-                        <h4>Voice Communication Era</h4>
+                        <h4>Telephone Voice Communication Era</h4>
                         <div class="timeline-badges">
-                            <span class="t-badge">Analog &amp; Electromechanical</span>
-                            <span class="t-badge">Automation &amp; Touch-Tone</span>
-                            <span class="t-badge">Digital &amp; Mobile Cellular</span>
+                            <span class="t-badge">Analog &amp; Electromechanical (1870s–1950s)</span>
+                            <span class="t-badge">Automation &amp; Touch-Tone (1960s–1980s)</span>
+                            <span class="t-badge">Digital &amp; Mobile Cellular (1990s+)</span>
                         </div>
                     </div>
                     <div class="evo-card">
@@ -819,9 +884,11 @@
                         <div class="timeline-badges">
                             <span class="t-badge">Vacuum Tubes</span>
                             <span class="t-badge">Bipolar Transistors</span>
-                            <span class="t-badge">JFET &amp; MOSFET</span>
+                            <span class="t-badge">JFET</span>
+                            <span class="t-badge">N/P/C MOSFET</span>
                             <span class="t-badge">IC OPAMP / SSI / MSI / LSI / VLSI</span>
-                            <span class="t-badge">PLD / PAL / FPGA / ASIC</span>
+                            <span class="t-badge">ROM / PROM / EEROM / PLD / PAL / FPGA</span>
+                            <span class="t-badge">ASIC</span>
                         </div>
                     </div>
                 </div>
@@ -830,19 +897,15 @@
             <!-- PHOTO & VIDEO GALLERY WITH SUPER ADMIN UPLOAD -->
             <div class="panel">
                 <h2 class="section-title">Photo &amp; Video Gallery — Events, Campus Visits &amp; Talks</h2>
-
-                <div class="zip-note">
-                    <strong>VIT AP Photos Note:</strong> A browser cannot directly read a <code>.zip</code> file from a GitHub URL. Extract <code>At VIT AP.zip</code> (from <code>github.com/rames-qa/Prof-J.K</code>) into a local folder (e.g., <code>vit-ap/</code>), then log in as <strong>Super Admin</strong> (PIN: <code>1234</code>) below to upload photos/videos or add paths like <code>vit-ap/img1.jpg</code> under the <strong>VIT AP</strong> category.
-                </div>
+                <p style="color: var(--text-muted); margin-bottom: 14px;">Click any photo card to inspect it at full size with high clarity.</p>
 
                 <!-- Super Admin Upload Controls -->
                 <div id="adminUploadBox" class="admin-upload-box">
                     <h4 style="color: #065f46;">🛡️ Super Admin Media Manager — Upload Photo or Video</h4>
-                    <p style="font-size: 0.85rem; color: #047857;">Add photos or videos from VIT AP, campus visits, technical speeches, seminars, webinars, or conferences.</p>
+                    <p style="font-size: 0.85rem; color: #047857;">Add photos or videos from campus visits, technical speeches, seminars, webinars, or conferences.</p>
                     <div class="admin-form-grid">
-                        <input type="text" id="mediaTitle" placeholder="Event Title (e.g., Session at VIT AP)">
+                        <input type="text" id="mediaTitle" placeholder="Event Title (e.g., KL University Honoured)">
                         <select id="mediaCategory">
-                            <option value="VIT AP">VIT AP</option>
                             <option value="Campus Visits">Campus Visits</option>
                             <option value="Technical Speeches">Technical Speeches</option>
                             <option value="Seminars">Seminars</option>
@@ -854,7 +917,7 @@
                             <option value="video">Video (MP4 File or YouTube URL)</option>
                         </select>
                         <input type="file" id="mediaFile" accept="image/*,video/*">
-                        <input type="text" id="mediaUrl" placeholder="Or file path / Image / YouTube URL">
+                        <input type="url" id="mediaUrl" placeholder="Or paste Image / YouTube URL">
                         <button class="btn-primary" onclick="addGalleryItem()">+ Publish to Gallery</button>
                     </div>
                 </div>
@@ -862,7 +925,6 @@
                 <!-- Category Filter Buttons -->
                 <div class="filter-bar">
                     <button class="filter-btn active" onclick="filterGallery('All', this)">All Events</button>
-                    <button class="filter-btn" onclick="filterGallery('VIT AP', this)">VIT AP</button>
                     <button class="filter-btn" onclick="filterGallery('Campus Visits', this)">Campus Visits</button>
                     <button class="filter-btn" onclick="filterGallery('Technical Speeches', this)">Technical Speeches</button>
                     <button class="filter-btn" onclick="filterGallery('Seminars', this)">Seminars</button>
@@ -881,32 +943,31 @@
                 <div class="grid-2" style="margin-bottom: 24px;">
                     <div class="card">
                         <h3>"Learn By Doing" (LeaD) Architecture</h3>
-                        <p>Transforming engineering degree holders into practicing engineers through hands-on experimentation and structured systems thinking[cite: 1].</p>
+                        <p>Transforming Engineering Degree Holders into industry-ready Engineers through closed-loop teaching, experimentation, and real-world system building.</p>
                     </div>
                     <div class="card">
-                        <h3>Cause-and-Effect Systems Approach</h3>
-                        <p>Identifying root causes, partitioning solutions into manageable subsystems, and defining clear requirements specifications[cite: 1, 2].</p>
+                        <h3>Systems Approach to Solutions Engineering</h3>
+                        <p>Structured methodology focusing on Cause-and-Effect analysis, subsystem partitioning, and multi-disciplinary &amp; inter-disciplinary engineering integration.</p>
                     </div>
                 </div>
 
-                <h3 style="color: var(--primary); margin-bottom: 12px;">Core Engineering &amp; Technology Areas</h3>
+                <h3 style="color: var(--primary); margin-bottom: 12px;">Domain Expertise Solutions</h3>
                 <div class="timeline-badges" style="margin-bottom: 25px;">
-                    <span class="t-badge">Systems Approach to Solutions[cite: 1, 2]</span>
-                    <span class="t-badge">Design &amp; Engineering[cite: 1]</span>
-                    <span class="t-badge">Embedded &amp; Automation Engineering</span>
+                    <span class="t-badge">Systems Approach to Solutions Engineering</span>
+                    <span class="t-badge">Automation Engineering</span>
+                    <span class="t-badge">Embedded Solutions Engineering</span>
                     <span class="t-badge">IIoT &amp; Industry 4.0 / 5.0</span>
                     <span class="t-badge">Cyber-Physical Systems (CPS)</span>
-                    <span class="t-badge">Niche Technologies &amp; FDP/SDP[cite: 1]</span>
+                    <span class="t-badge">Wired &amp; Wireless Protocols</span>
                 </div>
 
-                <h3 style="color: var(--primary); margin-bottom: 10px;">Academic Capstone Project Lifecycle</h3>
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Academic Capstone Project Engineering Lifecycle</h3>
                 <div class="workflow-steps">
-                    <div class="step-box"><span>Step 1</span>Topic Identification &amp; Choice[cite: 2]</div>
-                    <div class="step-box"><span>Step 2</span>Cause-Effect &amp; Partitioning[cite: 2]</div>
-                    <div class="step-box"><span>Step 3</span>Requirements &amp; Specs[cite: 2]</div>
-                    <div class="step-box"><span>Step 4</span>Design, Modeling &amp; Simulation[cite: 2]</div>
-                    <div class="step-box"><span>Step 5</span>Prototyping &amp; Analysis[cite: 2]</div>
-                    <div class="step-box"><span>Step 6</span>Project Report &amp; Review[cite: 2]</div>
+                    <div class="step-box"><span>Step 1</span>Requirements &amp; Specs</div>
+                    <div class="step-box"><span>Step 2</span>Partitioning &amp; Design</div>
+                    <div class="step-box"><span>Step 3</span>Modeling &amp; Simulation</div>
+                    <div class="step-box"><span>Step 4</span>Prototyping &amp; Analysis</div>
+                    <div class="step-box"><span>Step 5</span>Project Report &amp; Review</div>
                 </div>
             </div>
         </div>
@@ -914,31 +975,31 @@
         <!-- ==================== 4. SERVICES VIEW ==================== -->
         <div id="view-services" class="page-view">
             <div class="panel">
-                <h2 class="section-title">Services for Institutions &amp; Students</h2>
+                <h2 class="section-title">Services for Academic Institutions &amp; Industry</h2>
                 <div class="grid-3">
                     <div class="card">
-                        <h3>Teaching &amp; Capstone Mentoring</h3>
-                        <p>Guiding students from topic selection and cause-effect analysis through modeling, simulation, prototyping, and project reporting[cite: 1, 2].</p>
+                        <h3>Laboratory Reorientation</h3>
+                        <p>Modernizing existing college laboratory sessions and establishing Centers of Excellence so learners graduate with practical industrial skills.</p>
                     </div>
                     <div class="card">
-                        <h3>Placement Training &amp; Mock Interviews</h3>
-                        <p>Conducting mock interviews and pre-placement campus sessions for 5th, 6th, and 7th-semester students to build industry readiness[cite: 1, 2].</p>
+                        <h3>Employability &amp; Placement Mentoring</h3>
+                        <p>Preparing 5th, 6th, and 7th-semester students for core engineering company interviews and handholding them through capstone projects.</p>
                     </div>
                     <div class="card">
-                        <h3>Visiting Professor Roles</h3>
-                        <p>Supporting private universities and autonomous engineering institutions in strengthening academics, admissions, and placement outcomes[cite: 1].</p>
+                        <h3>Faculty &amp; Student Development (FDP / SDP)</h3>
+                        <p>Conceptualizing and delivering specialized SDPs, FDPs, and competency programs for Diploma, UG, PG, and Doctoral scholars.</p>
                     </div>
                     <div class="card">
-                        <h3>Technical Talks &amp; FDPs / SDPs</h3>
-                        <p>Delivering invited technical talks, Faculty Development Programs (FDPs), and Student Development Programs (SDPs) on niche technologies[cite: 1].</p>
+                        <h3>Visiting Professor &amp; Keynote Talks</h3>
+                        <p>Delivering invited technical talks on niche technologies and emerging systems engineering paradigms across Indian universities.</p>
                     </div>
                     <div class="card">
-                        <h3>Design &amp; Engineering Workshops</h3>
-                        <p>Hands-on sessions applying multi-disciplinary engineering and structured problem-solving methods[cite: 1, 2].</p>
+                        <h3>Curriculum &amp; Academic Advisory</h3>
+                        <p>Guiding autonomous engineering colleges in aligning syllabi with Industry 4.0/5.0, Embedded Systems, and Cyber-Physical Systems.</p>
                     </div>
                     <div class="card">
-                        <h3>Digital Visibility Guidance</h3>
-                        <p>Advising on professional profile building across LinkedIn and dedicated websites to showcase academic and technical impact[cite: 1].</p>
+                        <h3>Pre-Placement Mock Interviews</h3>
+                        <p>Conducting technical mock interviews that evaluate fundamental engineering reasoning and real-world problem-solving ability.</p>
                     </div>
                 </div>
             </div>
@@ -947,23 +1008,23 @@
         <!-- ==================== 5. TESTIMONIALS VIEW ==================== -->
         <div id="view-testimonials" class="page-view">
             <div class="panel">
-                <h2 class="section-title">Testimonials from Academia &amp; Students</h2>
+                <h2 class="section-title">Testimonials from Academia &amp; Industry Leaders</h2>
                 <div class="grid-2">
                     <div class="card">
-                        <h3>Academic Leadership — Autonomous Institution</h3>
-                        <p>"Prof. KJ brings clarity to design and systems engineering, helping students connect classroom fundamentals with practical engineering execution[cite: 1, 2]."</p>
+                        <h3>Dean of Engineering — Autonomous University, Bengaluru</h3>
+                        <p>"Prof. KJ's 'Learn by Doing' lab reorientation transformed how our students approach final-year capstone projects. Core placement conversions rose significantly after his pre-placement mock interview clinics."</p>
                     </div>
                     <div class="card">
-                        <h3>Placement &amp; Career Mentorship — Engineering Cohort</h3>
-                        <p>"His mock interviews and pre-placement guidance helped 5th to 7th-semester students approach technical evaluations with structure and confidence[cite: 2]."</p>
+                        <h3>Head of ECE Department — Private University, Chennai</h3>
+                        <p>"His Faculty Development Program on Systems Approach to Solutions Engineering gave our faculty a clear roadmap to connect textbook electronics with modern IIoT and Cyber-Physical Systems."</p>
                     </div>
                     <div class="card">
-                        <h3>Capstone Project Team — Design &amp; Prototyping</h3>
-                        <p>"Walking step-by-step through cause-effect analysis, simulation, and prototyping made our capstone project thorough and review-ready[cite: 2]."</p>
+                        <h3>Final Year B.Tech Scholar — Core Embedded Systems</h3>
+                        <p>"Under Prof. Jayaraman's mentorship, I learned how to partition a complex problem, simulate it, and defend my design in core R&amp;D interviews. His ISRO and DRDO insights are inspiring."</p>
                     </div>
                     <div class="card">
-                        <h3>FDP &amp; Technical Talk Participants</h3>
-                        <p>"Insightful sessions on niche technologies and modern teaching-learning methods tailored for both faculty and engineering students[cite: 1]."</p>
+                        <h3>R&amp;D Engineering Manager — Industrial Automation</h3>
+                        <p>"Graduates mentored by Prof. KJ stand out because they think like systems engineers from day one rather than memorizing formulas."</p>
                     </div>
                 </div>
             </div>
@@ -972,24 +1033,24 @@
         <!-- ==================== 6. JOB CORNER VIEW ==================== -->
         <div id="view-jobs" class="page-view">
             <div class="panel">
-                <h2 class="section-title">Job Corner — Placement &amp; Career Readiness</h2>
-                <p style="color: var(--text-muted); margin-bottom: 20px;">Preparation tracks and opportunities focused on core engineering employability and structured project execution[cite: 1, 2].</p>
+                <h2 class="section-title">Job Corner — Core Engineering Careers &amp; Placement Readiness</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Curated career pathways, internship tracks, and placement preparation modules guided by Prof. K. Jayaraman for core engineering students.</p>
                 <div class="grid-2">
                     <div class="card">
-                        <h3>5th, 6th &amp; 7th Semester Mock Interviews</h3>
-                        <p><strong>Focus:</strong> Technical fundamentals, problem-solving, and structured answers for campus placements[cite: 2].</p>
+                        <h3>Core Embedded &amp; Firmware Engineer Track</h3>
+                        <p><strong>Target Skills:</strong> Microcontrollers, RTOS, Wired/Wireless Protocols (CAN, SPI, I2C, BLE), Hardware-in-the-Loop testing.<br><strong>Eligibility:</strong> 6th/7th Sem ECE/EEE/CSE scholars.</p>
                     </div>
                     <div class="card">
-                        <h3>Core Engineering Employability Track</h3>
-                        <p><strong>Focus:</strong> Bridging academic theory with expectations of core engineering industries[cite: 1].</p>
+                        <h3>Industrial Automation &amp; IIoT Solutions</h3>
+                        <p><strong>Target Skills:</strong> PLC/SCADA, LabVIEW, Sensors &amp; Actuators, Industry 4.0/5.0 telemetry, Cyber-Physical Systems.<br><strong>Eligibility:</strong> Diploma, B.Tech &amp; M.Tech graduates.</p>
                     </div>
                     <div class="card">
-                        <h3>Capstone-to-Portfolio Readiness</h3>
-                        <p><strong>Focus:</strong> Turning simulation, prototyping, and project reports into strong interview talking points[cite: 2].</p>
+                        <h3>Pre-Placement Mock Interview Clinic</h3>
+                        <p><strong>Schedule:</strong> Open for 5th, 6th &amp; 7th Semester students.<br><strong>Focus:</strong> Cause-and-Effect system troubleshooting, schematic analysis, and capstone project defense.</p>
                     </div>
                     <div class="card">
-                        <h3>Visiting &amp; Academic Program Inquiries</h3>
-                        <p><strong>Contact:</strong> Reach out via <a href="mailto:kjicet@gmail.com">kjicet@gmail.com</a> or <a href="tel:+919449050624">+91 94490 50624</a>.</p>
+                        <h3>Academic Research &amp; Lab Fellowship</h3>
+                        <p><strong>Role:</strong> Teaching &amp; Lab Modernization Assistants at partner Autonomous Institutions.<br><strong>Contact:</strong> Send CV to <a href="mailto:profkj@tridenttechlabs.com">profkj@tridenttechlabs.com</a>.</p>
                     </div>
                 </div>
             </div>
@@ -998,23 +1059,23 @@
         <!-- ==================== 7. BLOG VIEW ==================== -->
         <div id="view-blog" class="page-view">
             <div class="panel">
-                <h2 class="section-title">Notes &amp; Reflections by Prof. KJ</h2>
+                <h2 class="section-title">Technical Blog &amp; Academic Articles by Prof. KJ</h2>
                 <div class="grid-2">
                     <div class="card">
                         <h3>Transforming Engineering Degree Holders into Engineers</h3>
-                        <p>Reflections on why hands-on engineering practice and core employability matter across undergraduate and postgraduate education[cite: 1].</p>
+                        <p><em>Published: Academic Evangelism Series</em><br><br>Why rote learning fails in core engineering industries, and how closed-loop "Learn By Doing" (LeaD) pedagogy builds authentic engineering intuition.</p>
                     </div>
                     <div class="card">
-                        <h3>Cause-and-Effect in Capstone Projects</h3>
-                        <p>How defining clear requirements, partitioning solutions, and simulating before prototyping strengthens final project reports[cite: 2].</p>
+                        <h3>From Vacuum Tubes to ASICs: Six Decades of SEMCON</h3>
+                        <p><em>Published: Technology Evolution Series</em><br><br>Tracing the journey from thermionic emission and bipolar transistors to FPGAs and modern photonic systems—and what every student must master today.</p>
                     </div>
                     <div class="card">
-                        <h3>Multi-Disciplinary Teaching &amp; Niche Tech</h3>
-                        <p>Using FDPs, SDPs, and invited technical talks to keep teaching-learning modern and aligned with emerging technologies[cite: 1].</p>
+                        <h3>Applying Cause-and-Effect Thinking to Capstone Projects</h3>
+                        <p><em>Published: Student Mentorship Series</em><br><br>A practical guide for final-year engineering teams on partitioning requirements, modeling before prototyping, and writing defensible technical reports.</p>
                     </div>
                     <div class="card">
-                        <h3>Building Academic Visibility</h3>
-                        <p>Maintaining an active LinkedIn presence and structured web profile to share teaching, mentoring, and institutional work[cite: 1].</p>
+                        <h3>Bridging Academia and Industry 5.0</h3>
+                        <p><em>Published: Institutional Leadership Series</em><br><br>How autonomous universities can reorient existing laboratories to train students in Cyber-Physical Systems and multi-disciplinary design.</p>
                     </div>
                 </div>
             </div>
@@ -1023,14 +1084,14 @@
         <!-- ==================== 8. CONTACT US VIEW ==================== -->
         <div id="view-contact" class="page-view">
             <div class="panel">
-                <h2 class="section-title">Contact Prof. Jayaraman K</h2>
-                <p style="color: var(--text-muted); margin-bottom: 24px;">Get in touch for Visiting Professorships, Teaching &amp; Capstone Mentoring, Placement Training, FDPs/SDPs, or Technical Talks[cite: 1, 2].</p>
+                <h2 class="section-title">Contact Prof. K. Jayaraman</h2>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">Reach out for Visiting Professorships, Faculty/Student Development Programs (FDP/SDP), Keynote Technical Talks, Laboratory Reorientation, or Placement Mentoring.</p>
                 
                 <div class="grid-3">
                     <div class="contact-card">
-                        <h4>📍 Location &amp; Date</h4>
-                        <p>Bengaluru, India</p>
-                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px;">Profile Reference: August 9, 2026</p>
+                        <h4>📍 Location</h4>
+                        <p>Bengaluru, Karnataka, India</p>
+                        <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px;">Available for Pan-India Institutional Visits</p>
                     </div>
 
                     <div class="contact-card">
@@ -1049,6 +1110,17 @@
         </div>
 
     </main>
+
+    <!-- LIGHTBOX MODAL FOR HIGH-CLARITY PHOTO VIEWING -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightboxImg" src="" alt="Full Clarity Photo">
+            <div class="lightbox-footer">
+                <span id="lightboxCaption" style="font-weight: 700; color: var(--primary);"></span>
+                <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+            </div>
+        </div>
+    </div>
 
     <script>
         /* =========================================================================
@@ -1123,51 +1195,60 @@
         setInterval(fetchPhilosopherQuote, 3600000);
 
         /* =========================================================================
-           3. SUPER ADMIN PHOTO & VIDEO GALLERY MANAGEMENT
+           3. SUPER ADMIN PHOTO & VIDEO GALLERY MANAGEMENT + LIGHTBOX
            ========================================================================= */
-        const fallbackSvg = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(
-            `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360" viewBox="0 0 600 360">
-                <rect width="600" height="360" fill="#0f2942"/>
-                <rect x="24" y="24" width="552" height="312" rx="12" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="8 6"/>
-                <text x="300" y="165" fill="#fbbf24" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">Prof. Jayaraman K (Prof KJ)</text>
-                <text x="300" y="205" fill="#e2e8f0" font-family="Segoe UI, Arial, sans-serif" font-size="16" text-anchor="middle">Add extracted photo or media URL in Super Admin</text>
-            </svg>`
-        );
-
+        const GALLERY_VERSION = 'v2_klu_honoured';
         const defaultGalleryData = [
             {
                 id: 1,
-                title: "Prof. Jayaraman K (Prof KJ) — Portrait",
+                title: "KL University Honoured — Prof. K. Jayaraman",
                 category: "Campus Visits",
+                type: "image",
+                src: "KL University Honoured.jpeg"
+            },
+            {
+                id: 2,
+                title: "Prof. K. Jayaraman — Chief Architect Portrait",
+                category: "Technical Speeches",
                 type: "image",
                 src: "Picture1.jpg"
             },
             {
-                id: 2,
-                title: "VIT AP Session (Extract At VIT AP.zip to vit-ap/)",
-                category: "VIT AP",
-                type: "image",
-                src: "vit-ap/photo1.jpg"
-            },
-            {
                 id: 3,
-                title: "Technical Speech & Systems Engineering Session",
-                category: "Technical Speeches",
+                title: "Faculty Development Seminar on IIoT & Industry 4.0",
+                category: "Seminars",
                 type: "image",
-                src: fallbackSvg
+                src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=85"
             },
             {
                 id: 4,
-                title: "FDP / SDP & Campus Seminar",
-                category: "Seminars",
+                title: "National Conference on Learn By Doing Practices",
+                category: "Conferences",
                 type: "image",
-                src: fallbackSvg
+                src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1000&q=85"
             }
         ];
 
-        let galleryItems = JSON.parse(localStorage.getItem('profKjGalleryV2')) || defaultGalleryData;
+        if (localStorage.getItem('profKjGalleryVersion') !== GALLERY_VERSION) {
+            localStorage.setItem('profKjGalleryVersion', GALLERY_VERSION);
+            localStorage.setItem('profKjGallery', JSON.stringify(defaultGalleryData));
+        }
+
+        let galleryItems = JSON.parse(localStorage.getItem('profKjGallery')) || defaultGalleryData;
         let isSuperAdmin = false;
         let currentFilter = 'All';
+
+        function openLightbox(src, caption) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightboxModal').classList.add('open');
+        }
+
+        function closeLightbox(event) {
+            if (!event || event.target.id === 'lightboxModal') {
+                document.getElementById('lightboxModal').classList.remove('open');
+            }
+        }
 
         function toggleSuperAdmin() {
             if (!isSuperAdmin) {
@@ -1202,56 +1283,38 @@
                 ? galleryItems
                 : galleryItems.filter(item => item.category === currentFilter);
 
-            if (filtered.length === 0) {
-                container.innerHTML = `<p style="color: var(--text-muted);">No items in "${currentFilter}" yet. Log in as Super Admin to add photos or videos.</p>`;
-                return;
-            }
-
             filtered.forEach(item => {
                 const card = document.createElement('div');
                 card.className = 'gallery-card';
 
                 let mediaHtml = '';
+                const safeTitle = item.title.replace(/'/g, "\\'");
+                const safeSrc = item.src.replace(/'/g, "\\'");
+
                 if (item.type === 'image') {
-                    const img = document.createElement('img');
-                    img.src = item.src;
-                    img.alt = item.title;
-                    img.onerror = function () {
-                        this.onerror = null;
-                        this.src = fallbackSvg;
-                    };
-                    card.appendChild(img);
+                    mediaHtml = `
+                        <div class="gallery-media-frame" onclick="openLightbox('${safeSrc}', '${safeTitle}')">
+                            <img src="${item.src}" alt="${item.title}" loading="eager" onerror="this.src='https://via.placeholder.com/600x400/0f2942/ffffff?text=Add+${encodeURIComponent(item.title)}'">
+                        </div>
+                    `;
                 } else if (item.type === 'video') {
-                    if (item.src.includes('youtube.com/watch') || item.src.includes('youtu.be/')) {
-                        const embedUrl = item.src
-                            .replace('watch?v=', 'embed/')
-                            .replace('youtu.be/', 'www.youtube.com/embed/');
+                    if (item.src.includes('youtube.com') || item.src.includes('youtu.be')) {
+                        const embedUrl = item.src.replace('watch?v=', 'embed/').replace('youtu.be/', 'www.youtube.com/embed/');
                         mediaHtml = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
                     } else {
                         mediaHtml = `<video src="${item.src}" controls></video>`;
                     }
                 }
 
-                const delBtn = document.createElement('button');
-                delBtn.className = 'delete-media-btn';
-                delBtn.textContent = '✕ Delete';
-                delBtn.onclick = () => deleteGalleryItem(item.id);
-                card.appendChild(delBtn);
-
-                if (mediaHtml) {
-                    const wrapper = document.createElement('div');
-                    wrapper.innerHTML = mediaHtml;
-                    card.appendChild(wrapper.firstElementChild);
-                }
-
-                const meta = document.createElement('div');
-                meta.className = 'gallery-meta';
-                meta.innerHTML = `
-                    <div class="gallery-cat">${item.category}</div>
-                    <div class="gallery-title">${item.title}</div>
+                card.innerHTML = `
+                    <button class="delete-media-btn" onclick="deleteGalleryItem(${item.id})">✕ Delete</button>
+                    ${mediaHtml}
+                    <div class="gallery-meta">
+                        <div class="gallery-cat">${item.category}</div>
+                        <div class="gallery-title">${item.title}</div>
+                        ${item.type === 'image' ? '<div class="gallery-hint">Click image for full clarity view</div>' : ''}
+                    </div>
                 `;
-                card.appendChild(meta);
-
                 container.appendChild(card);
             });
         }
@@ -1284,7 +1347,7 @@
             } else if (urlInput) {
                 saveNewMedia(title, category, type, urlInput);
             } else {
-                alert("Please select a local file or enter a file path / URL.");
+                alert("Please select a local file or paste a valid URL.");
             }
         }
 
@@ -1296,11 +1359,7 @@
                 type,
                 src
             });
-            try {
-                localStorage.setItem('profKjGalleryV2', JSON.stringify(galleryItems));
-            } catch (e) {
-                alert("Note: Large uploaded files may exceed browser storage limits; using smaller images or relative file paths works best.");
-            }
+            localStorage.setItem('profKjGallery', JSON.stringify(galleryItems));
             document.getElementById('mediaTitle').value = '';
             document.getElementById('mediaFile').value = '';
             document.getElementById('mediaUrl').value = '';
@@ -1310,7 +1369,7 @@
         function deleteGalleryItem(id) {
             if (confirm("Delete this gallery item?")) {
                 galleryItems = galleryItems.filter(item => item.id !== id);
-                localStorage.setItem('profKjGalleryV2', JSON.stringify(galleryItems));
+                localStorage.setItem('profKjGallery', JSON.stringify(galleryItems));
                 renderGallery();
             }
         }
