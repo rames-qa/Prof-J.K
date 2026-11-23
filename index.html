@@ -1188,8 +1188,7 @@
 
             const now = new Date();
             const nextRefresh = new Date(now.getTime() + 3600000);
-            quoteStatusEl.textContent = `Updated: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} • Next auto-refresh: ${nextRefresh.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
-        }
+            quoteStatusEl.textContent = '';        }
 
         fetchPhilosopherQuote();
         setInterval(fetchPhilosopherQuote, 3600000);
