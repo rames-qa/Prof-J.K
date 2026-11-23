@@ -34,6 +34,13 @@
             overflow-x: hidden;
         }
 
+        /* Crisp Image Rendering */
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -ms-interpolation-mode: bicubic;
+        }
+
         /* ================= MOBILE HEADER BAR ================= */
         .mobile-topbar {
             display: none;
@@ -60,10 +67,11 @@
         }
 
         .mobile-topbar img {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             object-fit: cover;
+            object-position: center 15%;
             border: 2px solid var(--accent);
         }
 
@@ -104,15 +112,21 @@
         }
 
         .profile-pic {
-            width: 112px;
-            height: 112px;
+            width: 124px;
+            height: 124px;
             border-radius: 50%;
             object-fit: cover;
-            object-position: top center;
+            object-position: center 12%;
             border: 3px solid var(--accent);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
             margin-bottom: 10px;
-            background-color: #1e3a5f;
+            background-color: #132c46;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.04);
         }
 
         .profile-header h2 {
@@ -550,13 +564,44 @@
             border-radius: 10px;
             overflow: hidden;
             position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .gallery-card img,
+        .gallery-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .media-wrapper {
+            width: 100%;
+            height: 220px;
+            background: #0d1f33;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            display: block;
+            cursor: zoom-in;
+        }
+
+        /* Prevents cropping for square/portrait photos like Picture1.jpg */
+        .gallery-card img.portrait-fit {
+            object-fit: contain;
+            background: #0f2439;
+            padding: 6px;
+        }
+
         .gallery-card video,
         .gallery-card iframe {
             width: 100%;
-            height: 195px;
+            height: 220px;
             object-fit: cover;
             display: block;
             border: none;
@@ -593,10 +638,59 @@
             font-size: 0.78rem;
             font-weight: 700;
             cursor: pointer;
+            z-index: 10;
         }
 
         body.admin-mode .delete-media-btn {
             display: block;
+        }
+
+        /* ================= FULL-CLARITY LIGHTBOX MODAL ================= */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 22, 36, 0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .lightbox-modal.active {
+            display: flex;
+        }
+
+        .lightbox-modal img {
+            max-width: 92vw;
+            max-height: 80vh;
+            border-radius: 10px;
+            border: 3px solid var(--accent);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            color: var(--white);
+            margin-top: 14px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
         }
 
         /* ================= CONTACT & DIALER ================= */
@@ -671,6 +765,13 @@
 </head>
 <body>
 
+    <!-- FULL-CLARITY IMAGE LIGHTBOX -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+        <img id="lightboxImg" src="" alt="Full Resolution Preview">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
     <!-- MOBILE HEADER -->
     <header class="mobile-topbar">
         <div class="brand-mini">
@@ -683,7 +784,7 @@
     <!-- SIDEBAR NAVIGATION (8 VIEWS + TOP-LEFT PHOTO) -->
     <aside class="sidebar" id="sidebar">
         <div class="profile-header">
-            <img src="Picture1.jpg" alt="Prof. K. Jayaraman" class="profile-pic" onerror="this.src='https://via.placeholder.com/150/0f2942/ffffff?text=Prof.+KJ'">
+            <img src="Picture1.jpg" alt="Prof. K. Jayaraman" class="profile-pic" onclick="openLightbox('Picture1.jpg', 'Prof. K. Jayaraman (Prof KJ)')" onerror="this.src='https://via.placeholder.com/150/0f2942/ffffff?text=Prof.+KJ'">
             <h2>Prof. K. Jayaraman</h2>
             <span class="badge">Prof. KJ • Academic Evangelist</span>
         </div>
@@ -701,7 +802,6 @@
 
         <div class="sidebar-footer">
             <div>Bengaluru, India</div>
-            <!-- Click-to-Call Dialer Link -->
             <a href="tel:+919449050624" class="call-pill">📞 Call: +91 94490 50624</a>
             <button id="adminToggleBtn" class="admin-toggle-btn" onclick="toggleSuperAdmin()">🔒 Super Admin Login</button>
         </div>
@@ -717,7 +817,7 @@
                 <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
                 <p>Academic Evangelist &bull; Former Defense &amp; Space Scientist (ISRO &amp; DRDO) &bull; Systems Engineering Leader with 40+ Years of Experience Transforming Engineering Degree Holders into True Engineers.</p>
                 <div class="hero-actions">
-                    <button class="btn-primary" onclick="navigateTo('about')">Explore Profile &amp; Gallery</button>
+                    <button class="btn-primary" onclick="navigateTo('about', 'gallerySection')">Explore Profile &amp; Photo Gallery</button>
                     <a href="tel:+919449050624" class="btn-outline">📞 Call Now: +91 94490 50624</a>
                 </div>
             </div>
@@ -809,8 +909,9 @@
             </div>
 
             <!-- PHOTO & VIDEO GALLERY WITH SUPER ADMIN UPLOAD -->
-            <div class="panel">
+            <div class="panel" id="gallerySection">
                 <h2 class="section-title">Photo &amp; Video Gallery — Events, Campus Visits &amp; Talks</h2>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 14px;">Click any photo to inspect it in full high-resolution clarity.</p>
 
                 <!-- Super Admin Upload Controls -->
                 <div id="adminUploadBox" class="admin-upload-box">
@@ -1016,7 +1117,6 @@
                     <div class="contact-card">
                         <h4>📞 Mobile (Click-to-Call)</h4>
                         <p>+91 94490 50624</p>
-                        <!-- Direct Phone Dialer Trigger -->
                         <a href="tel:+919449050624" class="dialer-btn">Tap to Open Phone Dialer</a>
                     </div>
                 </div>
@@ -1029,19 +1129,16 @@
         /* =========================================================================
            1. SPA NAVIGATION (8 DEDICATED VIEWS WITHOUT PAGE RELOAD)
            ========================================================================= */
-        function navigateTo(viewId) {
-            // Hide all views
+        function navigateTo(viewId, anchorId) {
             document.querySelectorAll('.page-view').forEach(view => {
                 view.classList.remove('active-view');
             });
 
-            // Show selected view
             const targetView = document.getElementById('view-' + viewId);
             if (targetView) {
                 targetView.classList.add('active-view');
             }
 
-            // Update active button in sidebar
             document.querySelectorAll('#navLinks button').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.getAttribute('data-target') === viewId) {
@@ -1049,8 +1146,15 @@
                 }
             });
 
-            // Close mobile sidebar after selection
             document.getElementById('sidebar').classList.remove('open');
+
+            if (anchorId) {
+                const el = document.getElementById(anchorId);
+                if (el) {
+                    setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 60);
+                    return;
+                }
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1059,7 +1163,21 @@
         }
 
         /* =========================================================================
-           2. PHILOSOPHER QUOTES API WITH AUTOMATIC HOURLY REFRESH
+           2. FULL-CLARITY LIGHTBOX MODAL
+           ========================================================================= */
+        function openLightbox(src, title) {
+            const modal = document.getElementById('lightboxModal');
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').textContent = title || '';
+            modal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('active');
+        }
+
+        /* =========================================================================
+           3. PHILOSOPHER QUOTES API WITH AUTOMATIC HOURLY REFRESH
            ========================================================================= */
         const fallbackPhilosopherQuotes = [
             { text: "The unexamined life is not worth living.", author: "Socrates" },
@@ -1080,7 +1198,6 @@
             const quoteStatusEl = document.getElementById('quoteStatus');
 
             try {
-                // Fetch from live public Quotes API filtered by philosophy/wisdom tags
                 const response = await fetch('https://dummyjson.com/quotes/random');
                 if (!response.ok) throw new Error('Network response failed');
                 const data = await response.json();
@@ -1088,7 +1205,6 @@
                 quoteTextEl.textContent = `"${data.quote}"`;
                 quoteAuthorEl.textContent = `— ${data.author}`;
             } catch (err) {
-                // Curated World Philosopher fallback if offline or API rate-limited
                 const randomIndex = Math.floor(Math.random() * fallbackPhilosopherQuotes.length);
                 const selected = fallbackPhilosopherQuotes[randomIndex];
                 quoteTextEl.textContent = `"${selected.text}"`;
@@ -1100,12 +1216,11 @@
             quoteStatusEl.textContent = `Updated: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} • Next auto-refresh: ${nextRefresh.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
         }
 
-        // Initial fetch on load + Automatic Hourly Refresh (3,600,000 ms = 1 hour)
         fetchPhilosopherQuote();
         setInterval(fetchPhilosopherQuote, 3600000);
 
         /* =========================================================================
-           3. SUPER ADMIN PHOTO & VIDEO GALLERY MANAGEMENT
+           4. SUPER ADMIN PHOTO & VIDEO GALLERY MANAGEMENT (WITH SHARP HD IMAGES)
            ========================================================================= */
         const defaultGalleryData = [
             {
@@ -1113,6 +1228,7 @@
                 title: "Prof. K. Jayaraman — Chief Architect Portrait",
                 category: "Campus Visits",
                 type: "image",
+                portrait: true,
                 src: "Picture1.jpg"
             },
             {
@@ -1120,21 +1236,21 @@
                 title: "Keynote Technical Speech on Systems Engineering",
                 category: "Technical Speeches",
                 type: "image",
-                src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=600&q=80"
+                src: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=1200&q=95"
             },
             {
                 id: 3,
                 title: "Faculty Development Seminar on IIoT & Industry 4.0",
                 category: "Seminars",
                 type: "image",
-                src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80"
+                src: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1200&q=95"
             },
             {
                 id: 4,
                 title: "National Conference on Learn By Doing Practices",
                 category: "Conferences",
                 type: "image",
-                src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80"
+                src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=95"
             }
         ];
 
@@ -1152,7 +1268,7 @@
                     const btn = document.getElementById('adminToggleBtn');
                     btn.textContent = "🔓 Super Admin Active (Logout)";
                     btn.classList.add('unlocked');
-                    navigateTo('about');
+                    navigateTo('about', 'gallerySection');
                     alert("Super Admin Unlocked! You can now upload or delete Photos & Videos in the About Us Gallery.");
                 } else if (pin !== null) {
                     alert("Incorrect PIN.");
@@ -1181,13 +1297,15 @@
 
                 let mediaHtml = '';
                 if (item.type === 'image') {
-                    mediaHtml = `<img src="${item.src}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x220/0f2942/ffffff?text=Prof.+KJ+Event'">`;
+                    const fitClass = item.portrait || item.src === 'Picture1.jpg' ? 'portrait-fit' : '';
+                    const safeTitle = item.title.replace(/'/g, "\\'");
+                    mediaHtml = `<div class="media-wrapper"><img class="${fitClass}" src="${item.src}" alt="${item.title}" onclick="openLightbox('${item.src}', '${safeTitle}')" onerror="this.src='https://via.placeholder.com/800x450/0f2942/ffffff?text=Prof.+KJ+Event'"></div>`;
                 } else if (item.type === 'video') {
                     if (item.src.includes('youtube.com') || item.src.includes('youtu.be')) {
                         const embedUrl = item.src.replace('watch?v=', 'embed/').replace('youtu.be/', 'www.youtube.com/embed/');
-                        mediaHtml = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+                        mediaHtml = `<div class="media-wrapper"><iframe src="${embedUrl}" allowfullscreen></iframe></div>`;
                     } else {
-                        mediaHtml = `<video src="${item.src}" controls></video>`;
+                        mediaHtml = `<div class="media-wrapper"><video src="${item.src}" controls></video></div>`;
                     }
                 }
 
@@ -1258,7 +1376,6 @@
             }
         }
 
-        // Initialize Gallery on page load
         renderGallery();
     </script>
 </body>
