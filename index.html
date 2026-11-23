@@ -3,394 +3,691 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prof. K. Jayaraman - Professional Profile</title>
-    <!-- xmlns:o and xmlns:w namespaces enable native Microsoft Word rendering when opened in Word -->
-    <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+    <title>Prof. K. Jayaraman (Prof KJ) | Academic & Industrial Guide</title>
     <style>
-        @page {
-            size: A4 portrait;
-            margin: 10mm;
+        :root {
+            --primary: #0f2942;       /* Deep Navy */
+            --secondary: #1e4b7a;     /* Academic Blue */
+            --accent: #d97706;        /* Warm Gold/Amber */
+            --bg-light: #f8fafc;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --white: #ffffff;
+            --sidebar-width: 290px;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: normal;
-            color: #000000;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* ================= SIDEBAR NAVIGATION (TOP-LEFT PHOTO) ================= */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, var(--primary) 0%, #091929 100%);
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            left: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding: 0;
-            margin: 0 auto;
+            padding: 25px 20px;
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
         }
 
-        .actions {
-            margin: 15px 0;
-        }
-
-        .download-btn {
-            background-color: #124673;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            margin: 0 5px;
-        }
-
-        .download-btn:hover {
-            background-color: #0a3578;
-        }
-
-        .resume-card {
-            width: 210mm;
-            min-height: 296mm;
-            background: #ffffff;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Header Banner */
-        .header-banner {
-            background-color: #124673;
+        .profile-header {
             text-align: center;
-            padding: 16px 15px 12px 15px;
-            width: 100%;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 20px;
         }
 
-        .avatar-container {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 8px auto;
+        .profile-pic {
+            width: 125px;
+            height: 125px;
             border-radius: 50%;
-            border: 2px solid #ffffff;
-            overflow: hidden;
-            background-color: #cccccc;
-        }
-
-        .avatar-container img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            border-radius: 50%;
+            object-position: top center;
+            border: 4px solid var(--accent);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            margin-bottom: 12px;
+            background-color: #1e3a5f;
         }
 
-        .header-banner h1 {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 3px;
+        .profile-header h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.3px;
         }
 
-        .header-banner .subtitle {
-            font-size: 10.5px;
-            font-weight: normal;
-            color: #ffffff;
-            margin-bottom: 3px;
+        .profile-header .badge {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.2);
+            color: #fbbf24;
+            font-size: 0.78rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 6px;
+            font-weight: 600;
         }
 
-        .header-banner .sub-tags {
-            font-size: 9px;
-            font-weight: normal;
-            color: #d1d5db;
-        }
-
-        /* Content Area */
-        .content {
-            padding: 12px 25px;
+        .nav-links {
+            list-style: none;
             display: flex;
             flex-direction: column;
             gap: 6px;
-            flex-grow: 1;
         }
 
-        .section {
-            margin-bottom: 4px;
+        .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: all 0.25s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--secondary);
+            color: var(--white);
+            border-left: 4px solid var(--accent);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 20px;
+            font-size: 0.78rem;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        /* ================= MAIN CONTENT AREA ================= */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 40px 50px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 45px;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(15, 41, 66, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .hero .tagline {
+            font-size: 0.98rem;
+            color: #e2e8f0;
+            max-width: 800px;
+        }
+
+        /* Sections */
+        section {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
         }
 
         .section-title {
-            font-size: 10.5px;
-            font-weight: bold;
-            color: #000000;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 4px;
-            padding-bottom: 2px;
-            border-bottom: 1.5px solid #124673;
+            font-size: 1.45rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .bullet-list {
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 6px;
+            height: 24px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* Grids & Cards */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 22px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .card p, .card li {
+            font-size: 0.94rem;
+            color: var(--text-muted);
+        }
+
+        .styled-list {
             list-style: none;
-            padding-left: 0;
         }
 
-        .bullet-list li {
-            font-size: 9px;
-            font-weight: normal;
-            color: #000000;
-            line-height: 1.35;
-            margin-bottom: 3px;
+        .styled-list li {
+            padding: 8px 0 8px 24px;
             position: relative;
-            padding-left: 12px;
         }
 
-        .bullet-list li::before {
-            content: "•";
+        .styled-list li::before {
+            content: "▸";
             position: absolute;
             left: 0;
-            color: #000000;
-        }
-
-        /* Tables formatted for clean MS Word output */
-        .word-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 3px;
-        }
-
-        .word-table td {
-            vertical-align: top;
-            padding: 2px 4px;
-            font-size: 9px;
-        }
-
-        .timeline-header-td {
-            font-size: 9px;
+            color: var(--accent);
             font-weight: bold;
-            color: #000000;
-            text-transform: uppercase;
-            border-bottom: 1px dashed #000000;
-            padding-top: 4px !important;
-            padding-bottom: 2px !important;
         }
 
-        .timeline-item {
-            font-size: 9px;
-            font-weight: normal;
-            color: #000000;
-            position: relative;
-            padding-left: 10px;
-            line-height: 1.3;
+        /* Technology Evolution Matrix */
+        .evo-card {
+            background: #f1f5f9;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid var(--accent);
         }
 
-        .timeline-item::before {
-            content: "▪";
-            position: absolute;
-            left: 0;
-            color: #124673;
-            font-size: 8px;
+        .evo-card h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+            font-size: 1.05rem;
         }
 
-        .contact-col strong {
+        .timeline-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .t-badge {
+            background: var(--white);
+            border: 1px solid #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Capstone Workflow Stepper */
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .step-box {
+            flex: 1;
+            min-width: 150px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .step-box span {
             display: block;
-            font-size: 9px;
+            color: #fbbf24;
             font-weight: bold;
-            color: #000000;
-            margin-bottom: 2px;
-            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 4px;
         }
 
-        .contact-col p {
-            font-size: 9px;
-            font-weight: normal;
-            color: #000000;
-            line-height: 1.25;
+        /* Domain Tags */
+        .domain-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        @media print {
-            .actions {
-                display: none !important;
-            }
+        .domain-tag {
+            background: #eff6ff;
+            color: var(--secondary);
+            border: 1px solid #bfdbfe;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.92rem;
+        }
+
+        /* Photo Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            background: var(--bg-light);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 190px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            padding: 12px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        /* Contact Cards */
+        .contact-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 22px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-box h4 {
+            color: #fbbf24;
+            margin-bottom: 8px;
+        }
+
+        .contact-box a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin: 4px 0;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Lightbox Modal for Gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            border: 3px solid var(--white);
+        }
+
+        .modal p {
+            color: var(--white);
+            margin-top: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
             body {
-                background: none !important;
-                padding: 0 !important;
+                flex-direction: column;
             }
-            .resume-card {
-                box-shadow: none !important;
-                width: 100% !important;
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 20px;
+            }
+            .nav-links {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="actions">
-        <button class="download-btn" onclick="downloadWordDoc()">📥 Export as MS Word (.doc)</button>
-        <button class="download-btn" onclick="window.print()">📄 Save as PDF</button>
-    </div>
+    <!-- ==================== LEFT SIDEBAR NAVIGATION ==================== -->
+    <aside class="sidebar">
+        <div class="profile-header">
+            <!-- Ensure Picture1.jpg is in the same folder as this HTML file -->
+            <img src="Picture1.jpg" alt="Prof. K. Jayaraman" class="profile-pic" onerror="this.src='https://via.placeholder.com/150/0f2942/ffffff?text=Prof.+KJ'">
+            <h2>Prof. K. Jayaraman</h2>
+            <span class="badge">Prof. KJ • Academic Evangelist</span>
+        </div>
 
-    <div class="resume-card" id="document-content">
-        <!-- Header Banner -->
-        <div class="header-banner">
-            <div class="avatar-container">
-                <img src="https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg" alt="Prof. K. Jayaraman">
-            </div>
+        <ul class="nav-links">
+            <li><a href="#profile" class="active">Professional Profile</a></li>
+            <li><a href="#evolution">Evolution of Tech</a></li>
+            <li><a href="#pursuits">Teaching &amp; Pursuits</a></li>
+            <li><a href="#placement">Placement &amp; Mentoring</a></li>
+            <li><a href="#services">Visiting Prof &amp; Talks</a></li>
+            <li><a href="#domains">Domain Expertise</a></li>
+            <li><a href="#gallery">Photo Gallery</a></li>
+            <li><a href="#contact">Contact Information</a></li>
+        </ul>
+
+        <div class="sidebar-footer">
+            Chief Architect - "Learn by Doing"<br>
+            Bengaluru, India
+        </div>
+    </aside>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main class="main-content">
+
+        <!-- HERO SECTION -->
+        <div class="hero">
             <h1>Prof. K. Jayaraman (Prof KJ)</h1>
             <div class="subtitle">Chief Architect - "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
-            <div class="sub-tags">Academic Evangelist | Former Defense & Space Scientist | Systems Engineering Leader</div>
+            <div class="tagline">Academic Evangelist &bull; Former Defense &amp; Space Scientist (ISRO &amp; DRDO) &bull; Systems Engineering Leader</div>
         </div>
 
-        <!-- Content Area -->
-        <div class="content">
-            
-            <!-- PROFESSIONAL PROFILE -->
-            <div class="section">
-                <div class="section-title">PROFESSIONAL PROFILE</div>
-                <ul class="bullet-list">
-                    <li>Current Designation: Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
-                    <li>Academia & Industry Experience: 40+ years spanning Research, Academia, Industry, and Business.</li>
-                    <li>Defense & Space R&D: ~10 years as a Scientist with ISRO and DRDO.</li>
-                    <li>Industry Leadership: ~15 years across private industry, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.</li>
-                    <li>Education: Graduated and Post Graduated from BITS, Pilani.</li>
-                </ul>
+        <!-- 1. PROFESSIONAL PROFILE -->
+        <section id="profile">
+            <h2 class="section-title">Professional Profile</h2>
+            <ul class="styled-list">
+                <li><strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.</li>
+                <li><strong>Academia &amp; Industry Experience:</strong> 40+ years spanning Research, Academia, Industry, and Business.</li>
+                <li><strong>Defense &amp; Space R&amp;D:</strong> ~10 years as a Scientist with <strong>ISRO</strong> and <strong>DRDO</strong>.</li>
+                <li><strong>Industry Leadership:</strong> ~15 years across private industry, including Academic Program Manager at <strong>National Instruments (NI)</strong> and Chief Architect at <strong>Trident Techlabs</strong>.</li>
+                <li><strong>Education:</strong> Graduated and Post Graduated from <strong>BITS, Pilani</strong>.</li>
+            </ul>
+        </section>
+
+        <!-- 2. EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY -->
+        <section id="evolution">
+            <h2 class="section-title">Know Me — Your Academic &amp; Industrial Guide: Navigating the Evolution of Science, Engineering &amp; Technology</h2>
+            <div class="grid-2">
+                <div class="evo-card">
+                    <h4>1. Emission</h4>
+                    <div class="timeline-badges">
+                        <span class="t-badge">Thermionic Emission (1962–1969)</span>
+                        <span class="t-badge">Electronic Emission (1969–2026+)</span>
+                        <span class="t-badge">Photonic Emission (2022+)</span>
+                    </div>
+                </div>
+
+                <div class="evo-card">
+                    <h4>2. Propulsion Evolution</h4>
+                    <div class="timeline-badges">
+                        <span class="t-badge">Solid Propulsion</span>
+                        <span class="t-badge">Liquid Propulsion</span>
+                        <span class="t-badge">Electric Propulsion</span>
+                        <span class="t-badge">Cryogenic Propulsion</span>
+                    </div>
+                </div>
+
+                <div class="evo-card">
+                    <h4>3. Telephone Voice Communication Era</h4>
+                    <div class="timeline-badges">
+                        <span class="t-badge">Analog &amp; Electromechanical (1870s–1950s)</span>
+                        <span class="t-badge">Automation &amp; Touch-Tone (1960s–1980s)</span>
+                        <span class="t-badge">Digital &amp; Mobile Cellular (1990s+)</span>
+                    </div>
+                </div>
+
+                <div class="evo-card">
+                    <h4>4. Semiconductor (SEMCON) Trajectory</h4>
+                    <div class="timeline-badges">
+                        <span class="t-badge">Vacuum Tubes</span>
+                        <span class="t-badge">Bipolar Transistors</span>
+                        <span class="t-badge">JFET</span>
+                        <span class="t-badge">N/P/C MOSFET</span>
+                        <span class="t-badge">IC OPAMP / SSI / MSI / LSI / VLSI</span>
+                        <span class="t-badge">ROM / PROM / EEROM / PLD / PAL / FPGA</span>
+                        <span class="t-badge">ASIC</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. TEACHING, MENTORING & MAJOR PROFESSIONAL PURSUITS -->
+        <section id="pursuits">
+            <h2 class="section-title">Teaching Philosophy &amp; Major Professional Pursuits</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>"Learn By Doing" (LeaD) Transformation</h3>
+                    <p>Life ambition dedicated to <strong>transforming Engineering Degree Holders into true Engineers</strong> through hands-on, closed-loop teaching and learning processes.</p>
+                </div>
+                <div class="card">
+                    <h3>Systems Approach to Solutions Engineering</h3>
+                    <p>Training learners to analyze Cause-and-Effect relationships, partition complex engineering problems, and build multi-disciplinary &amp; inter-disciplinary solutions.</p>
+                </div>
+                <div class="card">
+                    <h3>Competency Development Programs</h3>
+                    <p>Structured skill and competency roadmaps designed for Diploma, Undergraduate (Degree), Postgraduate (PG), and Doctoral scholars.</p>
+                </div>
+                <div class="card">
+                    <h3>Design &amp; Engineering Excellence</h3>
+                    <p>Partnering with Private Universities and Autonomous Engineering Institutions across India to build Centers of Excellence in core engineering.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PLACEMENT TRAINING & CAPSTONE MENTORING -->
+        <section id="placement">
+            <h2 class="section-title">Placement Training, Mock Interviews &amp; Capstone Mentoring</h2>
+            <div class="grid-2" style="margin-bottom: 20px;">
+                <div class="card">
+                    <h3>Pre-Placement &amp; Mock Interviews</h3>
+                    <p>Conducting rigorous industry-aligned mock interviews for 5th, 6th, and 7th-semester students to enhance employability in core engineering industries.</p>
+                </div>
+                <div class="card">
+                    <h3>Academic Capstone Project Handholding</h3>
+                    <p>End-to-end mentorship from topic identification to final project report review, leveraging multi-disciplinary design principles.</p>
+                </div>
             </div>
 
-            <!-- ACADEMIC & INDUSTRIAL GUIDE -->
-            <div class="section">
-                <div class="section-title">KNOW ME—YOUR ACADEMIC & INDUSTRIAL GUIDE: NAVIGATING THE EVOLUTION OF SCIENCE, ENGINEERING & TECHNOLOGY</div>
-                <table class="word-table">
-                    <tr>
-                        <td colspan="2" class="timeline-header-td">Emission</td>
-                    </tr>
-                    <tr>
-                        <td width="50%"><div class="timeline-item">Thermionic Emission (1962–1969)</div></td>
-                        <td width="50%"><div class="timeline-item">Electronic Emission (1969–2026+)</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div class="timeline-item">Photonic Emission (2022+)</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="timeline-header-td">Propulsion Evolution</td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">Solid Propulsion</div></td>
-                        <td><div class="timeline-item">Liquid Propulsion</div></td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">Electric Propulsion</div></td>
-                        <td><div class="timeline-item">Cryogenic Propulsion</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="timeline-header-td">Telephone Voice Communication Era</td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">Analog & Electromechanical (1870s–1950s)</div></td>
-                        <td><div class="timeline-item">Automation & Touch-Tone (1960s–1980s)</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div class="timeline-item">Digital & Mobile Cellular (1990s+)</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="timeline-header-td">Semiconductor (SEMCON) Trajectory</td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">Vacuum Tubes</div></td>
-                        <td><div class="timeline-item">Bipolar Transistors</div></td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">JFET</div></td>
-                        <td><div class="timeline-item">N/P/C MOSFET</div></td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">IC OPAMP / SSI / MSI / LSI / VLSI</div></td>
-                        <td><div class="timeline-item">ROM / PROM / EEROM / PLD / PAL / FPGA</div></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><div class="timeline-item">ASIC</div></td>
-                    </tr>
-                </table>
+            <h4 style="color: var(--primary); margin-bottom: 10px;">Structured Capstone Engineering Lifecycle:</h4>
+            <div class="workflow-steps">
+                <div class="step-box"><span>Phase 1</span>Requirements &amp; Specs</div>
+                <div class="step-box"><span>Phase 2</span>Partitioning &amp; Design</div>
+                <div class="step-box"><span>Phase 3</span>Modeling &amp; Simulation</div>
+                <div class="step-box"><span>Phase 4</span>Prototyping &amp; Analysis</div>
+                <div class="step-box"><span>Phase 5</span>Report &amp; Final Review</div>
             </div>
+        </section>
 
-            <!-- MAJOR PROFESSIONAL PURSUITS -->
-            <div class="section">
-                <div class="section-title">MAJOR PROFESSIONAL PURSUITS</div>
-                <ul class="bullet-list">
-                    <li>Transforming Engineering Degree Holders into Engineers through "Learn By Doing" (LeaD) practices.</li>
-                    <li>Systems Approach to Solutions Engineering and Closed Loop Teaching/Learning Processes.</li>
-                    <li>Competency Development Programs for Diploma, Degree, PG, and Doctoral scholars.</li>
-                </ul>
+        <!-- 5. VISITING PROFESSOR, TECHNICAL TALKS & SERVICES -->
+        <section id="services">
+            <h2 class="section-title">Visiting Professor, Technical Talks &amp; Institutional Services</h2>
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Visiting Professor &amp; Invited Talks</h3>
+                    <p>Delivering keynote lectures and niche technology invited talks at universities and autonomous engineering institutions across North, South, East, West, and Northeast India.</p>
+                </div>
+                <div class="card">
+                    <h3>Faculty &amp; Student Development (FDP / SDP)</h3>
+                    <p>Conceptualizing and delivering specialized Faculty Development Programs (FDPs) and Student Development Programs (SDPs) on emerging industrial technologies.</p>
+                </div>
+                <div class="card">
+                    <h3>Laboratory Reorientation</h3>
+                    <p>Modernizing existing academic laboratory sessions and curricula to align with current industrial standards and make graduates day-one ready.</p>
+                </div>
             </div>
+        </section>
 
-            <!-- DOMAIN EXPERTISE -->
-            <div class="section">
-                <div class="section-title">DOMAIN EXPERTISE</div>
-                <table class="word-table">
-                    <tr>
-                        <td width="50%"><div class="timeline-item">Systems Approach to Solutions Engineering</div></td>
-                        <td width="50%"><div class="timeline-item">Automation Engineering</div></td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">Embedded Solutions Engineering</div></td>
-                        <td><div class="timeline-item">IIoT & Industry 4.0 / 5.0</div></td>
-                    </tr>
-                    <tr>
-                        <td><div class="timeline-item">Cyber-Physical Systems (CPS)</div></td>
-                        <td><div class="timeline-item">Wired & Wireless Protocols</div></td>
-                    </tr>
-                </table>
+        <!-- 6. DOMAIN EXPERTISE -->
+        <section id="domains">
+            <h2 class="section-title">Domain Expertise</h2>
+            <div class="domain-tags">
+                <span class="domain-tag">Systems Approach to Solutions Engineering</span>
+                <span class="domain-tag">Automation Engineering</span>
+                <span class="domain-tag">Embedded Solutions Engineering</span>
+                <span class="domain-tag">IIoT &amp; Industry 4.0 / 5.0</span>
+                <span class="domain-tag">Cyber-Physical Systems (CPS)</span>
+                <span class="domain-tag">Wired &amp; Wireless Protocols</span>
             </div>
+        </section>
 
-            <!-- SERVICES FOR ACADEMIC INSTITUTIONS -->
-            <div class="section">
-                <div class="section-title">SERVICES FOR ACADEMIC INSTITUTIONS</div>
-                <ul class="bullet-list">
-                    <li>Laboratory Reorientation: Modernizing existing lab sessions to make learners industry-ready.</li>
-                    <li>Employability & Mentoring: Preparing students for core company interviews and handholding through projects.</li>
-                    <li>Faculty & Student Development: Conceptualizing and delivering SDPs and FDPs across institutions.</li>
-                </ul>
+        <!-- 7. PHOTO GALLERY -->
+        <section id="gallery">
+            <h2 class="section-title">Photo Gallery — Talks, Workshops &amp; Academic Sessions</h2>
+            <p style="color: var(--text-muted); margin-bottom: 18px; font-size: 0.92rem;">
+                Click any photo to enlarge. <em>(Replace placeholder images below with local event photos in your folder.)</em>
+            </p>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="Picture1.jpg" alt="Prof. K. Jayaraman Official Portrait" onerror="this.src='https://via.placeholder.com/400x250/0f2942/ffffff?text=Prof.+K.+Jayaraman'">
+                    <div class="gallery-caption">Prof. K. Jayaraman — Chief Architect</div>
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://via.placeholder.com/400x250/1e4b7a/ffffff?text=Invited+Technical+Talk" alt="Invited Technical Talk">
+                    <div class="gallery-caption">Invited Technical Talk on Systems Engineering</div>
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://via.placeholder.com/400x250/0f2942/ffffff?text=FDP+%26+SDP+Workshop" alt="Faculty Development Program">
+                    <div class="gallery-caption">Faculty &amp; Student Development Program (FDP/SDP)</div>
+                </div>
+                <div class="gallery-item" onclick="openModal(this)">
+                    <img src="https://via.placeholder.com/400x250/1e4b7a/ffffff?text=Learn+By+Doing+Lab+Session" alt="Learn by Doing Lab Session">
+                    <div class="gallery-caption">"Learn By Doing" (LeaD) Lab Mentoring</div>
+                </div>
             </div>
+        </section>
 
-            <!-- CONTACT INFORMATION -->
-            <div class="section">
-                <div class="section-title">CONTACT INFORMATION</div>
-                <table class="word-table">
-                    <tr>
-                        <td width="33%" class="contact-col">
-                            <strong>Location</strong>
-                            <p>Bengaluru, India</p>
-                        </td>
-                        <td width="34%" class="contact-col">
-                            <strong>Email</strong>
-                            <p>kjicet@gmail.com</p>
-                            <p>profkj@tridenttechlabs.com</p>
-                        </td>
-                        <td width="33%" class="contact-col">
-                            <strong>Phone</strong>
-                            <p>+91 94490 50624</p>
-                        </td>
-                    </tr>
-                </table>
+        <!-- 8. CONTACT INFORMATION -->
+        <section id="contact">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="grid-3">
+                <div class="contact-box">
+                    <h4>Location</h4>
+                    <p>Bengaluru, India</p>
+                </div>
+                <div class="contact-box">
+                    <h4>Email</h4>
+                    <a href="mailto:kjicet@gmail.com">kjicet@gmail.com</a>
+                    <a href="mailto:profkj@tridenttechlabs.com">profkj@tridenttechlabs.com</a>
+                </div>
+                <div class="contact-box">
+                    <h4>Phone</h4>
+                    <a href="tel:+919449050624">+91 94490 50624</a>
+                </div>
             </div>
+        </section>
 
-        </div>
+    </main>
+
+    <!-- LIGHTBOX MODAL FOR GALLERY -->
+    <div id="galleryModal" class="modal" onclick="closeModal()">
+        <img id="modalImg" src="" alt="Enlarged View">
+        <p id="modalCaption"></p>
     </div>
 
     <script>
-        function downloadWordDoc() {
-            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-                "xmlns='http://www.w3.org/TR/REC-html40'>"+
-                "<head><meta charset='utf-8'><title>Prof. K. Jayaraman Profile</title></head><body>";
-            var footer = "</body></html>";
-            var sourceHTML = header + document.getElementById("document-content").innerHTML + footer;
-            
-            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-            var fileDownload = document.createElement("a");
-            document.body.appendChild(fileDownload);
-            fileDownload.href = source;
-            fileDownload.download = 'Prof_K_Jayaraman_Profile.doc';
-            fileDownload.click();
-            document.body.removeChild(fileDownload);
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-links a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop - 120;
+                if (pageYOffset >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        // Photo Gallery Lightbox
+        function openModal(element) {
+            const img = element.querySelector("img");
+            const caption = element.querySelector(".gallery-caption").innerText;
+            document.getElementById("modalImg").src = img.src;
+            document.getElementById("modalCaption").innerText = caption;
+            document.getElementById("galleryModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("galleryModal").style.display = "none";
         }
     </script>
 </body>
