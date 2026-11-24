@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prof. K. Jayaraman (Prof KJ) | Academic Visionary & Industry Mentor</title>
+    <title>Prof. K. Jayaraman (Prof KJ) | Academic Visionary &amp; Industry Mentor</title>
     <style>
         :root {
             --primary: #0f2942;
@@ -1046,7 +1046,7 @@
         <div id="view-home" class="page-view active-view">
             <div class="hero-banner">
                 <h1 id="heroTitle">Prof. K. Jayaraman (Prof KJ)</h1>
-                <div class="subtitle" id="heroSubtitle">Chief Architect – "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
+                <div class="subtitle" id="heroSubtitle">Chief Architect – "Learn by Doing" Practices</div>
                 <p id="heroBio">Academic Evangelist • Former Defense &amp; Space Scientist (ISRO &amp; DRDO) • Systems Engineering Leader with 50+ Years of Experience Transforming Engineering Degree Holders into True Engineers.</p>
                 <div class="hero-actions">
                     <button class="btn-primary" onclick="navigateTo('gallery')">🖼️ View Photo Gallery</button>
@@ -1317,7 +1317,7 @@
                                 <input type="email" id="cfgEmail1">
                             </div>
                             <div class="form-group">
-                                <label>Institutional Email</label>
+                                <label>Secondary Email</label>
                                 <input type="email" id="cfgEmail2">
                             </div>
                         </div>
@@ -1332,7 +1332,9 @@
                 <!-- TAB 3: DYNAMIC SECTIONS & CONTENT BLOCKS -->
                 <div id="admin-tab-sections" class="admin-subpanel">
                     <div class="cms-form">
-                        <h3 style="color:var(--primary);">Add Dynamic Content Block Across Sections</h3>
+                        <h3 style="color:var(--primary);" id="blockFormHeading">Add Dynamic Content Block Across Sections</h3>
+                        <input type="hidden" id="editBlockSection">
+                        <input type="hidden" id="editBlockId">
                         <div class="cms-form-grid">
                             <div class="form-group">
                                 <label>Target Section</label>
@@ -1358,7 +1360,10 @@
                             <label>Content / Description / Timeline Items (comma-separated for Evolution cards)</label>
                             <textarea id="blockBodyInput" placeholder="Enter content block text or comma-separated timeline badges..."></textarea>
                         </div>
-                        <button class="btn-success" style="margin-top:12px;" onclick="addContentBlock()">+ Add Content Block</button>
+                        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                            <button class="btn-success" onclick="saveContentBlock()">💾 Save Content Block</button>
+                            <button class="btn-secondary" onclick="resetBlockForm()">Clear Form</button>
+                        </div>
                     </div>
                     <div id="adminBlocksList"></div>
                 </div>
@@ -1473,6 +1478,7 @@
            1. CENTRALIZED DYNAMIC STATE (ALL 10 SECTIONS + ADMIN CMS)
            ========================================================================= */
         const STORAGE_KEY = 'profKjDynamicCMS_v2';
+        const VALID_VIEWS = ['home', 'about', 'solutions', 'services', 'testimonials', 'jobs', 'blog', 'gallery', 'contact', 'notice-board', 'admin'];
 
         const defaultSiteState = {
             adminPin: '1234',
@@ -1487,6 +1493,7 @@
                 phone: '+91 94490 50624',
                 location: 'Bengaluru, Karnataka, India',
                 email1: 'kjicet@gmail.com',
+                email2: 'profkj@tridenttechlabs.com'
             },
             navItems: [
                 { id: 'home', label: '🏠 Home', visible: true },
@@ -1541,6 +1548,7 @@
                     description: 'On-campus academic leadership review and Center of Excellence planning for private universities across South and West India.',
                     eventDate: '2027-01-16',
                     pubDate: '2026-11-18',
+                    regLink: 'mailto:profkj@tridenttechlabs.com?subject=Campus%20Visit%20Request',
                     important: false,
                     published: true
                 },
@@ -1557,7 +1565,7 @@
                 }
             ],
             aboutBullets: [
-                { id: 501, title: 'Current Designation', body: 'Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.' },
+                { id: 501, title: 'Current Designation', body: 'Chief Architect - "Learn by Doing" Practices.' },
                 { id: 502, title: 'Academia & Industry Experience', body: '50+ years spanning Research, Academia, Industry, and Business.' },
                 { id: 503, title: 'Defense & Space R&D', body: '~10 years as a Scientist with ISRO and DRDO.' },
                 { id: 504, title: 'Industry Leadership', body: '~15 years across private industry, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.' },
@@ -1701,12 +1709,25 @@
         }
 
         /* =========================================================================
-           2. NAVIGATION & SUPER ADMIN AUTHENTICATION
+           2. NAVIGATION (WITH BROWSER BACK/FORWARD) & SUPER ADMIN AUTH
            ========================================================================= */
+        function setActiveViewDom(viewId) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active-view'));
+            const target = document.getElementById('view-' + viewId);
+            if (target) target.classList.add('active-view');
+
+            document.querySelectorAll('#dynamicNavLinks button').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-target') === viewId);
+            });
+
+            document.getElementById('sidebar').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function renderSidebarNav() {
             const navContainer = document.getElementById('dynamicNavLinks');
-            const activeBtn = navContainer.querySelector('button.active');
-            const activeTarget = activeBtn ? activeBtn.getAttribute('data-target') : 'home';
+            const activeViewEl = document.querySelector('.page-view.active-view');
+            const activeTarget = activeViewEl ? activeViewEl.id.replace('view-', '') : 'home';
 
             navContainer.innerHTML = '';
             siteState.navItems.forEach(item => {
@@ -1729,22 +1750,32 @@
             }
         }
 
-        function navigateTo(viewId) {
+        function navigateTo(viewId, pushHistory = true) {
+            if (!VALID_VIEWS.includes(viewId)) viewId = 'home';
             if (viewId === 'admin' && !isSuperAdmin) {
                 alert('Super Admin authentication required.');
                 return;
             }
-            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active-view'));
-            const target = document.getElementById('view-' + viewId);
-            if (target) target.classList.add('active-view');
-
-            document.querySelectorAll('#dynamicNavLinks button').forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-target') === viewId);
-            });
-
-            document.getElementById('sidebar').classList.remove('open');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActiveViewDom(viewId);
+            if (pushHistory && window.location.hash !== '#' + viewId) {
+                try {
+                    history.pushState({ viewId }, '', '#' + viewId);
+                } catch (e) {
+                    window.location.hash = viewId;
+                }
+            }
         }
+
+        window.addEventListener('popstate', (event) => {
+            const stateView = event.state && event.state.viewId;
+            const hashView = (window.location.hash || '').replace('#', '');
+            const targetView = stateView || hashView || 'home';
+            if (targetView === 'admin' && !isSuperAdmin) {
+                setActiveViewDom('home');
+                return;
+            }
+            setActiveViewDom(targetView);
+        });
 
         function toggleMobileMenu() {
             document.getElementById('sidebar').classList.toggle('open');
@@ -1781,7 +1812,7 @@
         }
 
         /* =========================================================================
-           3. PROFILE, HERO, ABOUT & CONTACT RENDERING
+           3. PROFILE, HERO, ABOUT, SOLUTIONS & CONTACT RENDERING
            ========================================================================= */
         function renderProfileAndContact() {
             const p = siteState.profile;
@@ -1803,16 +1834,14 @@
             document.getElementById('heroSubtitle').textContent = p.subtitle;
             document.getElementById('heroBio').textContent = p.bio;
 
-            // About Us bullets
             const aboutUl = document.getElementById('aboutListContainer');
             aboutUl.innerHTML = (siteState.aboutBullets || []).map(item =>
                 `<li><strong>${item.title}:</strong> ${item.body}</li>`
             ).join('');
 
-            // About Us technology evolution cards
             const evoGrid = document.getElementById('aboutEvolutionGrid');
             evoGrid.innerHTML = (siteState.aboutEvolution || []).map(evo => {
-                const badges = evo.body.split(',').map(b => `<span class="t-badge">${b.trim()}</span>`).join('');
+                const badges = evo.body.split(',').filter(Boolean).map(b => `<span class="t-badge">${b.trim()}</span>`).join('');
                 return `
                     <div class="evo-card">
                         <h4>${evo.title}</h4>
@@ -1821,7 +1850,6 @@
                 `;
             }).join('');
 
-            // Solutions domain badges & lifecycle steps
             document.getElementById('solutionsDomainsContainer').innerHTML = (siteState.solutionDomains || []).map(d =>
                 `<span class="t-badge">${d.title}</span>`
             ).join('');
@@ -1830,7 +1858,6 @@
                 `<div class="step-box"><span>${step.title}</span>${step.body}</div>`
             ).join('');
 
-            // Contact Us cards
             document.getElementById('contactCardsGrid').innerHTML = `
                 <div class="contact-card">
                     <h4>📍 Location</h4>
@@ -1882,7 +1909,7 @@
                 bar.innerHTML = noticeCategories.map(cat => {
                     const label = cat === 'All' ? 'All Updates' : cat;
                     const activeClass = currentNoticeFilter === cat ? 'active' : '';
-                    return `<button class="filter-btn ${activeClass}" onclick="filterNotices('${cat.replace(/'/g, "\\'")}', this)">${label}</button>`;
+                    return `<button class="filter-btn ${activeClass}" onclick="filterNotices('${cat.replace(/'/g, "\\'")}')">${label}</button>`;
                 }).join('');
             });
         }
@@ -2234,24 +2261,66 @@
             return null;
         }
 
-        function addContentBlock() {
-            const section = document.getElementById('blockTargetSelect').value;
+        function resetBlockForm() {
+            document.getElementById('blockFormHeading').textContent = 'Add Dynamic Content Block Across Sections';
+            document.getElementById('editBlockSection').value = '';
+            document.getElementById('editBlockId').value = '';
+            document.getElementById('blockTitleInput').value = '';
+            document.getElementById('blockBodyInput').value = '';
+        }
+
+        function editContentBlock(section, id) {
+            const arr = getSectionArrayRef(section);
+            if (!arr) return;
+            const item = arr.find(b => b.id === id);
+            if (!item) return;
+
+            document.getElementById('blockFormHeading').textContent = '✏️ Edit Content Block';
+            document.getElementById('editBlockSection').value = section;
+            document.getElementById('editBlockId').value = id;
+            document.getElementById('blockTargetSelect').value = section;
+            document.getElementById('blockTitleInput').value = item.title;
+            document.getElementById('blockBodyInput').value = item.body;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function saveContentBlock() {
+            const existingSection = document.getElementById('editBlockSection').value;
+            const existingId = document.getElementById('editBlockId').value;
+            const targetSection = document.getElementById('blockTargetSelect').value;
             const title = document.getElementById('blockTitleInput').value.trim();
             const body = document.getElementById('blockBodyInput').value.trim();
-            const arr = getSectionArrayRef(section);
 
             if (!title) {
                 alert('Please enter a title or label.');
                 return;
             }
-            if (!arr) return;
 
-            arr.push({ id: Date.now(), title, body });
-            document.getElementById('blockTitleInput').value = '';
-            document.getElementById('blockBodyInput').value = '';
+            if (existingId && existingSection) {
+                const oldArr = getSectionArrayRef(existingSection);
+                const newArr = getSectionArrayRef(targetSection);
+                if (oldArr && newArr) {
+                    const idx = oldArr.findIndex(b => String(b.id) === String(existingId));
+                    if (idx > -1) {
+                        const updated = { id: Number(existingId), title, body };
+                        if (existingSection === targetSection) {
+                            oldArr[idx] = updated;
+                        } else {
+                            oldArr.splice(idx, 1);
+                            newArr.push(updated);
+                        }
+                    }
+                }
+            } else {
+                const arr = getSectionArrayRef(targetSection);
+                if (!arr) return;
+                arr.push({ id: Date.now(), title, body });
+            }
+
+            resetBlockForm();
             persistSiteState();
             renderAdminBlocksList();
-            alert('Content block added!');
+            alert('Content block saved!');
         }
 
         function deleteContentBlock(section, id) {
@@ -2290,7 +2359,10 @@
                     <tr>
                         <td><strong>${b.title}</strong></td>
                         <td>${b.body}</td>
-                        <td><button class="btn-danger" onclick="deleteContentBlock('${grp.key}', ${b.id})">Delete</button></td>
+                        <td style="display:flex; gap:6px; flex-wrap:wrap;">
+                            <button class="btn-secondary" onclick="editContentBlock('${grp.key}', ${b.id})">Edit</button>
+                            <button class="btn-danger" onclick="deleteContentBlock('${grp.key}', ${b.id})">Delete</button>
+                        </td>
                     </tr>
                 `).join('');
                 html += `</tbody></table>`;
@@ -2452,6 +2524,13 @@
             renderContentBlocks();
             renderGallery();
         }
+
+        const initialHash = (window.location.hash || '').replace('#', '');
+        const startView = (VALID_VIEWS.includes(initialHash) && initialHash !== 'admin') ? initialHash : 'home';
+        setActiveViewDom(startView);
+        try {
+            history.replaceState({ viewId: startView }, '', '#' + startView);
+        } catch (e) {}
 
         renderAllDynamicViews();
         loadFromCloudIfConfigured();
