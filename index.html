@@ -1042,26 +1042,13 @@
     <!-- MAIN CONTENT CONTAINER -->
     <main class="main-content">
 
-        <!-- ==================== 1. HOME VIEW ==================== -->
-        <div id="view-home" class="page-view active-view">
-            <div class="hero-banner">
-                <h1 id="heroTitle">Prof. K. Jayaraman (Prof KJ)</h1>
-                <div class="subtitle" id="heroSubtitle">Chief Architect – "Learn by Doing" Practices</div>
-                <p id="heroBio">Academic Evangelist • Former Defense &amp; Space Scientist (ISRO &amp; DRDO) • Systems Engineering Leader with 50+ Years of Experience Transforming Engineering Degree Holders into True Engineers.</p>
-                <div class="hero-actions">
-                    <button class="btn-primary" onclick="navigateTo('gallery')">🖼️ View Photo Gallery</button>
-                    <button class="btn-outline" onclick="navigateTo('notice-board')">📌 Full Notice Board</button>
-                    <button class="btn-outline" onclick="navigateTo('contact')">✉️ Contact &amp; Inquiries</button>
-                </div>
-            </div>
-          <!-- NOTICE BOARD – LATEST UPDATES PREVIEW ON HOME -->
-            <div class="notice-board-panel" id="homeNoticeBoardSection">
+<!-- ==================== 1. HOME VIEW ==================== -->
+        <div class="panel" id="homeNoticeBoardSection">
                 <div class="section-title">
-                    <div class="section-title-left">📌Notice Board – Latest Updates</div>
-                    <button class="btn-primary" onclick="navigateTo('notice-board')">Full Notice Board</button>
+                    <div class="section-title-left">📌Notice Board &amp; Announcements</div>
+                    <button class="btn-primary" onclick="navigateTo('notice-board')">Open Full Notice Board</button>
                 </div>
-                <div class="notice-ticker" id="homeImportantNoticeTicker"></div>
-                <div class="notice-grid" id="homeNoticeGrid"></div>
+                <p style="color: var(--text-muted);">All announcements, webinars, workshops, and academic updates are published on the dedicated Notice Board webpage.</p>
             </div>
 
             <!-- AUTOMATIC HOURLY WORLD PHILOSOPHER QUOTES -->
@@ -1080,7 +1067,6 @@
                 </div>
                 <div class="grid-3" id="homeHighlightsGrid"></div>
             </div>
-        </div>
 
         <!-- ==================== 2. ABOUT US VIEW ==================== -->
         <div id="view-about" class="page-view">
