@@ -1958,7 +1958,7 @@
                 }
             } else {
                 isSuperAdmin = false;
-                btn.textContent = '🔒 Super Admin Login';
+                btn.textContent = '🔒 Admin Login';
                 btn.classList.remove('unlocked');
                 renderSidebarNav();
                 navigateTo('home');
@@ -2030,9 +2030,9 @@
                     <a href="mailto:${p.email1}">${p.email1}</a>
                 </div>
                 <div class="contact-card">
-                    <h4>📞 Mobile (Click-to-Call)</h4>
+                    <h4>📞 Direct Mobile</h4>
                     <p>${p.phone}</p>
-                    <a href="tel:${cleanTel}" class="dialer-btn">Tap to Open Phone Dialer</a>
+                    <a href="tel:${cleanTel}" class="dialer-btn">Tap to Call</a>
                 </div>
             `;
         }
