@@ -152,9 +152,9 @@
             border: none;
             text-align: left;
             color: #cbd5e1;
-            padding: 10px 14px;
+            padding: 9px 14px;
             border-radius: 8px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
             display: flex;
@@ -1022,7 +1022,7 @@
         <button class="menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
     </header>
 
-    <!-- DYNAMIC SIDEBAR NAVIGATION -->
+    <!-- DYNAMIC SIDEBAR NAVIGATION (10 SECTIONS + ADMIN) -->
     <aside class="sidebar" id="sidebar">
         <div class="profile-header">
             <img id="sidebarProfileImg" src="Picture1.jpg" alt="Prof. K. Jayaraman (Prof KJ)" class="profile-pic" onerror="this.src='https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg'">
@@ -1044,49 +1044,37 @@
 
         <!-- ==================== 1. HOME VIEW ==================== -->
         <div id="view-home" class="page-view active-view">
-            <!-- PROFESSOR'S PROFILE INTRODUCTION & CONTACT DETAILS -->
             <div class="hero-banner">
                 <h1 id="heroTitle">Prof. K. Jayaraman (Prof KJ)</h1>
                 <div class="subtitle" id="heroSubtitle">Chief Architect – "Learn by Doing" Practices | Trident Technologies Limited, New Delhi</div>
                 <p id="heroBio">Academic Evangelist • Former Defense &amp; Space Scientist (ISRO &amp; DRDO) • Systems Engineering Leader with 50+ Years of Experience Transforming Engineering Degree Holders into True Engineers.</p>
                 <div class="hero-actions">
-                    <button class="btn-primary" onclick="navigateTo('gallery')">🖼️ View Photo &amp; Gallery</button>
+                    <button class="btn-primary" onclick="navigateTo('gallery')">🖼️ View Photo Gallery</button>
+                    <button class="btn-outline" onclick="navigateTo('notice-board')">📌 Full Notice Board</button>
                     <button class="btn-outline" onclick="navigateTo('contact')">✉️ Contact &amp; Inquiries</button>
                 </div>
             </div>
 
-            <!-- IMMEDIATELY BELOW PROFILE & CONTACT: DYNAMIC NOTICE BOARD – LATEST UPDATES -->
-            <div class="notice-board-panel" id="noticeBoardSection">
+            <!-- NOTICE BOARD – LATEST UPDATES PREVIEW ON HOME -->
+            <div class="notice-board-panel" id="homeNoticeBoardSection">
                 <div class="section-title">
                     <div class="section-title-left">📌 Notice Board – Latest Updates &amp; Academic Activities</div>
                     <div style="display:flex; gap:8px; flex-wrap:wrap;">
                         <button id="toggleAllNoticesBtn" class="btn-secondary" onclick="toggleShowAllNotices()">View All Notices</button>
+                        <button class="btn-primary" onclick="navigateTo('notice-board')">Open Dedicated Notice Board</button>
                     </div>
                 </div>
 
-                <!-- Live Highlight Announcement Bar -->
-                <div class="notice-ticker" id="importantNoticeTicker"></div>
-
-                <!-- Category Filter Pills -->
-                <div class="notice-filter-bar" id="noticeFilterBar">
-                    <button class="filter-btn active" onclick="filterNotices('All', this)">All Updates</button>
-                    <button class="filter-btn" onclick="filterNotices('Teaching & Academic Programmes', this)">Teaching &amp; Academic</button>
-                    <button class="filter-btn" onclick="filterNotices('Upcoming Webinars & Online Sessions', this)">Webinars &amp; Online</button>
-                    <button class="filter-btn" onclick="filterNotices('Seminars & Workshops', this)">Seminars &amp; Workshops</button>
-                    <button class="filter-btn" onclick="filterNotices('Technical Talks & Guest Lectures', this)">Technical Talks</button>
-                    <button class="filter-btn" onclick="filterNotices('Engineering Training Programmes', this)">Engineering Training</button>
-                    <button class="filter-btn" onclick="filterNotices('Campus Visits & Institutional Activities', this)">Campus Visits</button>
-                    <button class="filter-btn" onclick="filterNotices('Conferences & Professional Development', this)">Conferences</button>
-                </div>
-
-                <!-- Responsive Notice Cards -->
+                <div class="notice-ticker" id="homeImportantNoticeTicker"></div>
+                <div class="notice-filter-bar" id="homeNoticeFilterBar"></div>
                 <div class="notice-grid" id="homeNoticeGrid"></div>
             </div>
 
             <!-- AUTOMATIC HOURLY WORLD PHILOSOPHER QUOTES -->
             <div class="quote-showcase">
                 <div class="quote-header">
-                   <span class="quote-tag">Philosophical Insights</span>
+                    <span class="quote-tag">🌍 World Philosopher Wisdom • Auto-Refreshes Every Hour</span>
+                    <span class="quote-timer" id="quoteStatus">Synchronizing hourly quote...</span>
                 </div>
                 <div class="quote-text" id="quoteText">"Education is the kindling of a flame, not the filling of a vessel."</div>
                 <div class="quote-author" id="quoteAuthor">— Socrates</div>
@@ -1114,45 +1102,7 @@
                 <div class="section-title">
                     <div class="section-title-left">Know Me — Evolution of Science, Engineering &amp; Technology</div>
                 </div>
-                <div class="grid-2">
-                    <div class="evo-card">
-                        <h4>Emission Trajectory</h4>
-                        <div class="timeline-badges">
-                            <span class="t-badge">Thermionic Emission (1962–1969)</span>
-                            <span class="t-badge">Electronic Emission (1969–2026+)</span>
-                            <span class="t-badge">Photonic Emission (2022+)</span>
-                        </div>
-                    </div>
-                    <div class="evo-card">
-                        <h4>Propulsion Evolution</h4>
-                        <div class="timeline-badges">
-                            <span class="t-badge">Solid Propulsion</span>
-                            <span class="t-badge">Liquid Propulsion</span>
-                            <span class="t-badge">Electric Propulsion</span>
-                            <span class="t-badge">Cryogenic Propulsion</span>
-                        </div>
-                    </div>
-                    <div class="evo-card">
-                        <h4>Telephone Voice Communication Era</h4>
-                        <div class="timeline-badges">
-                            <span class="t-badge">Analog &amp; Electromechanical (1870s–1950s)</span>
-                            <span class="t-badge">Automation &amp; Touch-Tone (1960s–1980s)</span>
-                            <span class="t-badge">Digital &amp; Mobile Cellular (1990s+)</span>
-                        </div>
-                    </div>
-                    <div class="evo-card">
-                        <h4>Semiconductor (SEMCON) Trajectory</h4>
-                        <div class="timeline-badges">
-                            <span class="t-badge">Vacuum Tubes</span>
-                            <span class="t-badge">Bipolar Transistors</span>
-                            <span class="t-badge">JFET</span>
-                            <span class="t-badge">N/P/C MOSFET</span>
-                            <span class="t-badge">IC OPAMP / SSI / MSI / LSI / VLSI</span>
-                            <span class="t-badge">ROM / PROM / EEROM / PLD / PAL / FPGA</span>
-                            <span class="t-badge">ASIC</span>
-                        </div>
-                    </div>
-                </div>
+                <div class="grid-2" id="aboutEvolutionGrid"></div>
             </div>
         </div>
 
@@ -1165,23 +1115,10 @@
                 <div class="grid-2" id="solutionsCardsGrid" style="margin-bottom: 24px;"></div>
 
                 <h3 style="color: var(--primary); margin-bottom: 12px;">Domain Expertise Solutions</h3>
-                <div class="timeline-badges" style="margin-bottom: 25px;">
-                    <span class="t-badge">Systems Approach to Solutions Engineering</span>
-                    <span class="t-badge">Automation Engineering</span>
-                    <span class="t-badge">Embedded Solutions Engineering</span>
-                    <span class="t-badge">IIoT &amp; Industry 4.0 / 5.0</span>
-                    <span class="t-badge">Cyber-Physical Systems (CPS)</span>
-                    <span class="t-badge">Wired &amp; Wireless Protocols</span>
-                </div>
+                <div class="timeline-badges" id="solutionsDomainsContainer" style="margin-bottom: 25px;"></div>
 
                 <h3 style="color: var(--primary); margin-bottom: 10px;">Academic Capstone Project Engineering Lifecycle</h3>
-                <div class="workflow-steps">
-                    <div class="step-box"><span>Step 1</span>Requirements &amp; Specs</div>
-                    <div class="step-box"><span>Step 2</span>Partitioning &amp; Design</div>
-                    <div class="step-box"><span>Step 3</span>Modeling &amp; Simulation</div>
-                    <div class="step-box"><span>Step 4</span>Prototyping &amp; Analysis</div>
-                    <div class="step-box"><span>Step 5</span>Project Report &amp; Review</div>
-                </div>
+                <div class="workflow-steps" id="solutionsLifecycleContainer"></div>
             </div>
         </div>
 
@@ -1236,42 +1173,45 @@
             </div>
         </div>
 
-        <!-- ==================== 9. PHOTO & GALLERY VIEW ==================== -->
+        <!-- ==================== 9. PHOTO GALLERY VIEW ==================== -->
         <div id="view-gallery" class="page-view">
             <div class="panel">
                 <div class="section-title">
-                    <div class="section-title-left">Photo &amp; Gallery — Honors, Campus Visits &amp; Technical Events</div>
+                    <div class="section-title-left">Photo Gallery — Honors, Campus Visits &amp; Technical Events</div>
                 </div>
-                <p style="color: var(--text-muted); margin-bottom: 18px;">Click any photograph to view in full-screen high clarity. Super Admins can manage all photos and videos via the Admin Dashboard.</p>
+                <p style="color: var(--text-muted); margin-bottom: 18px;">Click any photograph to view in full-screen high clarity. Super Admins can upload, manage, and delete photos and videos via the Admin Dashboard.</p>
 
-                <div class="filter-bar">
-                    <button class="filter-btn active" onclick="filterGallery('All', this)">All Events</button>
-                    <button class="filter-btn" onclick="filterGallery('Achievements', this)">Achievements &amp; Honors</button>
-                    <button class="filter-btn" onclick="filterGallery('Campus Visits', this)">Campus Visits</button>
-                    <button class="filter-btn" onclick="filterGallery('Technical Speeches', this)">Technical Speeches</button>
-                    <button class="filter-btn" onclick="filterGallery('Seminars', this)">Seminars</button>
-                    <button class="filter-btn" onclick="filterGallery('Webinars', this)">Webinars</button>
-                    <button class="filter-btn" onclick="filterGallery('Conferences', this)">Conferences</button>
-                </div>
-
+                <div class="filter-bar" id="galleryFilterBar"></div>
                 <div class="gallery-grid" id="galleryContainer"></div>
             </div>
         </div>
 
-        <!-- ==================== 10. SUPER ADMIN CMS DASHBOARD ==================== -->
+        <!-- ==================== 10. DEDICATED NOTICE BOARD VIEW ==================== -->
+        <div id="view-notice-board" class="page-view">
+            <div class="notice-board-panel">
+                <div class="section-title">
+                    <div class="section-title-left">📌 Dedicated Notice Board — All Announcements &amp; Upcoming Events</div>
+                </div>
+                <div class="notice-ticker" id="dedicatedImportantNoticeTicker"></div>
+                <div class="notice-filter-bar" id="dedicatedNoticeFilterBar"></div>
+                <div class="notice-grid" id="dedicatedNoticeGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== SUPER ADMIN CMS DASHBOARD ==================== -->
         <div id="view-admin" class="page-view">
             <div class="panel">
                 <div class="section-title">
                     <div class="section-title-left">🛡️ Super Admin Dynamic Website Control Center</div>
                     <button class="btn-danger" onclick="toggleSuperAdmin()">Lock &amp; Logout Admin</button>
                 </div>
-                <p style="color: var(--text-muted); margin-bottom: 18px;">Every change saved here immediately updates the public website without editing HTML, CSS, or JavaScript files.</p>
+                <p style="color: var(--text-muted); margin-bottom: 18px;">Add, edit, update, publish, hide, and delete content across all 10 sections without editing HTML, CSS, or JavaScript files.</p>
 
                 <div class="admin-tabs">
                     <button class="admin-tab-btn active" onclick="switchAdminTab('notices', this)">📌 Notice Board Manager</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('profile', this)">👨‍🏫 Profile, Hero &amp; Contact</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('sections', this)">📑 Dynamic Sections &amp; Blocks</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('galleryAdmin', this)">🖼️ Photo &amp; Gallery Manager</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('galleryAdmin', this)">🖼️ Photo Gallery Manager</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('navAdmin', this)">🧭 Sidebar Menu Control</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('databaseSync', this)">☁️ Backend / Database Sync</button>
                 </div>
@@ -1392,13 +1332,17 @@
                 <!-- TAB 3: DYNAMIC SECTIONS & CONTENT BLOCKS -->
                 <div id="admin-tab-sections" class="admin-subpanel">
                     <div class="cms-form">
-                        <h3 style="color:var(--primary);">Add / Edit Dynamic Content Card</h3>
+                        <h3 style="color:var(--primary);">Add Dynamic Content Block Across Sections</h3>
                         <div class="cms-form-grid">
                             <div class="form-group">
-                                <label>Target Page Section</label>
+                                <label>Target Section</label>
                                 <select id="blockTargetSelect">
                                     <option value="homeHighlights">Home — Core Vision &amp; Mission</option>
+                                    <option value="aboutBullets">About Us — Profile Highlights</option>
+                                    <option value="aboutEvolution">About Us — Technology Evolution Cards</option>
                                     <option value="solutions">Solutions — Engineering Solutions</option>
+                                    <option value="solutionDomains">Solutions — Domain Expertise Badges</option>
+                                    <option value="solutionLifecycle">Solutions — Capstone Lifecycle Steps</option>
                                     <option value="services">Services — Academic &amp; Industry Services</option>
                                     <option value="testimonials">Testimonials — Endorsements</option>
                                     <option value="jobs">Job Corner — Career Tracks</option>
@@ -1406,23 +1350,23 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Card Heading / Title</label>
+                                <label>Heading / Badge / Step Label</label>
                                 <input type="text" id="blockTitleInput" placeholder="e.g., Center of Excellence Setup">
                             </div>
                         </div>
                         <div class="form-group" style="margin-top:10px;">
-                            <label>Card Content / Description</label>
-                            <textarea id="blockBodyInput" placeholder="Enter content block text..."></textarea>
+                            <label>Content / Description / Timeline Items (comma-separated for Evolution cards)</label>
+                            <textarea id="blockBodyInput" placeholder="Enter content block text or comma-separated timeline badges..."></textarea>
                         </div>
                         <button class="btn-success" style="margin-top:12px;" onclick="addContentBlock()">+ Add Content Block</button>
                     </div>
                     <div id="adminBlocksList"></div>
                 </div>
 
-                <!-- TAB 4: PHOTO & GALLERY MANAGER -->
+                <!-- TAB 4: PHOTO GALLERY MANAGER -->
                 <div id="admin-tab-galleryAdmin" class="admin-subpanel">
                     <div class="cms-form">
-                        <h3 style="color:var(--primary);">Upload Photo or Video to Photo &amp; Gallery</h3>
+                        <h3 style="color:var(--primary);">Upload Photo or Video to Photo Gallery</h3>
                         <div class="cms-form-grid">
                             <div class="form-group">
                                 <label>Event Title</label>
@@ -1455,7 +1399,7 @@
                                 <input type="url" id="mediaUrl" placeholder="https://...">
                             </div>
                         </div>
-                        <button class="btn-success" style="margin-top:14px;" onclick="addGalleryItem()">+ Publish to Photo &amp; Gallery</button>
+                        <button class="btn-success" style="margin-top:14px;" onclick="addGalleryItem()">+ Publish to Photo Gallery</button>
                     </div>
 
                     <table class="cms-table">
@@ -1474,12 +1418,12 @@
                 <!-- TAB 5: SIDEBAR NAVIGATION CONTROL -->
                 <div id="admin-tab-navAdmin" class="admin-subpanel">
                     <div class="cms-form">
-                        <h3 style="color:var(--primary);">Manage Sidebar Menu Labels &amp; Page Visibility</h3>
-                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">Rename menu items or toggle visibility for public visitors.</p>
+                        <h3 style="color:var(--primary);">Manage Sidebar Menu Labels &amp; Section Visibility</h3>
+                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">Rename menu labels or show/hide sections for public visitors.</p>
                         <table class="cms-table">
                             <thead>
                                 <tr>
-                                    <th>Page ID</th>
+                                    <th>Section ID</th>
                                     <th>Sidebar Menu Label</th>
                                     <th>Visible to Visitors</th>
                                 </tr>
@@ -1494,7 +1438,7 @@
                 <div id="admin-tab-databaseSync" class="admin-subpanel">
                     <div class="cms-form">
                         <h3 style="color:var(--primary);">☁️ Cloud Backend Database Connection (Firebase / REST JSON)</h3>
-                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">Connect a Firebase Realtime Database endpoint (e.g., <code>https://your-project-default-rtdb.firebaseio.com/profkj.json</code>) or any REST JSON backend so all admin updates automatically sync live across all visitors and devices.</p>
+                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">Connect a Firebase Realtime Database endpoint or REST JSON API so edits sync live across visitors.</p>
                         <div class="cms-form-grid">
                             <div class="form-group">
                                 <label>Backend REST JSON Endpoint URL</label>
@@ -1526,9 +1470,9 @@
 
     <script>
         /* =========================================================================
-           1. CENTRALIZED DYNAMIC STATE (CMS STORE + BACKEND SYNC)
+           1. CENTRALIZED DYNAMIC STATE (ALL 10 SECTIONS + ADMIN CMS)
            ========================================================================= */
-        const STORAGE_KEY = 'profKjDynamicCMS_v1';
+        const STORAGE_KEY = 'profKjDynamicCMS_v2';
 
         const defaultSiteState = {
             adminPin: '1234',
@@ -1554,7 +1498,8 @@
                 { id: 'jobs', label: '💼 Job Corner', visible: true },
                 { id: 'blog', label: '📝 Blog', visible: true },
                 { id: 'contact', label: '📞 Contact Us', visible: true },
-                { id: 'gallery', label: '🖼️ Photo & Gallery', visible: true }
+                { id: 'gallery', label: '🖼️ Photo Gallery', visible: true },
+                { id: 'notice-board', label: '📌 Notice Board', visible: true }
             ],
             notices: [
                 {
@@ -1625,11 +1570,32 @@
                 }
             ],
             aboutBullets: [
-                '<strong>Current Designation:</strong> Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.',
-                '<strong>Academia &amp; Industry Experience:</strong> 50+ years spanning Research, Academia, Industry, and Business.',
-                '<strong>Defense &amp; Space R&amp;D:</strong> ~10 years as a Scientist with <strong>ISRO</strong> and <strong>DRDO</strong>.',
-                '<strong>Industry Leadership:</strong> ~15 years across private industry, including Academic Program Manager at <strong>National Instruments (NI)</strong> and Chief Architect at <strong>Trident Techlabs</strong>.',
-                '<strong>Education:</strong> Graduated and Post Graduated from <strong>BITS, Pilani</strong>.'
+                { id: 501, title: 'Current Designation', body: 'Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.' },
+                { id: 502, title: 'Academia & Industry Experience', body: '50+ years spanning Research, Academia, Industry, and Business.' },
+                { id: 503, title: 'Defense & Space R&D', body: '~10 years as a Scientist with ISRO and DRDO.' },
+                { id: 504, title: 'Industry Leadership', body: '~15 years across private industry, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.' },
+                { id: 505, title: 'Education', body: 'Graduated and Post Graduated from BITS, Pilani.' }
+            ],
+            aboutEvolution: [
+                { id: 601, title: 'Emission Trajectory', body: 'Thermionic Emission (1962–1969), Electronic Emission (1969–2026+), Photonic Emission (2022+)' },
+                { id: 602, title: 'Propulsion Evolution', body: 'Solid Propulsion, Liquid Propulsion, Electric Propulsion, Cryogenic Propulsion' },
+                { id: 603, title: 'Telephone Voice Communication Era', body: 'Analog & Electromechanical (1870s–1950s), Automation & Touch-Tone (1960s–1980s), Digital & Mobile Cellular (1990s+)' },
+                { id: 604, title: 'Semiconductor (SEMCON) Trajectory', body: 'Vacuum Tubes, Bipolar Transistors, JFET, N/P/C MOSFET, IC OPAMP / SSI / MSI / LSI / VLSI, ROM / PROM / EEROM / PLD / PAL / FPGA, ASIC' }
+            ],
+            solutionDomains: [
+                { id: 701, title: 'Systems Approach to Solutions Engineering', body: '' },
+                { id: 702, title: 'Automation Engineering', body: '' },
+                { id: 703, title: 'Embedded Solutions Engineering', body: '' },
+                { id: 704, title: 'IIoT & Industry 4.0 / 5.0', body: '' },
+                { id: 705, title: 'Cyber-Physical Systems (CPS)', body: '' },
+                { id: 706, title: 'Wired & Wireless Protocols', body: '' }
+            ],
+            solutionLifecycle: [
+                { id: 801, title: 'Step 1', body: 'Requirements & Specs' },
+                { id: 802, title: 'Step 2', body: 'Partitioning & Design' },
+                { id: 803, title: 'Step 3', body: 'Modeling & Simulation' },
+                { id: 804, title: 'Step 4', body: 'Prototyping & Analysis' },
+                { id: 805, title: 'Step 5', body: 'Project Report & Review' }
             ],
             blocks: {
                 homeHighlights: [
@@ -1736,7 +1702,7 @@
                     if (res.ok) {
                         const cloudData = await res.json();
                         if (cloudData && cloudData.profile) {
-                            siteState = cloudData;
+                            siteState = Object.assign(JSON.parse(JSON.stringify(defaultSiteState)), cloudData);
                             localStorage.setItem(STORAGE_KEY, JSON.stringify(siteState));
                             renderAllDynamicViews();
                         }
@@ -1828,7 +1794,7 @@
         }
 
         /* =========================================================================
-           3. PROFILE, HERO & CONTACT RENDERING
+           3. PROFILE, HERO, ABOUT & CONTACT RENDERING
            ========================================================================= */
         function renderProfileAndContact() {
             const p = siteState.profile;
@@ -1850,13 +1816,32 @@
             document.getElementById('heroSubtitle').textContent = p.subtitle;
             document.getElementById('heroBio').textContent = p.bio;
 
-            const heroCall = document.getElementById('heroCallBtn');
-            heroCall.href = 'tel:' + cleanTel;
-            heroCall.textContent = '📞 Call Now: ' + p.phone;
-
-            // About Us list
+            // About Us bullets
             const aboutUl = document.getElementById('aboutListContainer');
-            aboutUl.innerHTML = siteState.aboutBullets.map(item => `<li>${item}</li>`).join('');
+            aboutUl.innerHTML = (siteState.aboutBullets || []).map(item =>
+                `<li><strong>${item.title}:</strong> ${item.body}</li>`
+            ).join('');
+
+            // About Us technology evolution cards
+            const evoGrid = document.getElementById('aboutEvolutionGrid');
+            evoGrid.innerHTML = (siteState.aboutEvolution || []).map(evo => {
+                const badges = evo.body.split(',').map(b => `<span class="t-badge">${b.trim()}</span>`).join('');
+                return `
+                    <div class="evo-card">
+                        <h4>${evo.title}</h4>
+                        <div class="timeline-badges">${badges}</div>
+                    </div>
+                `;
+            }).join('');
+
+            // Solutions domain badges & lifecycle steps
+            document.getElementById('solutionsDomainsContainer').innerHTML = (siteState.solutionDomains || []).map(d =>
+                `<span class="t-badge">${d.title}</span>`
+            ).join('');
+
+            document.getElementById('solutionsLifecycleContainer').innerHTML = (siteState.solutionLifecycle || []).map(step =>
+                `<div class="step-box"><span>${step.title}</span>${step.body}</div>`
+            ).join('');
 
             // Contact Us cards
             document.getElementById('contactCardsGrid').innerHTML = `
@@ -1879,8 +1864,19 @@
         }
 
         /* =========================================================================
-           4. NOTICE BOARD – LATEST UPDATES (DYNAMIC PUBLIC + ADMIN CRUD)
+           4. NOTICE BOARD – LATEST UPDATES (HOME + DEDICATED NOTICE BOARD VIEW)
            ========================================================================= */
+        const noticeCategories = [
+            'All',
+            'Teaching & Academic Programmes',
+            'Upcoming Webinars & Online Sessions',
+            'Seminars & Workshops',
+            'Technical Talks & Guest Lectures',
+            'Engineering Training Programmes',
+            'Campus Visits & Institutional Activities',
+            'Conferences & Professional Development'
+        ];
+
         function formatDisplayDate(isoDate) {
             if (!isoDate) return 'TBA';
             const d = new Date(isoDate + 'T00:00:00');
@@ -1888,50 +1884,24 @@
             return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
         }
 
-        function renderNoticeBoard() {
-            const grid = document.getElementById('homeNoticeGrid');
-            const ticker = document.getElementById('importantNoticeTicker');
-            const toggleBtn = document.getElementById('toggleAllNoticesBtn');
+        function renderNoticeFilters() {
+            const bars = [
+                document.getElementById('homeNoticeFilterBar'),
+                document.getElementById('dedicatedNoticeFilterBar')
+            ];
 
-            // Sort latest published notices first (important pinned first, then newest pubDate)
-            const publishedNotices = siteState.notices
-                .filter(n => n.published)
-                .sort((a, b) => {
-                    if (a.important !== b.important) return b.important ? 1 : -1;
-                    return new Date(b.pubDate) - new Date(a.pubDate);
-                });
+            bars.forEach(bar => {
+                if (!bar) return;
+                bar.innerHTML = noticeCategories.map(cat => {
+                    const label = cat === 'All' ? 'All Updates' : cat;
+                    const activeClass = currentNoticeFilter === cat ? 'active' : '';
+                    return `<button class="filter-btn ${activeClass}" onclick="filterNotices('${cat.replace(/'/g, "\\'")}', this)">${label}</button>`;
+                }).join('');
+            });
+        }
 
-            // Top Important Announcement Ticker
-            const topImportant = publishedNotices.find(n => n.important) || publishedNotices[0];
-            if (topImportant) {
-                ticker.style.display = 'flex';
-                ticker.innerHTML = `
-                    <span class="ticker-badge">Latest Highlight</span>
-                    <strong>${topImportant.title}</strong>
-                    <span style="color:#92400e;">(Event Date: ${formatDisplayDate(topImportant.eventDate)})</span>
-                    ${topImportant.regLink ? `<a href="${topImportant.regLink}" target="_blank" style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
-                `;
-            } else {
-                ticker.style.display = 'none';
-            }
-
-            // Apply category filter
-            const filtered = currentNoticeFilter === 'All'
-                ? publishedNotices
-                : publishedNotices.filter(n => n.category === currentNoticeFilter);
-
-            // Show latest 4 by default unless "View All Notices" is toggled
-            const visibleList = showAllNotices ? filtered : filtered.slice(0, 4);
-            toggleBtn.textContent = showAllNotices
-                ? 'Show Latest 4'
-                : `View All Notices (${filtered.length})`;
-
-            if (visibleList.length === 0) {
-                grid.innerHTML = `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
-                return;
-            }
-
-            grid.innerHTML = visibleList.map(n => `
+        function buildNoticeCardHtml(n) {
+            return `
                 <div class="notice-card ${n.important ? 'important-notice' : ''}">
                     <div>
                         <div class="notice-top-meta">
@@ -1949,13 +1919,59 @@
                         ${n.regLink ? `<a href="${n.regLink}" target="_blank" class="notice-reg-btn">Register / View Details →</a>` : ''}
                     </div>
                 </div>
-            `).join('');
+            `;
         }
 
-        function filterNotices(category, btnEl) {
+        function renderNoticeBoard() {
+            renderNoticeFilters();
+
+            const homeGrid = document.getElementById('homeNoticeGrid');
+            const dedicatedGrid = document.getElementById('dedicatedNoticeGrid');
+            const homeTicker = document.getElementById('homeImportantNoticeTicker');
+            const dedicatedTicker = document.getElementById('dedicatedImportantNoticeTicker');
+            const toggleBtn = document.getElementById('toggleAllNoticesBtn');
+
+            const publishedNotices = siteState.notices
+                .filter(n => n.published)
+                .sort((a, b) => {
+                    if (a.important !== b.important) return b.important ? 1 : -1;
+                    return new Date(b.pubDate) - new Date(a.pubDate);
+                });
+
+            const topImportant = publishedNotices.find(n => n.important) || publishedNotices[0];
+            const tickerHtml = topImportant ? `
+                <span class="ticker-badge">Latest Highlight</span>
+                <strong>${topImportant.title}</strong>
+                <span style="color:#92400e;">(Event Date: ${formatDisplayDate(topImportant.eventDate)})</span>
+                ${topImportant.regLink ? `<a href="${topImportant.regLink}" target="_blank" style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
+            ` : '';
+
+            [homeTicker, dedicatedTicker].forEach(el => {
+                if (!el) return;
+                el.style.display = topImportant ? 'flex' : 'none';
+                el.innerHTML = tickerHtml;
+            });
+
+            const filtered = currentNoticeFilter === 'All'
+                ? publishedNotices
+                : publishedNotices.filter(n => n.category === currentNoticeFilter);
+
+            const homeVisible = showAllNotices ? filtered : filtered.slice(0, 4);
+            if (toggleBtn) {
+                toggleBtn.textContent = showAllNotices ? 'Show Latest 4' : `View All Notices (${filtered.length})`;
+            }
+
+            homeGrid.innerHTML = homeVisible.length
+                ? homeVisible.map(buildNoticeCardHtml).join('')
+                : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+
+            dedicatedGrid.innerHTML = filtered.length
+                ? filtered.map(buildNoticeCardHtml).join('')
+                : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+        }
+
+        function filterNotices(category) {
             currentNoticeFilter = category;
-            document.querySelectorAll('#noticeFilterBar .filter-btn').forEach(b => b.classList.remove('active'));
-            btnEl.classList.add('active');
             renderNoticeBoard();
         }
 
@@ -1991,8 +2007,18 @@
         }
 
         /* =========================================================================
-           6. PHOTO & GALLERY RENDERING + LIGHTBOX
+           6. PHOTO GALLERY RENDERING + LIGHTBOX
            ========================================================================= */
+        const galleryCategories = [
+            'All',
+            'Achievements',
+            'Campus Visits',
+            'Technical Speeches',
+            'Seminars',
+            'Webinars',
+            'Conferences'
+        ];
+
         function resolveImageUrl(url) {
             if (!url) return '';
             if (url.includes('github.com') && url.includes('/blob/')) {
@@ -2008,12 +2034,19 @@
         }
 
         function renderGallery() {
+            const filterBar = document.getElementById('galleryFilterBar');
+            filterBar.innerHTML = galleryCategories.map(cat => {
+                const label = cat === 'All' ? 'All Events' : (cat === 'Achievements' ? 'Achievements & Honors' : cat);
+                const activeClass = currentGalleryFilter === cat ? 'active' : '';
+                return `<button class="filter-btn ${activeClass}" onclick="filterGallery('${cat}')">${label}</button>`;
+            }).join('');
+
             const container = document.getElementById('galleryContainer');
             const filtered = currentGalleryFilter === 'All'
                 ? siteState.gallery
                 : siteState.gallery.filter(item => item.category === currentGalleryFilter);
 
-            container.innerHTML = filtered.map(item => {
+            container.innerHTML = filtered.length ? filtered.map(item => {
                 const resolvedSrc = resolveImageUrl(item.src);
                 const fallbackSrc = getLocalFallback(item.src);
                 let mediaHtml = '';
@@ -2042,13 +2075,11 @@
                         </div>
                     </div>
                 `;
-            }).join('');
+            }).join('') : `<p style="color:var(--text-muted);">No photos or videos found in this category.</p>`;
         }
 
-        function filterGallery(category, btnEl) {
+        function filterGallery(category) {
             currentGalleryFilter = category;
-            document.querySelectorAll('#view-gallery .filter-btn').forEach(b => b.classList.remove('active'));
-            btnEl.classList.add('active');
             renderGallery();
         }
 
@@ -2063,10 +2094,9 @@
         }
 
         /* =========================================================================
-           7. SUPER ADMIN CRUD OPERATIONS
+           7. SUPER ADMIN CRUD OPERATIONS ACROSS ALL 10 SECTIONS
            ========================================================================= */
         function populateAdminForms() {
-            // Profile settings
             const p = siteState.profile;
             document.getElementById('cfgName').value = p.name;
             document.getElementById('cfgBadge').value = p.badge;
@@ -2079,7 +2109,6 @@
             document.getElementById('cfgBio').value = p.bio;
             document.getElementById('backendApiUrl').value = siteState.backendUrl || '';
 
-            // Default today's date in Notice form
             if (!document.getElementById('noticePubDateInput').value) {
                 document.getElementById('noticePubDateInput').value = new Date().toISOString().split('T')[0];
             }
@@ -2090,7 +2119,6 @@
             renderAdminNavTable();
         }
 
-        // Notice CRUD
         function saveNoticeFromAdmin() {
             const editId = document.getElementById('editNoticeId').value;
             const title = document.getElementById('noticeTitleInput').value.trim();
@@ -2129,7 +2157,7 @@
             resetNoticeForm();
             persistSiteState();
             renderAdminNoticesTable();
-            alert('Notice saved and published to the Home Page!');
+            alert('Notice saved and updated on Home & Notice Board!');
         }
 
         function editNotice(id) {
@@ -2197,7 +2225,6 @@
             `).join('');
         }
 
-        // Profile Settings Save
         function saveProfileSettings() {
             siteState.profile.name = document.getElementById('cfgName').value.trim();
             siteState.profile.shortName = siteState.profile.name.split('(')[0].trim();
@@ -2211,19 +2238,28 @@
             siteState.profile.bio = document.getElementById('cfgBio').value.trim();
 
             persistSiteState();
-            alert('Profile, Banner & Contact details updated across the entire website!');
+            alert('Profile, Banner & Contact details updated across the website!');
         }
 
-        // Content Blocks CRUD
+        function getSectionArrayRef(section) {
+            if (Array.isArray(siteState[section])) return siteState[section];
+            if (siteState.blocks && Array.isArray(siteState.blocks[section])) return siteState.blocks[section];
+            return null;
+        }
+
         function addContentBlock() {
             const section = document.getElementById('blockTargetSelect').value;
             const title = document.getElementById('blockTitleInput').value.trim();
             const body = document.getElementById('blockBodyInput').value.trim();
-            if (!title || !body) {
-                alert('Enter both title and content.');
+            const arr = getSectionArrayRef(section);
+
+            if (!title) {
+                alert('Please enter a title or label.');
                 return;
             }
-            siteState.blocks[section].push({ id: Date.now(), title, body });
+            if (!arr) return;
+
+            arr.push({ id: Date.now(), title, body });
             document.getElementById('blockTitleInput').value = '';
             document.getElementById('blockBodyInput').value = '';
             persistSiteState();
@@ -2232,8 +2268,12 @@
         }
 
         function deleteContentBlock(section, id) {
-            if (confirm('Delete this content block?')) {
-                siteState.blocks[section] = siteState.blocks[section].filter(b => b.id !== id);
+            if (confirm('Delete this content item?')) {
+                if (Array.isArray(siteState[section])) {
+                    siteState[section] = siteState[section].filter(b => b.id !== id);
+                } else if (siteState.blocks && Array.isArray(siteState.blocks[section])) {
+                    siteState.blocks[section] = siteState.blocks[section].filter(b => b.id !== id);
+                }
                 persistSiteState();
                 renderAdminBlocksList();
             }
@@ -2241,15 +2281,29 @@
 
         function renderAdminBlocksList() {
             const container = document.getElementById('adminBlocksList');
+            const allGroups = [
+                { key: 'homeHighlights', label: 'Home — Core Vision & Mission', isBlock: true },
+                { key: 'aboutBullets', label: 'About Us — Profile Highlights', isBlock: false },
+                { key: 'aboutEvolution', label: 'About Us — Technology Evolution Cards', isBlock: false },
+                { key: 'solutions', label: 'Solutions — Engineering Solutions', isBlock: true },
+                { key: 'solutionDomains', label: 'Solutions — Domain Expertise Badges', isBlock: false },
+                { key: 'solutionLifecycle', label: 'Solutions — Capstone Lifecycle Steps', isBlock: false },
+                { key: 'services', label: 'Services — Academic & Industry Services', isBlock: true },
+                { key: 'testimonials', label: 'Testimonials — Endorsements', isBlock: true },
+                { key: 'jobs', label: 'Job Corner — Career Tracks', isBlock: true },
+                { key: 'blog', label: 'Blog — Technical Articles', isBlock: true }
+            ];
+
             let html = '';
-            Object.keys(siteState.blocks).forEach(sec => {
-                html += `<h4 style="margin:14px 0 8px; color:var(--primary); text-transform:uppercase;">Section: ${sec}</h4>`;
+            allGroups.forEach(grp => {
+                const items = grp.isBlock ? (siteState.blocks[grp.key] || []) : (siteState[grp.key] || []);
+                html += `<h4 style="margin:14px 0 8px; color:var(--primary);">${grp.label}</h4>`;
                 html += `<table class="cms-table"><thead><tr><th>Title</th><th>Content</th><th>Action</th></tr></thead><tbody>`;
-                html += siteState.blocks[sec].map(b => `
+                html += items.map(b => `
                     <tr>
                         <td><strong>${b.title}</strong></td>
                         <td>${b.body}</td>
-                        <td><button class="btn-danger" onclick="deleteContentBlock('${sec}', ${b.id})">Delete</button></td>
+                        <td><button class="btn-danger" onclick="deleteContentBlock('${grp.key}', ${b.id})">Delete</button></td>
                     </tr>
                 `).join('');
                 html += `</tbody></table>`;
@@ -2257,7 +2311,6 @@
             container.innerHTML = html;
         }
 
-        // Gallery CRUD
         function addGalleryItem() {
             const title = document.getElementById('mediaTitle').value.trim();
             const category = document.getElementById('mediaCategory').value;
@@ -2290,7 +2343,7 @@
             document.getElementById('mediaUrl').value = '';
             persistSiteState();
             renderAdminGalleryTable();
-            alert('Published to Photo & Gallery!');
+            alert('Published to Photo Gallery!');
         }
 
         function deleteGalleryItem(id) {
@@ -2313,7 +2366,6 @@
             `).join('');
         }
 
-        // Navigation Menu Control
         function renderAdminNavTable() {
             const tbody = document.getElementById('adminNavTableBody');
             tbody.innerHTML = siteState.navItems.map((item, idx) => `
@@ -2336,7 +2388,6 @@
             alert('Sidebar navigation updated!');
         }
 
-        // Backend Sync & Backup
         function saveBackendConfig() {
             const url = document.getElementById('backendApiUrl').value.trim();
             const newPin = document.getElementById('newAdminPin').value.trim();
@@ -2400,9 +2451,10 @@
 
             const now = new Date();
             const nextRefresh = new Date(now.getTime() + 3600000);
-            quoteStatusEl.textContent = `Updated: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} • Next auto-refresh: ${nextRefresh.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            if (quoteStatusEl) {
+                quoteStatusEl.textContent = `Updated: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} • Next auto-refresh: ${nextRefresh.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            }
         }
-
         /* =========================================================================
            9. INITIALIZE ALL DYNAMIC VIEWS
            ========================================================================= */
