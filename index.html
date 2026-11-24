@@ -253,6 +253,12 @@
             border: 1px solid var(--border);
         }
 
+        .panel:last-child,
+        .notice-board-panel:last-child,
+        .quote-showcase:last-child {
+            margin-bottom: 0;
+        }
+
         .section-title {
             font-size: 1.42rem;
             color: var(--primary);
@@ -1000,7 +1006,8 @@
                 font-size: 1.6rem;
             }
 
-            .panel, .notice-board-panel {
+            .panel,
+            .notice-board-panel {
                 padding: 20px 16px;
             }
 
@@ -1054,15 +1061,17 @@
                     <button class="btn-outline" onclick="navigateTo('contact')">✉️ Contact &amp; Inquiries</button>
                 </div>
             </div>
-         <!-- AUTOMATIC HOURLY WORLD PHILOSOPHER QUOTES -->
+
+            <!-- AUTOMATIC HOURLY WORLD PHILOSOPHER QUOTES -->
             <div class="quote-showcase">
                 <div class="quote-header">
                     <span class="quote-tag">Philosophical Insights</span>
+                    <span class="quote-timer" id="quoteStatus">Synchronizing hourly quote...</span>
                 </div>
                 <div class="quote-text" id="quoteText">"Education is the kindling of a flame, not the filling of a vessel."</div>
                 <div class="quote-author" id="quoteAuthor">— Socrates</div>
             </div>
-  
+
             <!-- DYNAMIC HOME HIGHLIGHTS -->
             <div class="panel">
                 <div class="section-title">
@@ -1070,6 +1079,7 @@
                 </div>
                 <div class="grid-3" id="homeHighlightsGrid"></div>
             </div>
+        </div>
 
         <!-- ==================== 2. ABOUT US VIEW ==================== -->
         <div id="view-about" class="page-view">
@@ -1957,13 +1967,17 @@
                 toggleBtn.textContent = showAllNotices ? 'Show Latest 4' : `View All Notices (${filtered.length})`;
             }
 
-            homeGrid.innerHTML = homeVisible.length
-                ? homeVisible.map(buildNoticeCardHtml).join('')
-                : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+            if (homeGrid) {
+                homeGrid.innerHTML = homeVisible.length
+                    ? homeVisible.map(buildNoticeCardHtml).join('')
+                    : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+            }
 
-            dedicatedGrid.innerHTML = filtered.length
-                ? filtered.map(buildNoticeCardHtml).join('')
-                : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+            if (dedicatedGrid) {
+                dedicatedGrid.innerHTML = filtered.length
+                    ? filtered.map(buildNoticeCardHtml).join('')
+                    : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+            }
         }
 
         function filterNotices(category) {
