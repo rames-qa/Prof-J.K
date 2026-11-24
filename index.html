@@ -1,1 +1,2542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prof. K. Jayaraman (Prof KJ) | Academic Visionary &amp; Industry Mentor</title>
+    <style>
+        :root {
+            --primary: #0f2942;
+            --secondary: #1e4b7a;
+            --accent: #d97706;
+            --accent-hover: #b45309;
+            --bg-light: #f1f5f9;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --success: #059669;
+            --danger: #dc2626;
+            --sidebar-width: 280px;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* ================= MOBILE HEADER BAR ================= */
+        .mobile-topbar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 0 20px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .mobile-topbar .brand-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .mobile-topbar img {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 2px solid var(--accent);
+        }
+
+        .menu-toggle {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ================= SIDEBAR NAVIGATION ================= */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: linear-gradient(180deg, var(--primary) 0%, #081624 100%);
+            color: var(--white);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 16px;
+            overflow-y: auto;
+            z-index: 1050;
+            transition: transform 0.3s ease;
+            box-shadow: 4px 0 18px rgba(0, 0, 0, 0.14);
+        }
+
+        .profile-header {
+            text-align: center;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            margin-bottom: 14px;
+        }
+
+        .profile-pic {
+            width: 112px;
+            height: 112px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top center;
+            border: 3px solid var(--accent);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+            margin-bottom: 8px;
+            background-color: #1e3a5f;
+        }
+
+        .profile-header h2 {
+            font-size: 1.12rem;
+            font-weight: 700;
+        }
+
+        .profile-header .badge {
+            display: inline-block;
+            background: rgba(217, 119, 6, 0.22);
+            color: #fbbf24;
+            font-size: 0.74rem;
+            padding: 3px 10px;
+            border-radius: 12px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-links button {
+            width: 100%;
+            background: transparent;
+            border: none;
+            text-align: left;
+            color: #cbd5e1;
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links button:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: var(--white);
+        }
+
+        .nav-links button.active {
+            background-color: var(--secondary);
+            color: var(--white);
+            border-left: 4px solid var(--accent);
+            font-weight: 600;
+        }
+
+        .nav-links button.admin-nav-btn {
+            margin-top: 6px;
+            background: rgba(16, 185, 129, 0.16);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            text-align: center;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .call-pill {
+            display: inline-block;
+            margin: 8px 0;
+            padding: 7px 14px;
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.45);
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.82rem;
+        }
+
+        .admin-toggle-btn {
+            margin-top: 6px;
+            width: 100%;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .admin-toggle-btn.unlocked {
+            background: var(--success);
+            color: var(--white);
+            border-color: #10b981;
+        }
+
+        /* ================= MAIN CONTENT & VIEWS ================= */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            padding: 32px 42px;
+        }
+
+        .page-view {
+            display: none;
+            animation: fadeIn 0.28s ease-in-out;
+        }
+
+        .page-view.active-view {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .panel {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 14px;
+            margin-bottom: 26px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            font-size: 1.42rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-title-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title-left::before {
+            content: "";
+            width: 6px;
+            height: 24px;
+            background-color: var(--accent);
+            border-radius: 3px;
+        }
+
+        /* ================= HERO BANNER ================= */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 38px 40px;
+            border-radius: 16px;
+            margin-bottom: 26px;
+            box-shadow: 0 10px 25px rgba(15, 41, 66, 0.16);
+        }
+
+        .hero-banner h1 {
+            font-size: 2.05rem;
+            margin-bottom: 6px;
+        }
+
+        .hero-banner .subtitle {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .hero-banner p {
+            color: #e2e8f0;
+            max-width: 860px;
+            font-size: 0.98rem;
+        }
+
+        .hero-actions {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.92rem;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.14);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.92rem;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.24);
+        }
+
+        .btn-secondary {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 9px 16px;
+            border-radius: 7px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.86rem;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+            border: none;
+            padding: 9px 16px;
+            border-radius: 7px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.86rem;
+        }
+
+        /* ================= NOTICE BOARD – LATEST UPDATES ================= */
+        .notice-board-panel {
+            background: var(--white);
+            border: 1px solid #cbd5e1;
+            border-top: 5px solid var(--accent);
+            border-radius: 14px;
+            padding: 28px 30px;
+            margin-bottom: 26px;
+            box-shadow: 0 6px 20px rgba(15, 41, 66, 0.06);
+        }
+
+        .notice-ticker {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-left: 4px solid var(--accent);
+            padding: 10px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+        }
+
+        .ticker-badge {
+            background: var(--danger);
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .notice-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .notice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 18px;
+        }
+
+        .notice-card {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--secondary);
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .notice-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+        }
+
+        .notice-card.important-notice {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef9c3 100%);
+            border: 1px solid #fcd34d;
+            border-left: 5px solid var(--accent);
+        }
+
+        .notice-top-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .notice-cat-badge {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.73rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        .important-tag {
+            background: var(--accent);
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: 12px;
+        }
+
+        .notice-card h3 {
+            font-size: 1.08rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .notice-card p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+
+        .notice-dates {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: #334155;
+            background: rgba(255, 255, 255, 0.75);
+            padding: 8px 10px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .notice-reg-btn {
+            display: inline-block;
+            text-align: center;
+            background: var(--secondary);
+            color: var(--white);
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .notice-reg-btn:hover {
+            background: var(--primary);
+        }
+
+        /* ================= PHILOSOPHER QUOTES ================= */
+        .quote-showcase {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+            border: 1px solid #fde68a;
+            border-left: 6px solid var(--accent);
+            padding: 26px 30px;
+            border-radius: 14px;
+            margin-bottom: 26px;
+        }
+
+        .quote-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .quote-tag {
+            background: var(--primary);
+            color: #fbbf24;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .quote-timer {
+            font-size: 0.82rem;
+            color: #92400e;
+            font-weight: 600;
+        }
+
+        .quote-text {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .quote-author {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #b45309;
+        }
+
+        /* ================= GRIDS & CARDS ================= */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #f8fafc;
+            padding: 22px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            border-top: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.08rem;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.93rem;
+        }
+
+        .styled-list {
+            list-style: none;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 22px;
+            position: relative;
+        }
+
+        .styled-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Tech Evolution Badges */
+        .evo-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid var(--accent);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .evo-card h4 {
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .timeline-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .t-badge {
+            background: var(--white);
+            border: 1px solid #cbd5e1;
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 0.84rem;
+            font-weight: 500;
+        }
+
+        /* Workflow Stepper */
+        .workflow-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .step-box {
+            flex: 1;
+            min-width: 145px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.92rem;
+        }
+
+        .step-box span {
+            display: block;
+            color: #fbbf24;
+            font-weight: 700;
+            font-size: 0.78rem;
+            margin-bottom: 4px;
+        }
+
+        /* ================= GALLERY ================= */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            padding: 6px 14px;
+            border: 1px solid #cbd5e1;
+            background: var(--white);
+            border-radius: 20px;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-card {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .gallery-media-wrapper {
+            width: 100%;
+            height: 225px;
+            background: #0f2942;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .gallery-card video,
+        .gallery-card iframe {
+            width: 100%;
+            height: 225px;
+            object-fit: cover;
+            display: block;
+            border: none;
+        }
+
+        .gallery-meta {
+            padding: 14px;
+        }
+
+        .gallery-cat {
+            font-size: 0.73rem;
+            font-weight: 700;
+            color: var(--accent-hover);
+            text-transform: uppercase;
+        }
+
+        .gallery-title {
+            font-size: 0.96rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 4px;
+        }
+
+        /* ================= SUPER ADMIN CMS DASHBOARD ================= */
+        .admin-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 12px;
+            margin-bottom: 22px;
+        }
+
+        .admin-tab-btn {
+            padding: 9px 16px;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .admin-tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .admin-subpanel {
+            display: none;
+        }
+
+        .admin-subpanel.active {
+            display: block;
+        }
+
+        .cms-form {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 22px;
+        }
+
+        .cms-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .form-group label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 9px 11px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 75px;
+            resize: vertical;
+        }
+
+        .cms-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            background: var(--white);
+        }
+
+        .cms-table th,
+        .cms-table td {
+            padding: 11px 12px;
+            border: 1px solid var(--border);
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .cms-table th {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .status-pill {
+            padding: 3px 9px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .status-published {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-hidden {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* ================= CONTACT & LIGHTBOX ================= */
+        .contact-card {
+            background: var(--primary);
+            color: var(--white);
+            padding: 26px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .contact-card h4 {
+            color: #fbbf24;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-card a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin: 6px 0;
+            font-size: 1rem;
+        }
+
+        .dialer-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background: #10b981;
+            color: #ffffff !important;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+        }
+
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 22, 36, 0.92);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            flex-direction: column;
+        }
+
+        .lightbox-modal.open {
+            display: flex;
+        }
+
+        .lightbox-modal img {
+            max-width: 92vw;
+            max-height: 80vh;
+            border-radius: 10px;
+            border: 3px solid var(--accent);
+        }
+
+        .lightbox-caption {
+            color: var(--white);
+            margin-top: 14px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE BREAKPOINTS ================= */
+        @media (max-width: 920px) {
+            .mobile-topbar {
+                display: flex;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+                top: 60px;
+                height: calc(100vh - 60px);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 78px 16px 30px 16px;
+            }
+
+            .hero-banner {
+                padding: 26px 20px;
+            }
+
+            .hero-banner h1 {
+                font-size: 1.6rem;
+            }
+
+            .panel, .notice-board-panel {
+                padding: 20px 16px;
+            }
+
+            .cms-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MOBILE TOP HEADER -->
+    <header class="mobile-topbar">
+        <div class="brand-mini">
+            <img id="mobileProfileImg" src="Picture1.jpg" alt="Prof. KJ" onerror="this.src='https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg'">
+            <span id="mobileBrandName">Prof. K. Jayaraman</span>
+        </div>
+        <button class="menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+    </header>
+
+    <!-- DYNAMIC SIDEBAR NAVIGATION (10 SECTIONS + ADMIN) -->
+    <aside class="sidebar" id="sidebar">
+        <div class="profile-header">
+            <img id="sidebarProfileImg" src="Picture1.jpg" alt="Prof. K. Jayaraman (Prof KJ)" class="profile-pic" onerror="this.src='https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Picture1.jpg'">
+            <h2 id="sidebarName">Prof. K. Jayaraman</h2>
+            <span class="badge" id="sidebarBadge">Prof. KJ • Academic Evangelist</span>
+        </div>
+
+        <nav class="nav-links" id="dynamicNavLinks"></nav>
+
+        <div class="sidebar-footer">
+            <div id="sidebarLocation">Bengaluru, Karnataka, India</div>
+            <a id="sidebarCallLink" href="tel:+919449050624" class="call-pill">📞 Call: +91 94490 50624</a>
+            <button id="adminToggleBtn" class="admin-toggle-btn" onclick="toggleSuperAdmin()">🔒 Super Admin Login</button>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="main-content">
+
+        <!-- ==================== 1. HOME VIEW ==================== -->
+        <div id="view-home" class="page-view active-view">
+            <div class="hero-banner">
+                <h1 id="heroTitle">Prof. K. Jayaraman (Prof KJ)</h1>
+                <div class="subtitle" id="heroSubtitle">Chief Architect – "Learn by Doing" Practices</div>
+                <p id="heroBio">Academic Evangelist • Former Defense &amp; Space Scientist (ISRO &amp; DRDO) • Systems Engineering Leader with 50+ Years of Experience Transforming Engineering Degree Holders into True Engineers.</p>
+                <div class="hero-actions">
+                    <button class="btn-primary" onclick="navigateTo('gallery')">🖼️ View Photo Gallery</button>
+                    <button class="btn-outline" onclick="navigateTo('notice-board')">📌 Full Notice Board</button>
+                    <button class="btn-outline" onclick="navigateTo('contact')">✉️ Contact &amp; Inquiries</button>
+                </div>
+            </div>
+
+            <!-- NOTICE BOARD – LATEST UPDATES PREVIEW ON HOME -->
+            <div class="notice-board-panel" id="homeNoticeBoardSection">
+                <div class="section-title">
+                    <div class="section-title-left">📌 Notice Board – Latest Updates &amp; Academic Activities</div>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button id="toggleAllNoticesBtn" class="btn-secondary" onclick="toggleShowAllNotices()">View All Notices</button>
+                        <button class="btn-primary" onclick="navigateTo('notice-board')">Open Dedicated Notice Board</button>
+                    </div>
+                </div>
+
+                <div class="notice-ticker" id="homeImportantNoticeTicker"></div>
+                <div class="notice-filter-bar" id="homeNoticeFilterBar"></div>
+                <div class="notice-grid" id="homeNoticeGrid"></div>
+            </div>
+
+            <!-- AUTOMATIC HOURLY WORLD PHILOSOPHER QUOTES -->
+            <div class="quote-showcase">
+                <div class="quote-header">
+                    <span class="quote-tag">🌍 World Philosopher Wisdom • Auto-Refreshes Every Hour</span>
+                    <span class="quote-timer" id="quoteStatus">Synchronizing hourly quote...</span>
+                </div>
+                <div class="quote-text" id="quoteText">"Education is the kindling of a flame, not the filling of a vessel."</div>
+                <div class="quote-author" id="quoteAuthor">— Socrates</div>
+            </div>
+
+            <!-- DYNAMIC HOME HIGHLIGHTS -->
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Core Vision &amp; Academic Mission</div>
+                </div>
+                <div class="grid-3" id="homeHighlightsGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 2. ABOUT US VIEW ==================== -->
+        <div id="view-about" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">About Prof. K. Jayaraman (Prof KJ)</div>
+                </div>
+                <ul class="styled-list" id="aboutListContainer"></ul>
+            </div>
+
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Know Me — Evolution of Science, Engineering &amp; Technology</div>
+                </div>
+                <div class="grid-2" id="aboutEvolutionGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 3. SOLUTIONS VIEW ==================== -->
+        <div id="view-solutions" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Engineering &amp; Academic Solutions</div>
+                </div>
+                <div class="grid-2" id="solutionsCardsGrid" style="margin-bottom: 24px;"></div>
+
+                <h3 style="color: var(--primary); margin-bottom: 12px;">Domain Expertise Solutions</h3>
+                <div class="timeline-badges" id="solutionsDomainsContainer" style="margin-bottom: 25px;"></div>
+
+                <h3 style="color: var(--primary); margin-bottom: 10px;">Academic Capstone Project Engineering Lifecycle</h3>
+                <div class="workflow-steps" id="solutionsLifecycleContainer"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 4. SERVICES VIEW ==================== -->
+        <div id="view-services" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Services for Academic Institutions &amp; Industry</div>
+                </div>
+                <div class="grid-3" id="servicesCardsGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 5. TESTIMONIALS VIEW ==================== -->
+        <div id="view-testimonials" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Testimonials from Academia &amp; Industry Leaders</div>
+                </div>
+                <div class="grid-2" id="testimonialsCardsGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 6. JOB CORNER VIEW ==================== -->
+        <div id="view-jobs" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Job Corner — Core Engineering Careers &amp; Placement Readiness</div>
+                </div>
+                <div class="grid-2" id="jobsCardsGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 7. BLOG VIEW ==================== -->
+        <div id="view-blog" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Technical Blog &amp; Academic Articles by Prof. KJ</div>
+                </div>
+                <div class="grid-2" id="blogCardsGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 8. CONTACT US VIEW ==================== -->
+        <div id="view-contact" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Contact Prof. K. Jayaraman</div>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">Reach out for Visiting Professorships, Faculty/Student Development Programs (FDP/SDP), Keynote Technical Talks, Laboratory Reorientation, or Placement Mentoring.</p>
+                <div class="grid-3" id="contactCardsGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 9. PHOTO GALLERY VIEW ==================== -->
+        <div id="view-gallery" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">Photo Gallery — Honors, Campus Visits &amp; Technical Events</div>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 18px;">Click any photograph to view in full-screen high clarity. Super Admins can upload, manage, and delete photos and videos via the Admin Dashboard.</p>
+
+                <div class="filter-bar" id="galleryFilterBar"></div>
+                <div class="gallery-grid" id="galleryContainer"></div>
+            </div>
+        </div>
+
+        <!-- ==================== 10. DEDICATED NOTICE BOARD VIEW ==================== -->
+        <div id="view-notice-board" class="page-view">
+            <div class="notice-board-panel">
+                <div class="section-title">
+                    <div class="section-title-left">📌 Dedicated Notice Board — All Announcements &amp; Upcoming Events</div>
+                </div>
+                <div class="notice-ticker" id="dedicatedImportantNoticeTicker"></div>
+                <div class="notice-filter-bar" id="dedicatedNoticeFilterBar"></div>
+                <div class="notice-grid" id="dedicatedNoticeGrid"></div>
+            </div>
+        </div>
+
+        <!-- ==================== SUPER ADMIN CMS DASHBOARD ==================== -->
+        <div id="view-admin" class="page-view">
+            <div class="panel">
+                <div class="section-title">
+                    <div class="section-title-left">🛡️ Super Admin Dynamic Website Control Center</div>
+                    <button class="btn-danger" onclick="toggleSuperAdmin()">Lock &amp; Logout Admin</button>
+                </div>
+                <p style="color: var(--text-muted); margin-bottom: 18px;">Add, edit, update, publish, hide, and delete content across all 10 sections without editing HTML, CSS, or JavaScript files.</p>
+
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" onclick="switchAdminTab('notices', this)">📌 Notice Board Manager</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('profile', this)">👨‍🏫 Profile, Hero &amp; Contact</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('sections', this)">📑 Dynamic Sections &amp; Blocks</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('galleryAdmin', this)">🖼️ Photo Gallery Manager</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('navAdmin', this)">🧭 Sidebar Menu Control</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('databaseSync', this)">☁️ Backend / Database Sync</button>
+                </div>
+
+                <!-- TAB 1: NOTICE BOARD MANAGER -->
+                <div id="admin-tab-notices" class="admin-subpanel active">
+                    <div class="cms-form">
+                        <h3 style="color:var(--primary);" id="noticeFormHeading">+ Create / Publish New Notice</h3>
+                        <input type="hidden" id="editNoticeId">
+                        <div class="cms-form-grid">
+                            <div class="form-group">
+                                <label>Notice Title *</label>
+                                <input type="text" id="noticeTitleInput" placeholder="e.g., National FDP on Systems Engineering">
+                            </div>
+                            <div class="form-group">
+                                <label>Activity Category *</label>
+                                <select id="noticeCategoryInput">
+                                    <option value="Teaching & Academic Programmes">Teaching &amp; Academic Programmes</option>
+                                    <option value="Upcoming Webinars & Online Sessions">Upcoming Webinars &amp; Online Sessions</option>
+                                    <option value="Seminars & Workshops">Seminars &amp; Workshops</option>
+                                    <option value="Technical Talks & Guest Lectures">Technical Talks &amp; Guest Lectures</option>
+                                    <option value="Engineering Training Programmes">Engineering Training Programmes</option>
+                                    <option value="Campus Visits & Institutional Activities">Campus Visits &amp; Institutional Activities</option>
+                                    <option value="Conferences & Professional Development">Conferences &amp; Professional Development</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Event Date *</label>
+                                <input type="date" id="noticeEventDateInput">
+                            </div>
+                            <div class="form-group">
+                                <label>Publication Date *</label>
+                                <input type="date" id="noticePubDateInput">
+                            </div>
+                            <div class="form-group">
+                                <label>Registration / Info Link (Optional)</label>
+                                <input type="url" id="noticeRegLinkInput" placeholder="https://forms.gle/...">
+                            </div>
+                            <div class="form-group">
+                                <label>Priority &amp; Visibility</label>
+                                <div style="display:flex; gap:14px; align-items:center; padding-top:8px;">
+                                    <label style="font-weight:500;"><input type="checkbox" id="noticeImportantInput"> Highlight as Important</label>
+                                    <label style="font-weight:500;"><input type="checkbox" id="noticePublishedInput" checked> Published (Visible)</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:12px;">
+                            <label>Notice Description *</label>
+                            <textarea id="noticeDescInput" placeholder="Enter details about venue, target audience (students/faculty), topics covered, and schedule..."></textarea>
+                        </div>
+                        <div style="margin-top:14px; display:flex; gap:10px;">
+                            <button class="btn-success" onclick="saveNoticeFromAdmin()">💾 Save &amp; Publish Notice</button>
+                            <button class="btn-secondary" onclick="resetNoticeForm()">Clear Form</button>
+                        </div>
+                    </div>
+
+                    <h3 style="color:var(--primary); margin-bottom:10px;">Manage All Notices</h3>
+                    <table class="cms-table">
+                        <thead>
+                            <tr>
+                                <th>Title &amp; Category</th>
+                                <th>Event Date</th>
+                                <th>Published</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminNoticesTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- TAB 2: PROFILE, HERO & CONTACT -->
+                <div id="admin-tab-profile" class="admin-subpanel">
+                    <div class="cms-form">
+                        <h3 style="color:var(--primary);">Edit Professor Profile, Banner &amp; Contact Info</h3>
+                        <div class="cms-form-grid">
+                            <div class="form-group">
+                                <label>Display Name</label>
+                                <input type="text" id="cfgName">
+                            </div>
+                            <div class="form-group">
+                                <label>Sidebar Badge</label>
+                                <input type="text" id="cfgBadge">
+                            </div>
+                            <div class="form-group">
+                                <label>Designation / Subtitle</label>
+                                <input type="text" id="cfgSubtitle">
+                            </div>
+                            <div class="form-group">
+                                <label>Portrait Image URL / Filename</label>
+                                <input type="text" id="cfgAvatar">
+                            </div>
+                            <div class="form-group">
+                                <label>Mobile Number (Click-to-Call)</label>
+                                <input type="text" id="cfgPhone">
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="cfgLocation">
+                            </div>
+                            <div class="form-group">
+                                <label>Primary Email</label>
+                                <input type="email" id="cfgEmail1">
+                            </div>
+                            <div class="form-group">
+                                <label>Secondary Email</label>
+                                <input type="email" id="cfgEmail2">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:12px;">
+                            <label>Hero Profile Summary Bio</label>
+                            <textarea id="cfgBio"></textarea>
+                        </div>
+                        <button class="btn-success" style="margin-top:14px;" onclick="saveProfileSettings()">💾 Update Profile &amp; Contact Live</button>
+                    </div>
+                </div>
+
+                <!-- TAB 3: DYNAMIC SECTIONS & CONTENT BLOCKS -->
+                <div id="admin-tab-sections" class="admin-subpanel">
+                    <div class="cms-form">
+                        <h3 style="color:var(--primary);" id="blockFormHeading">Add Dynamic Content Block Across Sections</h3>
+                        <input type="hidden" id="editBlockSection">
+                        <input type="hidden" id="editBlockId">
+                        <div class="cms-form-grid">
+                            <div class="form-group">
+                                <label>Target Section</label>
+                                <select id="blockTargetSelect">
+                                    <option value="homeHighlights">Home — Core Vision &amp; Mission</option>
+                                    <option value="aboutBullets">About Us — Profile Highlights</option>
+                                    <option value="aboutEvolution">About Us — Technology Evolution Cards</option>
+                                    <option value="solutions">Solutions — Engineering Solutions</option>
+                                    <option value="solutionDomains">Solutions — Domain Expertise Badges</option>
+                                    <option value="solutionLifecycle">Solutions — Capstone Lifecycle Steps</option>
+                                    <option value="services">Services — Academic &amp; Industry Services</option>
+                                    <option value="testimonials">Testimonials — Endorsements</option>
+                                    <option value="jobs">Job Corner — Career Tracks</option>
+                                    <option value="blog">Blog — Technical Articles</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Heading / Badge / Step Label</label>
+                                <input type="text" id="blockTitleInput" placeholder="e.g., Center of Excellence Setup">
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:10px;">
+                            <label>Content / Description / Timeline Items (comma-separated for Evolution cards)</label>
+                            <textarea id="blockBodyInput" placeholder="Enter content block text or comma-separated timeline badges..."></textarea>
+                        </div>
+                        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+                            <button class="btn-success" onclick="saveContentBlock()">💾 Save Content Block</button>
+                            <button class="btn-secondary" onclick="resetBlockForm()">Clear Form</button>
+                        </div>
+                    </div>
+                    <div id="adminBlocksList"></div>
+                </div>
+
+                <!-- TAB 4: PHOTO GALLERY MANAGER -->
+                <div id="admin-tab-galleryAdmin" class="admin-subpanel">
+                    <div class="cms-form">
+                        <h3 style="color:var(--primary);">Upload Photo or Video to Photo Gallery</h3>
+                        <div class="cms-form-grid">
+                            <div class="form-group">
+                                <label>Event Title</label>
+                                <input type="text" id="mediaTitle" placeholder="e.g., KL University Honoured">
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="mediaCategory">
+                                    <option value="Achievements">Achievements &amp; Honors</option>
+                                    <option value="Campus Visits">Campus Visits</option>
+                                    <option value="Technical Speeches">Technical Speeches</option>
+                                    <option value="Seminars">Seminars</option>
+                                    <option value="Webinars">Webinars</option>
+                                    <option value="Conferences">Conferences</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Media Type</label>
+                                <select id="mediaType">
+                                    <option value="image">Photo (Image File or URL)</option>
+                                    <option value="video">Video (MP4 File or YouTube URL)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Select Local File</label>
+                                <input type="file" id="mediaFile" accept="image/*,video/*">
+                            </div>
+                            <div class="form-group">
+                                <label>Or Paste GitHub / Image / YouTube URL</label>
+                                <input type="url" id="mediaUrl" placeholder="https://...">
+                            </div>
+                        </div>
+                        <button class="btn-success" style="margin-top:14px;" onclick="addGalleryItem()">+ Publish to Photo Gallery</button>
+                    </div>
+
+                    <table class="cms-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminGalleryTableBody"></tbody>
+                    </table>
+                </div>
+
+                <!-- TAB 5: SIDEBAR NAVIGATION CONTROL -->
+                <div id="admin-tab-navAdmin" class="admin-subpanel">
+                    <div class="cms-form">
+                        <h3 style="color:var(--primary);">Manage Sidebar Menu Labels &amp; Section Visibility</h3>
+                        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">Rename menu labels or show/hide sections for public visitors.</p>
+                        <table class="cms-table">
+                            <thead>
+                                <tr>
+                                    <th>Section ID</th>
+                                    <th>Sidebar Menu Label</th>
+                                    <th>Visible to Visitors</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminNavTableBody"></tbody>
+                        </table>
+                        <button class="btn-success" style="margin-top:14px;" onclick="saveNavSettings()">💾 Save Navigation Settings</button>
+                    </div>
+                </div>
+
+                <!-- TAB 6: BACKEND / DATABASE SYNC -->
+                <div id="admin-tab-databaseSync" class="admin-subpanel">
+                    <div class="cms-form">
+                        <h3 style="color:var(--primary);">☁️ Cloud Backend Database Connection (Firebase / REST JSON)</h3>
+                        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:12px;">Connect a Firebase Realtime Database endpoint or REST JSON API so edits sync live across visitors.</p>
+                        <div class="cms-form-grid">
+                            <div class="form-group">
+                                <label>Backend REST JSON Endpoint URL</label>
+                                <input type="url" id="backendApiUrl" placeholder="https://your-project.firebaseio.com/profkj.json">
+                            </div>
+                            <div class="form-group">
+                                <label>Change Super Admin PIN</label>
+                                <input type="password" id="newAdminPin" placeholder="Default: 1234">
+                            </div>
+                        </div>
+                        <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;">
+                            <button class="btn-success" onclick="saveBackendConfig()">💾 Save Backend &amp; Sync Now</button>
+                            <button class="btn-secondary" onclick="exportSiteJson()">⬇️ Export Full Site JSON Backup</button>
+                            <button class="btn-danger" onclick="resetToDefaultData()">↺ Reset to Factory Defaults</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FULL-SCREEN HIGH-CLARITY LIGHTBOX MODAL -->
+    <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">✕ Close</button>
+        <img id="lightboxImg" src="" alt="Full Resolution Event Photo" onclick="event.stopPropagation()">
+        <div id="lightboxCaption" class="lightbox-caption"></div>
+    </div>
+
+    <script>
+        /* =========================================================================
+           1. CENTRALIZED DYNAMIC STATE (ALL 10 SECTIONS + ADMIN CMS)
+           ========================================================================= */
+        const STORAGE_KEY = 'profKjDynamicCMS_v2';
+        const VALID_VIEWS = ['home', 'about', 'solutions', 'services', 'testimonials', 'jobs', 'blog', 'gallery', 'contact', 'notice-board', 'admin'];
+
+        const defaultSiteState = {
+            adminPin: '1234',
+            backendUrl: '',
+            profile: {
+                name: 'Prof. K. Jayaraman (Prof KJ)',
+                shortName: 'Prof. K. Jayaraman',
+                badge: 'Prof. KJ • Academic Evangelist',
+                subtitle: 'Chief Architect – "Learn by Doing" Practices',
+                bio: 'Academic Evangelist • Former Defense & Space Scientist (ISRO & DRDO) • Systems Engineering Leader with 50+ Years of Experience Transforming Engineering Degree Holders into True Engineers.',
+                avatar: 'Picture1.jpg',
+                phone: '+91 94490 50624',
+                location: 'Bengaluru, Karnataka, India',
+                email1: 'kjicet@gmail.com',
+                email2: 'profkj@tridenttechlabs.com'
+            },
+            navItems: [
+                { id: 'home', label: '🏠 Home', visible: true },
+                { id: 'about', label: '👨‍🏫 About Us', visible: true },
+                { id: 'solutions', label: '⚙️ Solutions', visible: true },
+                { id: 'services', label: '🎓 Services', visible: true },
+                { id: 'testimonials', label: '💬 Testimonials', visible: true },
+                { id: 'jobs', label: '💼 Job Corner', visible: true },
+                { id: 'blog', label: '📝 Blog', visible: true },
+                { id: 'gallery', label: '🖼️ Photo Gallery', visible: true },
+                { id: 'contact', label: '📞 Contact Us', visible: true },
+                { id: 'notice-board', label: '📌 Notice Board', visible: true }
+            ],
+            notices: [
+                {
+                    id: 101,
+                    title: 'Live Webinar: Transforming Engineering Degree Holders into Industry-Ready Engineers',
+                    category: 'Upcoming Webinars & Online Sessions',
+                    description: 'Interactive online session covering core employability skills, cause-and-effect troubleshooting, and capstone project partitioning for 5th, 6th, and 7th-semester scholars.',
+                    eventDate: '2026-12-12',
+                    pubDate: '2026-11-23',
+                    regLink: 'mailto:kjicet@gmail.com?subject=Webinar%20Registration',
+                    important: true,
+                    published: true
+                },
+                {
+                    id: 102,
+                    title: 'Pre-Placement Technical Mock Interview & Core Readiness Clinic',
+                    category: 'Engineering Training Programmes',
+                    description: 'One-on-one technical mock interviews and system design evaluation preparing pre-final and final-year students for core R&D and automation companies.',
+                    eventDate: '2026-12-18',
+                    pubDate: '2026-11-21',
+                    regLink: '',
+                    important: false,
+                    published: true
+                },
+                {
+                    id: 103,
+                    title: 'Invited Keynote Talk: Evolution of Semiconductor & Cyber-Physical Systems',
+                    category: 'Technical Talks & Guest Lectures',
+                    description: 'Guest lecture tracing six decades of SEMCON evolution from Vacuum Tubes to ASICs and modern Industry 5.0 Cyber-Physical Systems.',
+                    eventDate: '2027-01-09',
+                    pubDate: '2026-11-20',
+                    regLink: '',
+                    important: false,
+                    published: true
+                },
+                {
+                    id: 104,
+                    title: 'Institutional Visit & Laboratory Reorientation Advisory — Autonomous Universities',
+                    category: 'Campus Visits & Institutional Activities',
+                    description: 'On-campus academic leadership review and Center of Excellence planning for private universities across South and West India.',
+                    eventDate: '2027-01-16',
+                    pubDate: '2026-11-18',
+                    regLink: 'mailto:profkj@tridenttechlabs.com?subject=Campus%20Visit%20Request',
+                    important: false,
+                    published: true
+                },
+                {
+                    id: 105,
+                    title: 'National Conference on Learn By Doing (LeaD) & IIoT Practices',
+                    category: 'Conferences & Professional Development',
+                    description: 'Bringing together Deans, HODs, and industry leaders to showcase student capstone prototypes and multi-disciplinary engineering workflows.',
+                    eventDate: '2027-01-24',
+                    pubDate: '2026-11-15',
+                    regLink: '',
+                    important: false,
+                    published: true
+                }
+            ],
+            aboutBullets: [
+                { id: 501, title: 'Current Designation', body: 'Chief Architect - "Learn by Doing" Practices, Trident Technologies Limited, New Delhi.' },
+                { id: 502, title: 'Academia & Industry Experience', body: '50+ years spanning Research, Academia, Industry, and Business.' },
+                { id: 503, title: 'Defense & Space R&D', body: '~10 years as a Scientist with ISRO and DRDO.' },
+                { id: 504, title: 'Industry Leadership', body: '~15 years across private industry, including Academic Program Manager at National Instruments (NI) and Chief Architect at Trident Techlabs.' },
+                { id: 505, title: 'Education', body: 'Graduated and Post Graduated from BITS, Pilani.' }
+            ],
+            aboutEvolution: [
+                { id: 601, title: 'Emission Trajectory', body: 'Thermionic Emission (1962–1969), Electronic Emission (1969–2026+), Photonic Emission (2022+)' },
+                { id: 602, title: 'Propulsion Evolution', body: 'Solid Propulsion, Liquid Propulsion, Electric Propulsion, Cryogenic Propulsion' },
+                { id: 603, title: 'Telephone Voice Communication Era', body: 'Analog & Electromechanical (1870s–1950s), Automation & Touch-Tone (1960s–1980s), Digital & Mobile Cellular (1990s+)' },
+                { id: 604, title: 'Semiconductor (SEMCON) Trajectory', body: 'Vacuum Tubes, Bipolar Transistors, JFET, N/P/C MOSFET, IC OPAMP / SSI / MSI / LSI / VLSI, ROM / PROM / EEROM / PLD / PAL / FPGA, ASIC' }
+            ],
+            solutionDomains: [
+                { id: 701, title: 'Systems Approach to Solutions Engineering', body: '' },
+                { id: 702, title: 'Automation Engineering', body: '' },
+                { id: 703, title: 'Embedded Solutions Engineering', body: '' },
+                { id: 704, title: 'IIoT & Industry 4.0 / 5.0', body: '' },
+                { id: 705, title: 'Cyber-Physical Systems (CPS)', body: '' },
+                { id: 706, title: 'Wired & Wireless Protocols', body: '' }
+            ],
+            solutionLifecycle: [
+                { id: 801, title: 'Step 1', body: 'Requirements & Specs' },
+                { id: 802, title: 'Step 2', body: 'Partitioning & Design' },
+                { id: 803, title: 'Step 3', body: 'Modeling & Simulation' },
+                { id: 804, title: 'Step 4', body: 'Prototyping & Analysis' },
+                { id: 805, title: 'Step 5', body: 'Project Report & Review' }
+            ],
+            blocks: {
+                homeHighlights: [
+                    { id: 1, title: 'Learn By Doing (LeaD)', body: 'Bridging the gap between academic theory and industrial reality through closed-loop hands-on engineering practices.' },
+                    { id: 2, title: '50+ Years Legacy', body: '~10 years in ISRO & DRDO Space/Defense R&D, ~15 years in private industry leadership (NI & Trident), and deep academic mentorship.' },
+                    { id: 3, title: 'Pan-India Institutional Reach', body: 'Partnering with Private Universities and Autonomous Institutions across North, South, East, West, and Northeast India.' }
+                ],
+                solutions: [
+                    { id: 4, title: '"Learn By Doing" (LeaD) Architecture', body: 'Transforming Engineering Degree Holders into industry-ready Engineers through closed-loop teaching, experimentation, and real-world system building.' },
+                    { id: 5, title: 'Systems Approach to Solutions Engineering', body: 'Structured methodology focusing on Cause-and-Effect analysis, subsystem partitioning, and multi-disciplinary & inter-disciplinary engineering integration.' }
+                ],
+                services: [
+                    { id: 6, title: 'Laboratory Reorientation', body: 'Modernizing existing college laboratory sessions and establishing Centers of Excellence so learners graduate with practical industrial skills.' },
+                    { id: 7, title: 'Employability & Placement Mentoring', body: 'Preparing 5th, 6th, and 7th-semester students for core engineering company interviews and handholding them through capstone projects.' },
+                    { id: 8, title: 'Faculty & Student Development (FDP / SDP)', body: 'Conceptualizing and delivering specialized SDPs, FDPs, and competency programs for Diploma, UG, PG, and Doctoral scholars.' },
+                    { id: 9, title: 'Visiting Professor & Keynote Talks', body: 'Delivering invited technical talks on niche technologies and emerging systems engineering paradigms across Indian universities.' },
+                    { id: 10, title: 'Curriculum & Academic Advisory', body: 'Guiding autonomous engineering colleges in aligning syllabi with Industry 4.0/5.0, Embedded Systems, and Cyber-Physical Systems.' },
+                    { id: 11, title: 'Pre-Placement Mock Interviews', body: 'Conducting technical mock interviews that evaluate fundamental engineering reasoning and real-world problem-solving ability.' }
+                ],
+                testimonials: [
+                    { id: 12, title: 'Dean of Engineering — Autonomous University, Bengaluru', body: '"Prof. KJ\'s \'Learn by Doing\' lab reorientation transformed how our students approach final-year capstone projects. Core placement conversions rose significantly after his pre-placement mock interview clinics."' },
+                    { id: 13, title: 'Head of ECE Department — Private University, Chennai', body: '"His Faculty Development Program on Systems Approach to Solutions Engineering gave our faculty a clear roadmap to connect textbook electronics with modern IIoT and Cyber-Physical Systems."' },
+                    { id: 14, title: 'Final Year B.Tech Scholar — Core Embedded Systems', body: '"Under Prof. Jayaraman\'s mentorship, I learned how to partition a complex problem, simulate it, and defend my design in core R&D interviews. His ISRO and DRDO insights are inspiring."' },
+                    { id: 15, title: 'R&D Engineering Manager — Industrial Automation', body: '"Graduates mentored by Prof. KJ stand out because they think like systems engineers from day one rather than memorizing formulas."' }
+                ],
+                jobs: [
+                    { id: 16, title: 'Core Embedded & Firmware Engineer Track', body: 'Target Skills: Microcontrollers, RTOS, Wired/Wireless Protocols (CAN, SPI, I2C, BLE), Hardware-in-the-Loop testing. Eligibility: 6th/7th Sem ECE/EEE/CSE scholars.' },
+                    { id: 17, title: 'Industrial Automation & IIoT Solutions', body: 'Target Skills: PLC/SCADA, LabVIEW, Sensors & Actuators, Industry 4.0/5.0 telemetry, Cyber-Physical Systems. Eligibility: Diploma, B.Tech & M.Tech graduates.' },
+                    { id: 18, title: 'Pre-Placement Mock Interview Clinic', body: 'Open for 5th, 6th & 7th Semester students. Focus: Cause-and-Effect system troubleshooting, schematic analysis, and capstone project defense.' },
+                    { id: 19, title: 'Academic Research & Lab Fellowship', body: 'Role: Teaching & Lab Modernization Assistants at partner Autonomous Institutions. Send CV to profkj@tridenttechlabs.com.' }
+                ],
+                blog: [
+                    { id: 20, title: 'Transforming Engineering Degree Holders into Engineers', body: 'Why rote learning fails in core engineering industries, and how closed-loop "Learn By Doing" (LeaD) pedagogy builds authentic engineering intuition.' },
+                    { id: 21, title: 'From Vacuum Tubes to ASICs: Six Decades of SEMCON', body: 'Tracing the journey from thermionic emission and bipolar transistors to FPGAs and modern photonic systems—and what every student must master today.' },
+                    { id: 22, title: 'Applying Cause-and-Effect Thinking to Capstone Projects', body: 'A practical guide for final-year engineering teams on partitioning requirements, modeling before prototyping, and writing defensible technical reports.' },
+                    { id: 23, title: 'Bridging Academia and Industry 5.0', body: 'How autonomous universities can reorient existing laboratories to train students in Cyber-Physical Systems and multi-disciplinary design.' }
+                ]
+            },
+            gallery: [
+                {
+                    id: 1,
+                    title: 'KL University Honoured — Felicitation of Prof. K. Jayaraman',
+                    category: 'Achievements',
+                    type: 'image',
+                    src: 'https://github.com/rames-qa/Prof-J.K/blob/main/KL%20University%20Honoured.jpeg'
+                },
+                {
+                    id: 2,
+                    title: 'Academic & Technical Session — Event Highlights (1)',
+                    category: 'Technical Speeches',
+                    type: 'image',
+                    src: 'https://github.com/rames-qa/Prof-J.K/blob/main/WhatsApp%20Image%202026-11-23%20at%2012.54.18%20PM%20(1).jpeg'
+                },
+                {
+                    id: 3,
+                    title: 'Academic & Technical Session — Event Highlights (2)',
+                    category: 'Campus Visits',
+                    type: 'image',
+                    src: 'https://github.com/rames-qa/Prof-J.K/blob/main/WhatsApp%20Image%202026-11-23%20at%2012.54.18%20PM.jpeg'
+                },
+                {
+                    id: 4,
+                    title: 'Mentorship & Seminar Session — Event Highlights (3)',
+                    category: 'Seminars',
+                    type: 'image',
+                    src: 'https://github.com/rames-qa/Prof-J.K/blob/main/WhatsApp%20Image%202026-11-23%20at%2012.54.19%20PM%20(2).jpeg'
+                },
+                {
+                    id: 5,
+                    title: 'Conference & Institutional Engagement — Event Highlights (4)',
+                    category: 'Conferences',
+                    type: 'image',
+                    src: 'https://github.com/rames-qa/Prof-J.K/blob/main/WhatsApp%20Image%202026-11-23%20at%2012.54.21%20PM%20(2).jpeg'
+                }
+            ]
+        };
+
+        let siteState = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(defaultSiteState));
+        let isSuperAdmin = false;
+        let currentNoticeFilter = 'All';
+        let showAllNotices = false;
+        let currentGalleryFilter = 'All';
+
+        async function persistSiteState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(siteState));
+            if (siteState.backendUrl) {
+                try {
+                    await fetch(siteState.backendUrl, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(siteState)
+                    });
+                } catch (e) {
+                    console.warn('Cloud backend sync skipped/offline:', e);
+                }
+            }
+            renderAllDynamicViews();
+        }
+
+        async function loadFromCloudIfConfigured() {
+            if (siteState.backendUrl) {
+                try {
+                    const res = await fetch(siteState.backendUrl);
+                    if (res.ok) {
+                        const cloudData = await res.json();
+                        if (cloudData && cloudData.profile) {
+                            siteState = Object.assign(JSON.parse(JSON.stringify(defaultSiteState)), cloudData);
+                            localStorage.setItem(STORAGE_KEY, JSON.stringify(siteState));
+                            renderAllDynamicViews();
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Using local cached state:', e);
+                }
+            }
+        }
+
+        /* =========================================================================
+           2. NAVIGATION (WITH BROWSER BACK/FORWARD) & SUPER ADMIN AUTH
+           ========================================================================= */
+        function setActiveViewDom(viewId) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active-view'));
+            const target = document.getElementById('view-' + viewId);
+            if (target) target.classList.add('active-view');
+
+            document.querySelectorAll('#dynamicNavLinks button').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-target') === viewId);
+            });
+
+            document.getElementById('sidebar').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderSidebarNav() {
+            const navContainer = document.getElementById('dynamicNavLinks');
+            const activeViewEl = document.querySelector('.page-view.active-view');
+            const activeTarget = activeViewEl ? activeViewEl.id.replace('view-', '') : 'home';
+
+            navContainer.innerHTML = '';
+            siteState.navItems.forEach(item => {
+                if (!item.visible && !isSuperAdmin) return;
+                const btn = document.createElement('button');
+                btn.setAttribute('data-target', item.id);
+                btn.textContent = item.label + (!item.visible ? ' (Hidden)' : '');
+                if (item.id === activeTarget) btn.classList.add('active');
+                btn.onclick = () => navigateTo(item.id);
+                navContainer.appendChild(btn);
+            });
+
+            if (isSuperAdmin) {
+                const adminBtn = document.createElement('button');
+                adminBtn.setAttribute('data-target', 'admin');
+                adminBtn.className = 'admin-nav-btn' + (activeTarget === 'admin' ? ' active' : '');
+                adminBtn.textContent = '🛡️ Admin Dashboard';
+                adminBtn.onclick = () => navigateTo('admin');
+                navContainer.appendChild(adminBtn);
+            }
+        }
+
+        function navigateTo(viewId, pushHistory = true) {
+            if (!VALID_VIEWS.includes(viewId)) viewId = 'home';
+            if (viewId === 'admin' && !isSuperAdmin) {
+                alert('Super Admin authentication required.');
+                return;
+            }
+            setActiveViewDom(viewId);
+            if (pushHistory && window.location.hash !== '#' + viewId) {
+                try {
+                    history.pushState({ viewId }, '', '#' + viewId);
+                } catch (e) {
+                    window.location.hash = viewId;
+                }
+            }
+        }
+
+        window.addEventListener('popstate', (event) => {
+            const stateView = event.state && event.state.viewId;
+            const hashView = (window.location.hash || '').replace('#', '');
+            const targetView = stateView || hashView || 'home';
+            if (targetView === 'admin' && !isSuperAdmin) {
+                setActiveViewDom('home');
+                return;
+            }
+            setActiveViewDom(targetView);
+        });
+
+        function toggleMobileMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleSuperAdmin() {
+            const btn = document.getElementById('adminToggleBtn');
+            if (!isSuperAdmin) {
+                const pin = prompt('Enter Super Admin PIN (Default: 1234):');
+                if (pin === siteState.adminPin) {
+                    isSuperAdmin = true;
+                    btn.textContent = '🔓 Super Admin Active (Logout)';
+                    btn.classList.add('unlocked');
+                    renderSidebarNav();
+                    populateAdminForms();
+                    navigateTo('admin');
+                } else if (pin !== null) {
+                    alert('Invalid Super Admin PIN.');
+                }
+            } else {
+                isSuperAdmin = false;
+                btn.textContent = '🔒 Super Admin Login';
+                btn.classList.remove('unlocked');
+                renderSidebarNav();
+                navigateTo('home');
+            }
+        }
+
+        function switchAdminTab(tabKey, btnEl) {
+            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+            btnEl.classList.add('active');
+            document.querySelectorAll('.admin-subpanel').forEach(p => p.classList.remove('active'));
+            document.getElementById('admin-tab-' + tabKey).classList.add('active');
+        }
+
+        /* =========================================================================
+           3. PROFILE, HERO, ABOUT, SOLUTIONS & CONTACT RENDERING
+           ========================================================================= */
+        function renderProfileAndContact() {
+            const p = siteState.profile;
+            const resolvedAvatar = resolveImageUrl(p.avatar);
+            const cleanTel = p.phone.replace(/\s+/g, '');
+
+            document.getElementById('sidebarName').textContent = p.shortName;
+            document.getElementById('mobileBrandName').textContent = p.shortName;
+            document.getElementById('sidebarBadge').textContent = p.badge;
+            document.getElementById('sidebarLocation').textContent = p.location;
+            document.getElementById('sidebarProfileImg').src = resolvedAvatar;
+            document.getElementById('mobileProfileImg').src = resolvedAvatar;
+
+            const sideCall = document.getElementById('sidebarCallLink');
+            sideCall.href = 'tel:' + cleanTel;
+            sideCall.textContent = '📞 Call: ' + p.phone;
+
+            document.getElementById('heroTitle').textContent = p.name;
+            document.getElementById('heroSubtitle').textContent = p.subtitle;
+            document.getElementById('heroBio').textContent = p.bio;
+
+            const aboutUl = document.getElementById('aboutListContainer');
+            aboutUl.innerHTML = (siteState.aboutBullets || []).map(item =>
+                `<li><strong>${item.title}:</strong> ${item.body}</li>`
+            ).join('');
+
+            const evoGrid = document.getElementById('aboutEvolutionGrid');
+            evoGrid.innerHTML = (siteState.aboutEvolution || []).map(evo => {
+                const badges = evo.body.split(',').filter(Boolean).map(b => `<span class="t-badge">${b.trim()}</span>`).join('');
+                return `
+                    <div class="evo-card">
+                        <h4>${evo.title}</h4>
+                        <div class="timeline-badges">${badges}</div>
+                    </div>
+                `;
+            }).join('');
+
+            document.getElementById('solutionsDomainsContainer').innerHTML = (siteState.solutionDomains || []).map(d =>
+                `<span class="t-badge">${d.title}</span>`
+            ).join('');
+
+            document.getElementById('solutionsLifecycleContainer').innerHTML = (siteState.solutionLifecycle || []).map(step =>
+                `<div class="step-box"><span>${step.title}</span>${step.body}</div>`
+            ).join('');
+
+            document.getElementById('contactCardsGrid').innerHTML = `
+                <div class="contact-card">
+                    <h4>📍 Location</h4>
+                    <p>${p.location}</p>
+                    <p style="font-size: 0.85rem; color: #cbd5e1; margin-top: 6px;">Available for Pan-India Institutional Visits</p>
+                </div>
+                <div class="contact-card">
+                    <h4>✉️ Direct Email</h4>
+                    <a href="mailto:${p.email1}">${p.email1}</a>
+                    <a href="mailto:${p.email2}">${p.email2}</a>
+                </div>
+                <div class="contact-card">
+                    <h4>📞 Mobile (Click-to-Call)</h4>
+                    <p>${p.phone}</p>
+                    <a href="tel:${cleanTel}" class="dialer-btn">Tap to Open Phone Dialer</a>
+                </div>
+            `;
+        }
+
+        /* =========================================================================
+           4. NOTICE BOARD – LATEST UPDATES (HOME + DEDICATED NOTICE BOARD VIEW)
+           ========================================================================= */
+        const noticeCategories = [
+            'All',
+            'Teaching & Academic Programmes',
+            'Upcoming Webinars & Online Sessions',
+            'Seminars & Workshops',
+            'Technical Talks & Guest Lectures',
+            'Engineering Training Programmes',
+            'Campus Visits & Institutional Activities',
+            'Conferences & Professional Development'
+        ];
+
+        function formatDisplayDate(isoDate) {
+            if (!isoDate) return 'TBA';
+            const d = new Date(isoDate + 'T00:00:00');
+            if (isNaN(d.getTime())) return isoDate;
+            return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+        }
+
+        function renderNoticeFilters() {
+            const bars = [
+                document.getElementById('homeNoticeFilterBar'),
+                document.getElementById('dedicatedNoticeFilterBar')
+            ];
+
+            bars.forEach(bar => {
+                if (!bar) return;
+                bar.innerHTML = noticeCategories.map(cat => {
+                    const label = cat === 'All' ? 'All Updates' : cat;
+                    const activeClass = currentNoticeFilter === cat ? 'active' : '';
+                    return `<button class="filter-btn ${activeClass}" onclick="filterNotices('${cat.replace(/'/g, "\\'")}')">${label}</button>`;
+                }).join('');
+            });
+        }
+
+        function buildNoticeCardHtml(n) {
+            return `
+                <div class="notice-card ${n.important ? 'important-notice' : ''}">
+                    <div>
+                        <div class="notice-top-meta">
+                            <span class="notice-cat-badge">${n.category}</span>
+                            ${n.important ? '<span class="important-tag">★ Important</span>' : ''}
+                        </div>
+                        <h3>${n.title}</h3>
+                        <p>${n.description}</p>
+                    </div>
+                    <div>
+                        <div class="notice-dates">
+                            <span>📅 <strong>Event Date:</strong> ${formatDisplayDate(n.eventDate)}</span>
+                            <span>🕒 <strong>Published:</strong> ${formatDisplayDate(n.pubDate)}</span>
+                        </div>
+                        ${n.regLink ? `<a href="${n.regLink}" target="_blank" class="notice-reg-btn">Register / View Details →</a>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderNoticeBoard() {
+            renderNoticeFilters();
+
+            const homeGrid = document.getElementById('homeNoticeGrid');
+            const dedicatedGrid = document.getElementById('dedicatedNoticeGrid');
+            const homeTicker = document.getElementById('homeImportantNoticeTicker');
+            const dedicatedTicker = document.getElementById('dedicatedImportantNoticeTicker');
+            const toggleBtn = document.getElementById('toggleAllNoticesBtn');
+
+            const publishedNotices = siteState.notices
+                .filter(n => n.published)
+                .sort((a, b) => {
+                    if (a.important !== b.important) return b.important ? 1 : -1;
+                    return new Date(b.pubDate) - new Date(a.pubDate);
+                });
+
+            const topImportant = publishedNotices.find(n => n.important) || publishedNotices[0];
+            const tickerHtml = topImportant ? `
+                <span class="ticker-badge">Latest Highlight</span>
+                <strong>${topImportant.title}</strong>
+                <span style="color:#92400e;">(Event Date: ${formatDisplayDate(topImportant.eventDate)})</span>
+                ${topImportant.regLink ? `<a href="${topImportant.regLink}" target="_blank" style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
+            ` : '';
+
+            [homeTicker, dedicatedTicker].forEach(el => {
+                if (!el) return;
+                el.style.display = topImportant ? 'flex' : 'none';
+                el.innerHTML = tickerHtml;
+            });
+
+            const filtered = currentNoticeFilter === 'All'
+                ? publishedNotices
+                : publishedNotices.filter(n => n.category === currentNoticeFilter);
+
+            const homeVisible = showAllNotices ? filtered : filtered.slice(0, 4);
+            if (toggleBtn) {
+                toggleBtn.textContent = showAllNotices ? 'Show Latest 4' : `View All Notices (${filtered.length})`;
+            }
+
+            homeGrid.innerHTML = homeVisible.length
+                ? homeVisible.map(buildNoticeCardHtml).join('')
+                : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+
+            dedicatedGrid.innerHTML = filtered.length
+                ? filtered.map(buildNoticeCardHtml).join('')
+                : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+        }
+
+        function filterNotices(category) {
+            currentNoticeFilter = category;
+            renderNoticeBoard();
+        }
+
+        function toggleShowAllNotices() {
+            showAllNotices = !showAllNotices;
+            renderNoticeBoard();
+        }
+
+        /* =========================================================================
+           5. DYNAMIC CONTENT BLOCKS RENDERING
+           ========================================================================= */
+        function renderContentBlocks() {
+            const map = {
+                homeHighlights: 'homeHighlightsGrid',
+                solutions: 'solutionsCardsGrid',
+                services: 'servicesCardsGrid',
+                testimonials: 'testimonialsCardsGrid',
+                jobs: 'jobsCardsGrid',
+                blog: 'blogCardsGrid'
+            };
+
+            Object.keys(map).forEach(key => {
+                const container = document.getElementById(map[key]);
+                if (!container) return;
+                const items = siteState.blocks[key] || [];
+                container.innerHTML = items.map(b => `
+                    <div class="card">
+                        <h3>${b.title}</h3>
+                        <p>${b.body}</p>
+                    </div>
+                `).join('');
+            });
+        }
+
+        /* =========================================================================
+           6. PHOTO GALLERY RENDERING + LIGHTBOX
+           ========================================================================= */
+        const galleryCategories = [
+            'All',
+            'Achievements',
+            'Campus Visits',
+            'Technical Speeches',
+            'Seminars',
+            'Webinars',
+            'Conferences'
+        ];
+
+        function resolveImageUrl(url) {
+            if (!url) return '';
+            if (url.includes('github.com') && url.includes('/blob/')) {
+                return url.replace('https://github.com/', 'https://raw.githubusercontent.com/').replace('/blob/', '/');
+            }
+            return url;
+        }
+
+        function getLocalFallback(url) {
+            if (!url) return '';
+            const parts = url.split('/');
+            return decodeURIComponent(parts[parts.length - 1]);
+        }
+
+        function renderGallery() {
+            const filterBar = document.getElementById('galleryFilterBar');
+            filterBar.innerHTML = galleryCategories.map(cat => {
+                const label = cat === 'All' ? 'All Events' : (cat === 'Achievements' ? 'Achievements & Honors' : cat);
+                const activeClass = currentGalleryFilter === cat ? 'active' : '';
+                return `<button class="filter-btn ${activeClass}" onclick="filterGallery('${cat}')">${label}</button>`;
+            }).join('');
+
+            const container = document.getElementById('galleryContainer');
+            const filtered = currentGalleryFilter === 'All'
+                ? siteState.gallery
+                : siteState.gallery.filter(item => item.category === currentGalleryFilter);
+
+            container.innerHTML = filtered.length ? filtered.map(item => {
+                const resolvedSrc = resolveImageUrl(item.src);
+                const fallbackSrc = getLocalFallback(item.src);
+                let mediaHtml = '';
+
+                if (item.type === 'image') {
+                    mediaHtml = `
+                        <div class="gallery-media-wrapper" onclick="openLightbox('${resolvedSrc.replace(/'/g, "\\'")}', '${item.title.replace(/'/g, "\\'")}')">
+                            <img src="${resolvedSrc}" alt="${item.title}" loading="lazy" onerror="if (!this.dataset.triedFallback && '${fallbackSrc.replace(/'/g, "\\'")}') { this.dataset.triedFallback = '1'; this.src = '${fallbackSrc.replace(/'/g, "\\'")}'; } else { this.src = 'https://via.placeholder.com/800x500/0f2942/ffffff?text=${encodeURIComponent(item.title)}'; }">
+                        </div>
+                    `;
+                } else {
+                    if (resolvedSrc.includes('youtube.com') || resolvedSrc.includes('youtu.be')) {
+                        const embedUrl = resolvedSrc.replace('watch?v=', 'embed/').replace('youtu.be/', 'www.youtube.com/embed/');
+                        mediaHtml = `<iframe src="${embedUrl}" allowfullscreen></iframe>`;
+                    } else {
+                        mediaHtml = `<video src="${resolvedSrc}" controls></video>`;
+                    }
+                }
+
+                return `
+                    <div class="gallery-card">
+                        ${mediaHtml}
+                        <div class="gallery-meta">
+                            <div class="gallery-cat">${item.category}</div>
+                            <div class="gallery-title">${item.title}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('') : `<p style="color:var(--text-muted);">No photos or videos found in this category.</p>`;
+        }
+
+        function filterGallery(category) {
+            currentGalleryFilter = category;
+            renderGallery();
+        }
+
+        function openLightbox(src, title) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightboxCaption').textContent = title;
+            document.getElementById('lightboxModal').classList.add('open');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.remove('open');
+        }
+
+        /* =========================================================================
+           7. SUPER ADMIN CRUD OPERATIONS ACROSS ALL 10 SECTIONS
+           ========================================================================= */
+        function populateAdminForms() {
+            const p = siteState.profile;
+            document.getElementById('cfgName').value = p.name;
+            document.getElementById('cfgBadge').value = p.badge;
+            document.getElementById('cfgSubtitle').value = p.subtitle;
+            document.getElementById('cfgAvatar').value = p.avatar;
+            document.getElementById('cfgPhone').value = p.phone;
+            document.getElementById('cfgLocation').value = p.location;
+            document.getElementById('cfgEmail1').value = p.email1;
+            document.getElementById('cfgEmail2').value = p.email2;
+            document.getElementById('cfgBio').value = p.bio;
+            document.getElementById('backendApiUrl').value = siteState.backendUrl || '';
+
+            if (!document.getElementById('noticePubDateInput').value) {
+                document.getElementById('noticePubDateInput').value = new Date().toISOString().split('T')[0];
+            }
+
+            renderAdminNoticesTable();
+            renderAdminBlocksList();
+            renderAdminGalleryTable();
+            renderAdminNavTable();
+        }
+
+        function saveNoticeFromAdmin() {
+            const editId = document.getElementById('editNoticeId').value;
+            const title = document.getElementById('noticeTitleInput').value.trim();
+            const category = document.getElementById('noticeCategoryInput').value;
+            const eventDate = document.getElementById('noticeEventDateInput').value;
+            const pubDate = document.getElementById('noticePubDateInput').value || new Date().toISOString().split('T')[0];
+            const regLink = document.getElementById('noticeRegLinkInput').value.trim();
+            const description = document.getElementById('noticeDescInput').value.trim();
+            const important = document.getElementById('noticeImportantInput').checked;
+            const published = document.getElementById('noticePublishedInput').checked;
+
+            if (!title || !description || !eventDate) {
+                alert('Please enter Notice Title, Description, and Event Date.');
+                return;
+            }
+
+            if (editId) {
+                const idx = siteState.notices.findIndex(n => String(n.id) === String(editId));
+                if (idx > -1) {
+                    siteState.notices[idx] = { id: Number(editId), title, category, description, eventDate, pubDate, regLink, important, published };
+                }
+            } else {
+                siteState.notices.unshift({
+                    id: Date.now(),
+                    title,
+                    category,
+                    description,
+                    eventDate,
+                    pubDate,
+                    regLink,
+                    important,
+                    published
+                });
+            }
+
+            resetNoticeForm();
+            persistSiteState();
+            renderAdminNoticesTable();
+            alert('Notice saved and updated on Home & Notice Board!');
+        }
+
+        function editNotice(id) {
+            const n = siteState.notices.find(item => item.id === id);
+            if (!n) return;
+            document.getElementById('noticeFormHeading').textContent = '✏️ Edit Notice';
+            document.getElementById('editNoticeId').value = n.id;
+            document.getElementById('noticeTitleInput').value = n.title;
+            document.getElementById('noticeCategoryInput').value = n.category;
+            document.getElementById('noticeEventDateInput').value = n.eventDate;
+            document.getElementById('noticePubDateInput').value = n.pubDate;
+            document.getElementById('noticeRegLinkInput').value = n.regLink || '';
+            document.getElementById('noticeDescInput').value = n.description;
+            document.getElementById('noticeImportantInput').checked = n.important;
+            document.getElementById('noticePublishedInput').checked = n.published;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleNoticePublish(id) {
+            const n = siteState.notices.find(item => item.id === id);
+            if (n) {
+                n.published = !n.published;
+                persistSiteState();
+                renderAdminNoticesTable();
+            }
+        }
+
+        function deleteNotice(id) {
+            if (confirm('Permanently delete this notice?')) {
+                siteState.notices = siteState.notices.filter(n => n.id !== id);
+                persistSiteState();
+                renderAdminNoticesTable();
+            }
+        }
+
+        function resetNoticeForm() {
+            document.getElementById('noticeFormHeading').textContent = '+ Create / Publish New Notice';
+            document.getElementById('editNoticeId').value = '';
+            document.getElementById('noticeTitleInput').value = '';
+            document.getElementById('noticeEventDateInput').value = '';
+            document.getElementById('noticePubDateInput').value = new Date().toISOString().split('T')[0];
+            document.getElementById('noticeRegLinkInput').value = '';
+            document.getElementById('noticeDescInput').value = '';
+            document.getElementById('noticeImportantInput').checked = false;
+            document.getElementById('noticePublishedInput').checked = true;
+        }
+
+        function renderAdminNoticesTable() {
+            const tbody = document.getElementById('adminNoticesTableBody');
+            tbody.innerHTML = siteState.notices.map(n => `
+                <tr>
+                    <td>
+                        <strong>${n.title}</strong> ${n.important ? '<span class="important-tag">Important</span>' : ''}<br>
+                        <small style="color:var(--text-muted);">${n.category}</small>
+                    </td>
+                    <td>${formatDisplayDate(n.eventDate)}</td>
+                    <td>${formatDisplayDate(n.pubDate)}</td>
+                    <td><span class="status-pill ${n.published ? 'status-published' : 'status-hidden'}">${n.published ? 'Published' : 'Hidden'}</span></td>
+                    <td style="display:flex; gap:6px; flex-wrap:wrap;">
+                        <button class="btn-secondary" onclick="editNotice(${n.id})">Edit</button>
+                        <button class="btn-secondary" onclick="toggleNoticePublish(${n.id})">${n.published ? 'Hide' : 'Publish'}</button>
+                        <button class="btn-danger" onclick="deleteNotice(${n.id})">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function saveProfileSettings() {
+            siteState.profile.name = document.getElementById('cfgName').value.trim();
+            siteState.profile.shortName = siteState.profile.name.split('(')[0].trim();
+            siteState.profile.badge = document.getElementById('cfgBadge').value.trim();
+            siteState.profile.subtitle = document.getElementById('cfgSubtitle').value.trim();
+            siteState.profile.avatar = document.getElementById('cfgAvatar').value.trim();
+            siteState.profile.phone = document.getElementById('cfgPhone').value.trim();
+            siteState.profile.location = document.getElementById('cfgLocation').value.trim();
+            siteState.profile.email1 = document.getElementById('cfgEmail1').value.trim();
+            siteState.profile.email2 = document.getElementById('cfgEmail2').value.trim();
+            siteState.profile.bio = document.getElementById('cfgBio').value.trim();
+
+            persistSiteState();
+            alert('Profile, Banner & Contact details updated across the website!');
+        }
+
+        function getSectionArrayRef(section) {
+            if (Array.isArray(siteState[section])) return siteState[section];
+            if (siteState.blocks && Array.isArray(siteState.blocks[section])) return siteState.blocks[section];
+            return null;
+        }
+
+        function resetBlockForm() {
+            document.getElementById('blockFormHeading').textContent = 'Add Dynamic Content Block Across Sections';
+            document.getElementById('editBlockSection').value = '';
+            document.getElementById('editBlockId').value = '';
+            document.getElementById('blockTitleInput').value = '';
+            document.getElementById('blockBodyInput').value = '';
+        }
+
+        function editContentBlock(section, id) {
+            const arr = getSectionArrayRef(section);
+            if (!arr) return;
+            const item = arr.find(b => b.id === id);
+            if (!item) return;
+
+            document.getElementById('blockFormHeading').textContent = '✏️ Edit Content Block';
+            document.getElementById('editBlockSection').value = section;
+            document.getElementById('editBlockId').value = id;
+            document.getElementById('blockTargetSelect').value = section;
+            document.getElementById('blockTitleInput').value = item.title;
+            document.getElementById('blockBodyInput').value = item.body;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function saveContentBlock() {
+            const existingSection = document.getElementById('editBlockSection').value;
+            const existingId = document.getElementById('editBlockId').value;
+            const targetSection = document.getElementById('blockTargetSelect').value;
+            const title = document.getElementById('blockTitleInput').value.trim();
+            const body = document.getElementById('blockBodyInput').value.trim();
+
+            if (!title) {
+                alert('Please enter a title or label.');
+                return;
+            }
+
+            if (existingId && existingSection) {
+                const oldArr = getSectionArrayRef(existingSection);
+                const newArr = getSectionArrayRef(targetSection);
+                if (oldArr && newArr) {
+                    const idx = oldArr.findIndex(b => String(b.id) === String(existingId));
+                    if (idx > -1) {
+                        const updated = { id: Number(existingId), title, body };
+                        if (existingSection === targetSection) {
+                            oldArr[idx] = updated;
+                        } else {
+                            oldArr.splice(idx, 1);
+                            newArr.push(updated);
+                        }
+                    }
+                }
+            } else {
+                const arr = getSectionArrayRef(targetSection);
+                if (!arr) return;
+                arr.push({ id: Date.now(), title, body });
+            }
+
+            resetBlockForm();
+            persistSiteState();
+            renderAdminBlocksList();
+            alert('Content block saved!');
+        }
+
+        function deleteContentBlock(section, id) {
+            if (confirm('Delete this content item?')) {
+                if (Array.isArray(siteState[section])) {
+                    siteState[section] = siteState[section].filter(b => b.id !== id);
+                } else if (siteState.blocks && Array.isArray(siteState.blocks[section])) {
+                    siteState.blocks[section] = siteState.blocks[section].filter(b => b.id !== id);
+                }
+                persistSiteState();
+                renderAdminBlocksList();
+            }
+        }
+
+        function renderAdminBlocksList() {
+            const container = document.getElementById('adminBlocksList');
+            const allGroups = [
+                { key: 'homeHighlights', label: 'Home — Core Vision & Mission', isBlock: true },
+                { key: 'aboutBullets', label: 'About Us — Profile Highlights', isBlock: false },
+                { key: 'aboutEvolution', label: 'About Us — Technology Evolution Cards', isBlock: false },
+                { key: 'solutions', label: 'Solutions — Engineering Solutions', isBlock: true },
+                { key: 'solutionDomains', label: 'Solutions — Domain Expertise Badges', isBlock: false },
+                { key: 'solutionLifecycle', label: 'Solutions — Capstone Lifecycle Steps', isBlock: false },
+                { key: 'services', label: 'Services — Academic & Industry Services', isBlock: true },
+                { key: 'testimonials', label: 'Testimonials — Endorsements', isBlock: true },
+                { key: 'jobs', label: 'Job Corner — Career Tracks', isBlock: true },
+                { key: 'blog', label: 'Blog — Technical Articles', isBlock: true }
+            ];
+
+            let html = '';
+            allGroups.forEach(grp => {
+                const items = grp.isBlock ? (siteState.blocks[grp.key] || []) : (siteState[grp.key] || []);
+                html += `<h4 style="margin:14px 0 8px; color:var(--primary);">${grp.label}</h4>`;
+                html += `<table class="cms-table"><thead><tr><th>Title</th><th>Content</th><th>Action</th></tr></thead><tbody>`;
+                html += items.map(b => `
+                    <tr>
+                        <td><strong>${b.title}</strong></td>
+                        <td>${b.body}</td>
+                        <td style="display:flex; gap:6px; flex-wrap:wrap;">
+                            <button class="btn-secondary" onclick="editContentBlock('${grp.key}', ${b.id})">Edit</button>
+                            <button class="btn-danger" onclick="deleteContentBlock('${grp.key}', ${b.id})">Delete</button>
+                        </td>
+                    </tr>
+                `).join('');
+                html += `</tbody></table>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function addGalleryItem() {
+            const title = document.getElementById('mediaTitle').value.trim();
+            const category = document.getElementById('mediaCategory').value;
+            const type = document.getElementById('mediaType').value;
+            const fileInput = document.getElementById('mediaFile');
+            const urlInput = document.getElementById('mediaUrl').value.trim();
+
+            if (!title) {
+                alert('Please enter an Event Title.');
+                return;
+            }
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    saveGalleryEntry(title, category, type, e.target.result);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else if (urlInput) {
+                saveGalleryEntry(title, category, type, urlInput);
+            } else {
+                alert('Select a file or paste a valid URL.');
+            }
+        }
+
+        function saveGalleryEntry(title, category, type, src) {
+            siteState.gallery.unshift({ id: Date.now(), title, category, type, src });
+            document.getElementById('mediaTitle').value = '';
+            document.getElementById('mediaFile').value = '';
+            document.getElementById('mediaUrl').value = '';
+            persistSiteState();
+            renderAdminGalleryTable();
+            alert('Published to Photo Gallery!');
+        }
+
+        function deleteGalleryItem(id) {
+            if (confirm('Delete this media item?')) {
+                siteState.gallery = siteState.gallery.filter(g => g.id !== id);
+                persistSiteState();
+                renderAdminGalleryTable();
+            }
+        }
+
+        function renderAdminGalleryTable() {
+            const tbody = document.getElementById('adminGalleryTableBody');
+            tbody.innerHTML = siteState.gallery.map(g => `
+                <tr>
+                    <td><strong>${g.title}</strong></td>
+                    <td>${g.category}</td>
+                    <td>${g.type.toUpperCase()}</td>
+                    <td><button class="btn-danger" onclick="deleteGalleryItem(${g.id})">Delete</button></td>
+                </tr>
+            `).join('');
+        }
+
+        function renderAdminNavTable() {
+            const tbody = document.getElementById('adminNavTableBody');
+            tbody.innerHTML = siteState.navItems.map((item, idx) => `
+                <tr>
+                    <td><code>${item.id}</code></td>
+                    <td><input type="text" id="navLabel_${idx}" value="${item.label}" style="padding:6px; width:100%;"></td>
+                    <td><input type="checkbox" id="navVis_${idx}" ${item.visible ? 'checked' : ''} ${item.id === 'home' ? 'disabled' : ''}></td>
+                </tr>
+            `).join('');
+        }
+
+        function saveNavSettings() {
+            siteState.navItems.forEach((item, idx) => {
+                item.label = document.getElementById('navLabel_' + idx).value.trim() || item.label;
+                if (item.id !== 'home') {
+                    item.visible = document.getElementById('navVis_' + idx).checked;
+                }
+            });
+            persistSiteState();
+            alert('Sidebar navigation updated!');
+        }
+
+        function saveBackendConfig() {
+            const url = document.getElementById('backendApiUrl').value.trim();
+            const newPin = document.getElementById('newAdminPin').value.trim();
+            siteState.backendUrl = url;
+            if (newPin) siteState.adminPin = newPin;
+            persistSiteState();
+            alert('Backend configuration saved & synced!');
+        }
+
+        function exportSiteJson() {
+            const blob = new Blob([JSON.stringify(siteState, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'prof-kj-website-data.json';
+            a.click();
+        }
+
+        function resetToDefaultData() {
+            if (confirm('Reset all notices, profile edits, and gallery items to factory defaults?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                siteState = JSON.parse(JSON.stringify(defaultSiteState));
+                renderAllDynamicViews();
+                populateAdminForms();
+                alert('Reset complete.');
+            }
+        }
+
+        /* =========================================================================
+           8. HOURLY AUTO-REFRESHING WORLD PHILOSOPHER QUOTES
+           ========================================================================= */
+        const worldPhilosopherQuotes = [
+            { text: "The unexamined life is not worth living.", author: "Socrates" },
+            { text: "We are what we repeatedly do. Excellence, then, is not an act, but a habit.", author: "Aristotle" },
+            { text: "Knowing yourself is the beginning of all wisdom.", author: "Aristotle" },
+            { text: "He who has a why to live can bear almost any how.", author: "Friedrich Nietzsche" },
+            { text: "The only true wisdom is in knowing you know nothing.", author: "Socrates" },
+            { text: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" },
+            { text: "I think, therefore I am.", author: "René Descartes" },
+            { text: "Arise, awake, and stop not till the goal is reached.", author: "Swami Vivekananda" },
+            { text: "Live as if you were to die tomorrow. Learn as if you were to live forever.", author: "Mahatma Gandhi" },
+            { text: "Science is organized knowledge. Wisdom is organized life.", author: "Immanuel Kant" }
+        ];
+
+        async function fetchPhilosopherQuote() {
+            const quoteTextEl = document.getElementById('quoteText');
+            const quoteAuthorEl = document.getElementById('quoteAuthor');
+            const quoteStatusEl = document.getElementById('quoteStatus');
+
+            try {
+                const response = await fetch('https://dummyjson.com/quotes/random');
+                if (!response.ok) throw new Error('API unavailable');
+                const data = await response.json();
+                quoteTextEl.textContent = `"${data.quote}"`;
+                quoteAuthorEl.textContent = `— ${data.author}`;
+            } catch (err) {
+                const hourSeed = Math.floor(Date.now() / 3600000) % worldPhilosopherQuotes.length;
+                const selected = worldPhilosopherQuotes[hourSeed];
+                quoteTextEl.textContent = `"${selected.text}"`;
+                quoteAuthorEl.textContent = `— ${selected.author}`;
+            }
+
+            const now = new Date();
+            const nextRefresh = new Date(now.getTime() + 3600000);
+            if (quoteStatusEl) {
+                quoteStatusEl.textContent = `Updated: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} • Next auto-refresh: ${nextRefresh.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
+            }
+        }
+
+        /* =========================================================================
+           9. INITIALIZE ALL DYNAMIC VIEWS
+           ========================================================================= */
+        function renderAllDynamicViews() {
+            renderSidebarNav();
+            renderProfileAndContact();
+            renderNoticeBoard();
+            renderContentBlocks();
+            renderGallery();
+        }
+
+        const initialHash = (window.location.hash || '').replace('#', '');
+        const startView = (VALID_VIEWS.includes(initialHash) && initialHash !== 'admin') ? initialHash : 'home';
+        setActiveViewDom(startView);
+        try {
+            history.replaceState({ viewId: startView }, '', '#' + startView);
+        } catch (e) {}
+
+        renderAllDynamicViews();
+        loadFromCloudIfConfigured();
+        fetchPhilosopherQuote();
+        setInterval(fetchPhilosopherQuote, 3600000);
+    </script>
+</body>
+</html>
