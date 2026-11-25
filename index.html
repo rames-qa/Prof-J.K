@@ -1941,36 +1941,19 @@
             document.getElementById('sidebar').classList.toggle('open');
         }
 
-       function toggleSuperAdmin() {
-  const btn = document.getElementById('adminToggleBtn');
-
-  if (isSuperAdmin) {
-    isSuperAdmin = false;
-    if (btn) {
-      btn.textContent = '🔒 Super Admin Login';
-      btn.classList.remove('unlocked');
-    }
-    renderSidebarNav();
-    navigateTo('home'); // or your default public view
-    return;
-  }
-
-  const pin = prompt('Enter Super Admin PIN:');
-  if (pin === null) return;
-
-  if (pin.trim() === String(siteState.adminPin || '')) {
-    isSuperAdmin = true;
-    if (btn) {
-      btn.textContent = '🔓 Super Admin Active (Logout)';
-      btn.classList.add('unlocked');
-    }
-    renderSidebarNav();
-    populateAdminForms();
-    navigateTo('admin');
-  } else {
-    alert('Invalid Super Admin PIN.');
-  }
-}
+function toggleSuperAdmin() {
+            const btn = document.getElementById('adminToggleBtn');
+            if (!isSuperAdmin) {
+                const pin = prompt('Enter Super Admin PIN:');
+                if (pin === siteState.adminPin) {
+                    isSuperAdmin = true;
+                    btn.textContent = '🔓 Super Admin Active (Logout)';
+                    btn.classList.add('unlocked');
+                    renderSidebarNav();
+                    populateAdminForms();
+                    navigateTo('admin');
+                } else if (pin !== null) {
+                    alert('Invalid Super Admin PIN.');
             } else {
                 isSuperAdmin = false;
                 btn.textContent = '🔒 Admin Login';
