@@ -2096,56 +2096,56 @@
         }
 
         function renderNoticeBoard() {
-            renderNoticeFilters();
+    renderNoticeFilters();
 
-            const homeGrid = document.getElementById('homeNoticeGrid');
-            const dedicatedGrid = document.getElementById('dedicatedNoticeGrid');
-            const homeTicker = document.getElementById('homeImportantNoticeTicker');
-            const dedicatedTicker = document.getElementById('dedicatedImportantNoticeTicker');
-            const toggleBtn = document.getElementById('toggleAllNoticesBtn');
+    const homeGrid = document.getElementById('homeNoticeGrid');
+    const dedicatedGrid = document.getElementById('dedicatedNoticeGrid');
+    const homeTicker = document.getElementById('homeImportantNoticeTicker');
+    const dedicatedTicker = document.getElementById('dedicatedImportantNoticeTicker');
+    const toggleBtn = document.getElementById('toggleAllNoticesBtn');
 
-            const publishedNotices = siteState.notices
-                .filter(n => n.published)
-                .sort((a, b) => {
-                    if (a.important !== b.important) return b.important ? 1 : -1;
-                    return new Date(b.pubDate) - new Date(a.pubDate);
-                });
+    const publishedNotices = (siteState.notices || [])
+        .filter(n => n.published)
+        .sort((a, b) => {
+            if (a.important !== b.important) return b.important ? 1 : -1;
+            return new Date(b.pubDate) - new Date(a.pubDate);
+        });
 
-            const topImportant = publishedNotices.find(n => n.important) || publishedNotices[0];
-            const tickerHtml = topImportant ? `
-                <span class="ticker-badge">Latest Highlight</span>
-                <strong>${topImportant.title}</strong>
-                <span style="color:#92400e;">(Event Date: ${formatDisplayDate(topImportant.eventDate)})</span>
-                ${topImportant.regLink ? `<a href="${topImportant.regLink}" target="_blank" style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
-            ` : '';
+    const topImportant = publishedNotices.find(n => n.important) || publishedNotices[0];
+    const tickerHtml = topImportant ? `
+        <span class="ticker-badge">Latest Highlight</span>
+        <strong>${topImportant.title}</strong>
+        <span style="color:#92400e;">(Event Date: ${formatDisplayDate(topImportant.eventDate)})</span>
+        ${topImportant.regLink ? `<a href="${topImportant.regLink}" target="_blank" rel="noopener noreferrer" style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
+    ` : '';
 
-            [homeTicker, dedicatedTicker].forEach(el => {
-                if (!el) return;
-                el.style.display = topImportant ? 'flex' : 'none';
-                el.innerHTML = tickerHtml;
-            });
+    [homeTicker, dedicatedTicker].forEach(el => {
+        if (!el) return;
+        el.style.display = topImportant ? 'flex' : 'none';
+        el.innerHTML = tickerHtml;
+    });
 
-            const filtered = currentNoticeFilter === 'All'
-                ? publishedNotices
-                : publishedNotices.filter(n => n.category === currentNoticeFilter);
+    const filtered = currentNoticeFilter === 'All'
+        ? publishedNotices
+        : publishedNotices.filter(n => n.category === currentNoticeFilter);
 
-            const homeVisible = showAllNotices ? filtered : filtered.slice(0, 4);
-            if (toggleBtn) {
-                toggleBtn.textContent = showAllNotices ? 'Show Latest 4' : `View All Notices (${filtered.length})`;
-            }
+    const homeVisible = showAllNotices ? filtered : filtered.slice(0, 4);
+    if (toggleBtn) {
+        toggleBtn.textContent = showAllNotices ? 'Show Latest 4' : `View All Notices (${filtered.length})`;
+    }
 
-            if (homeGrid) {
-                homeGrid.innerHTML = homeVisible.length
-                    ? homeVisible.map(buildNoticeCardHtml).join('')
-                    : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
-            }
+    if (homeGrid) {
+        homeGrid.innerHTML = homeVisible.length
+            ? homeVisible.map(buildNoticeCardHtml).join('')
+            : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+    }
 
-            if (dedicatedGrid) {
-                dedicatedGrid.innerHTML = filtered.length
-                    ? filtered.map(buildNoticeCardHtml).join('')
-                    : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
-            }
-        }
+    if (dedicatedGrid) {
+        dedicatedGrid.innerHTML = filtered.length
+            ? filtered.map(buildNoticeCardHtml).join('')
+            : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
+    }
+}
 
         function filterNotices(category) {
             currentNoticeFilter = category;
