@@ -1941,10 +1941,10 @@
             document.getElementById('sidebar').classList.toggle('open');
         }
 
-function toggleSuperAdmin() {
+        function toggleSuperAdmin() {
             const btn = document.getElementById('adminToggleBtn');
             if (!isSuperAdmin) {
-                const pin = prompt('Enter Super Admin PIN:');
+                const pin = prompt('Enter Super Admin PIN (Default: 1234):');
                 if (pin === siteState.adminPin) {
                     isSuperAdmin = true;
                     btn.textContent = '🔓 Super Admin Active (Logout)';
@@ -1954,6 +1954,7 @@ function toggleSuperAdmin() {
                     navigateTo('admin');
                 } else if (pin !== null) {
                     alert('Invalid Super Admin PIN.');
+                }
             } else {
                 isSuperAdmin = false;
                 btn.textContent = '🔒 Admin Login';
