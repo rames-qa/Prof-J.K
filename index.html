@@ -1944,7 +1944,7 @@
         function toggleSuperAdmin() {
             const btn = document.getElementById('adminToggleBtn');
             if (!isSuperAdmin) {
-                const pin = prompt('Enter Super Admin PIN (Default: 1234):');
+                const pin = prompt('Enter Super Admin PIN:');
                 if (pin === siteState.adminPin) {
                     isSuperAdmin = true;
                     btn.textContent = '🔓 Super Admin Active (Logout)';
