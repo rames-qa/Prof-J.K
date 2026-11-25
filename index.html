@@ -1266,20 +1266,6 @@
                 </div>
             </div>
 
-            <!-- HOME NOTICE BOARD PREVIEW -->
-            <div class="notice-board-panel">
-                <div class="section-title">
-                    <div class="section-title-left">📌 Latest Updates &amp; Notice Board</div>
-                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                        <button type="button" class="btn-secondary" id="toggleAllNoticesBtn" onclick="toggleShowAllNotices()">View All Notices</button>
-                        <button type="button" class="btn-primary" onclick="navigateTo('notice-board')">Open Full Notice Board →</button>
-                    </div>
-                </div>
-                <div class="notice-ticker" id="homeImportantNoticeTicker"></div>
-                <div class="notice-filter-bar" id="homeNoticeFilterBar"></div>
-                <div class="notice-grid" id="homeNoticeGrid"></div>
-            </div>
-
             <!-- AUTOMATIC HOURLY WORLD PHILOSOPHER QUOTES -->
             <div class="quote-showcase">
                 <div class="quote-header">
@@ -1975,7 +1961,6 @@
         let siteState = mergeWithDefaults(initialStored);
         let isSuperAdmin = false;
         let currentNoticeFilter = 'All';
-        let showAllNotices = false;
         let currentGalleryFilter = 'All';
 
         async function persistSiteState() {
@@ -2259,19 +2244,13 @@
         }
 
         function renderNoticeFilters() {
-            const bars = [
-                document.getElementById('homeNoticeFilterBar'),
-                document.getElementById('dedicatedNoticeFilterBar')
-            ];
-
-            bars.forEach(bar => {
-                if (!bar) return;
-                bar.innerHTML = noticeCategories.map(cat => {
-                    const label = cat === 'All' ? 'All Updates' : cat;
-                    const activeClass = currentNoticeFilter === cat ? 'active' : '';
-                    return `<button type="button" class="filter-btn ${activeClass}" onclick="filterNotices('${escapeJsSingle(cat)}')">${escapeHtml(label)}</button>`;
-                }).join('');
-            });
+            const bar = document.getElementById('dedicatedNoticeFilterBar');
+            if (!bar) return;
+            bar.innerHTML = noticeCategories.map(cat => {
+                const label = cat === 'All' ? 'All Updates' : cat;
+                const activeClass = currentNoticeFilter === cat ? 'active' : '';
+                return `<button type="button" class="filter-btn ${activeClass}" onclick="filterNotices('${escapeJsSingle(cat)}')">${escapeHtml(label)}</button>`;
+            }).join('');
         }
 
         function buildNoticeCardHtml(n) {
@@ -2301,11 +2280,8 @@
         function renderNoticeBoard() {
             renderNoticeFilters();
 
-            const homeGrid = document.getElementById('homeNoticeGrid');
             const dedicatedGrid = document.getElementById('dedicatedNoticeGrid');
-            const homeTicker = document.getElementById('homeImportantNoticeTicker');
             const dedicatedTicker = document.getElementById('dedicatedImportantNoticeTicker');
-            const toggleBtn = document.getElementById('toggleAllNoticesBtn');
 
             const publishedNotices = (siteState.notices || [])
                 .filter(n => n.published)
@@ -2315,38 +2291,26 @@
                 });
 
             const topImportant = publishedNotices.find(n => n.important) || publishedNotices[0];
-            let tickerHtml = '';
-            if (topImportant) {
-                const safeTickerLink = topImportant.regLink && isSafeUrl(topImportant.regLink) ? escapeHtml(topImportant.regLink) : '';
-                const tickerExt = safeTickerLink.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
-                tickerHtml = `
-                    <span class="ticker-badge">Latest Highlight</span>
-                    <strong>${escapeHtml(topImportant.title)}</strong>
-                    <span style="color:#92400e;">(Event Date: ${escapeHtml(formatDisplayDate(topImportant.eventDate))})</span>
-                    ${safeTickerLink ? `<a href="${safeTickerLink}"${tickerExt} style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
-                `;
+            if (dedicatedTicker) {
+                if (topImportant) {
+                    const safeTickerLink = topImportant.regLink && isSafeUrl(topImportant.regLink) ? escapeHtml(topImportant.regLink) : '';
+                    const tickerExt = safeTickerLink.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+                    dedicatedTicker.style.display = 'flex';
+                    dedicatedTicker.innerHTML = `
+                        <span class="ticker-badge">Latest Highlight</span>
+                        <strong>${escapeHtml(topImportant.title)}</strong>
+                        <span style="color:#92400e;">(Event Date: ${escapeHtml(formatDisplayDate(topImportant.eventDate))})</span>
+                        ${safeTickerLink ? `<a href="${safeTickerLink}"${tickerExt} style="margin-left:auto; font-weight:700; color:#b45309;">Register / Details →</a>` : ''}
+                    `;
+                } else {
+                    dedicatedTicker.style.display = 'none';
+                    dedicatedTicker.innerHTML = '';
+                }
             }
-
-            [homeTicker, dedicatedTicker].forEach(el => {
-                if (!el) return;
-                el.style.display = topImportant ? 'flex' : 'none';
-                el.innerHTML = tickerHtml;
-            });
 
             const filtered = currentNoticeFilter === 'All'
                 ? publishedNotices
                 : publishedNotices.filter(n => n.category === currentNoticeFilter);
-
-            const homeVisible = showAllNotices ? filtered : filtered.slice(0, 4);
-            if (toggleBtn) {
-                toggleBtn.textContent = showAllNotices ? 'Show Latest 4' : `View All Notices (${filtered.length})`;
-            }
-
-            if (homeGrid) {
-                homeGrid.innerHTML = homeVisible.length
-                    ? homeVisible.map(buildNoticeCardHtml).join('')
-                    : `<p style="color:var(--text-muted);">No published notices found under this category.</p>`;
-            }
 
             if (dedicatedGrid) {
                 dedicatedGrid.innerHTML = filtered.length
@@ -2357,11 +2321,6 @@
 
         function filterNotices(category) {
             currentNoticeFilter = category;
-            renderNoticeBoard();
-        }
-
-        function toggleShowAllNotices() {
-            showAllNotices = !showAllNotices;
             renderNoticeBoard();
         }
 
@@ -2610,7 +2569,7 @@
             resetNoticeForm();
             persistSiteState();
             renderAdminNoticesTable();
-            alert('Notice saved and updated on Home & Notice Board!');
+            alert('Notice saved and updated on the Notice Board!');
         }
 
         function editNotice(id) {
@@ -2976,11 +2935,6 @@
                 quoteAuthorEl.textContent = `— ${selected.author}`;
             }
 
-            const now = new Date();
-            const nextRefresh = new Date(now.getTime() + 3600000);
-            if (quoteStatusEl) {
-                quoteStatusEl.textContent = `Updated: ${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} • Next auto-refresh: ${nextRefresh.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`;
-            }
         }
 
         /* =========================================================================
