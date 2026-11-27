@@ -373,7 +373,7 @@
             width: 280px;
             height: 280px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(251, 191, 36, 0.18) 0%, rgba(217, 119, 6, 0.0) 70%);
+            background: radial-gradient(circle, rgba(251, 191, 36, 0.18) 0%, rgba(217, 119, 6, 0) 70%);
             pointer-events: none;
         }
 
@@ -2162,7 +2162,7 @@
                     src: 'https://github.com/rames-qa/Prof-J.K/blob/main/In%20VIT%20vellore%20with%20Prof%20Dr.%20Parthasarathi%20Mallik%20ji.png'
                 }
             ]
-        };
+       };
 
         function mergeWithDefaults(raw) {
             const base = JSON.parse(JSON.stringify(defaultSiteState));
@@ -2399,15 +2399,14 @@
             const sideCall = document.getElementById('sidebarCallLink');
             sideCall.href = 'tel:' + cleanTel;
             sideCall.textContent = '📞 Call: ' + p.phone;
-
-            const cleanWaNumber = (p.phone || '').replace(/\D/g, '');
-            const heroWhatsApp = document.getElementById('heroWhatsAppLink');
-            if (heroWhatsApp && cleanWaNumber) {
-                const cleanName = (p.name || 'Prof. K. Jayaraman').replace(/\s*\([^)]*\)/g, '').trim() || 'Prof. K. Jayaraman';
-                const greetingText = encodeURIComponent(`Hello ${cleanName} , I would like to connect with you.`);
-                heroWhatsApp.href = `https://wa.me/${cleanWaNumber}?text=${greetingText}`;
-            }
-
+            
+           const cleanWaNumber = (p.phone || '').replace(/\D/g, '');
+           const heroWhatsApp = document.getElementById('heroWhatsAppLink');
+          if (heroWhatsApp && cleanWaNumber) {
+          const cleanName = (p.name || 'Prof. K. Jayaraman').replace(/\s*\([^)]*\)/g, '').trim() || 'Prof. K. Jayaraman';
+          const greetingText = encodeURIComponent(`Hello ${cleanName} , I would like to connect with you.`);
+          heroWhatsApp.href = `https://wa.me/${cleanWaNumber}?text=${greetingText}`;
+         }
             document.getElementById('heroTitle').textContent = p.name;
             document.getElementById('heroSubtitle').textContent = p.subtitle;
             document.getElementById('heroBio').textContent = p.bio;
@@ -2461,7 +2460,7 @@
         }
 
         /* =========================================================================
-           4. NOTICE BOARD – LATEST UPDATES (DEDICATED NOTICE BOARD VIEW)
+           4. NOTICE BOARD – LATEST UPDATES (HOME + DEDICATED NOTICE BOARD VIEW)
            ========================================================================= */
         const noticeCategories = [
             'All',
@@ -3135,66 +3134,1120 @@
             }
         }
 
-        /* =========================================================================
-           8. DR. A.P.J. ABDUL KALAM QUOTES & HERITAGE PERSONALITIES / PROGRAMMES
-           ========================================================================= */
-        const heritageSubjects = {
-            kalam: {
-                key: 'kalam',
-                badge: 'Bharat Ratna • Aerospace & Visionary',
-                name: 'Dr. A.P.J. Abdul Kalam',
-                subtitle: 'Former President of India • Missile Man & Space Visionary',
-                imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/6/6e/A._P._J._Abdul_Kalam.jpg',
-                fallbackLocal: 'Picture1.jpg',
-                quote: 'Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.',
-                attribution: '— Dr. A.P.J. Abdul Kalam',
-                featured: true
-            },
-            sarabhai: {
-                key: 'sarabhai',
-                badge: 'Father of Indian Space Programme',
-                name: 'Dr. Vikram Sarabhai',
-                subtitle: 'Founder of INCOSPAR / ISRO • Visionary Physicist & Institution Builder',
-                imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Vikram_Sarabhai.jpg',
-                fallbackLocal: 'Picture1.jpg',
-                quote: 'If we are to play a meaningful role nationally, and in the community of nations, we must be second to none in the application of advanced technologies to the real problems of man and society.',
-                attribution: '— Inspired by Dr. Vikram Sarabhai (Quoted by Dr. A.P.J. Abdul Kalam)',
-                featured: false
-            },
-            dhawan: {
-                key: 'dhawan',
-                badge: 'Former ISRO Chairman • Mentorship & Systems Leadership',
-                name: 'Prof. Satish Dhawan',
-                subtitle: 'Aerospace Engineer & Teacher • Architect of Modern ISRO Leadership',
-                imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/e/e5/Satish_Dhawan.jpg',
-                fallbackLocal: 'Picture1.jpg',
-                quote: 'When failure occurs, the leader takes responsibility; when success arrives, the team gets the credit—a lesson in leadership that shaped generations of engineers.',
-                attribution: '— Dr. A.P.J. Abdul Kalam on Prof. Satish Dhawan',
-                featured: false
-            },
-            isroPillars: {
-                key: 'isroPillars',
-                badge: 'Space Exploration & Systems Engineering',
-                name: 'The Pillars of the Indian Space Research Organisation (ISRO)',
-                subtitle: 'Launch Vehicles, Satellites, Propulsion, Telemetry & Mission Systems',
-                imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/2/26/PSLV-C37_lift_off.jpg',
-                fallbackLocal: 'Picture1.jpg',
-                quote: 'Space technology is a powerful instrument for national development, connecting remote communities and turning bold scientific dreams into everyday reality.',
-                attribution: '— Dr. A.P.J. Abdul Kalam on ISRO & Space Systems',
-                featured: false
-            },
-            igmp: {
-                key: 'igmp',
-                badge: 'DRDO • Integrated Guided Missile Development Programme',
-                name: 'Indian Guided Missile Programme (IGMP)',
-                subtitle: 'Prithvi, Agni, Akash, Trishul & Nag • Indigenous Systems Integration',
-                imgSrc: 'https://upload.wikimedia.org/wikipedia/commons/0/0a/Agni-V_missile_launch.jpg',
-                fallbackLocal: 'Picture1.jpg',
-                quote: 'You have to dream before your dreams can come true—and when young minds unite with a mission, even the hardest technological challenges yield.',
-                attribution: '— Dr. A.P.J. Abdul Kalam on Indigenous Missiles & Self-Reliance',
-                featured: false
-            }
-        };
+       /* =========================================================================
+   8. INSPIRING THOUGHTS, HERITAGE PERSONALITIES & PROGRAMMES (100 ENTRIES)
+   ========================================================================= */
+const heritageSubjects = {
+    // --- ORIGINAL 5 ENTRIES ---
+    kalam: {
+        key: 'kalam',
+        badge: 'Bharat Ratna • Aerospace & Visionary',
+        name: 'Dr. A.P.J. Abdul Kalam',
+        subtitle: 'Former President of India • Missile Man & Space Visionary',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/A._P._J._Abdul_Kalam.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Dream, dream, dream. Dreams transform into thoughts and thoughts result in action.',
+        attribution: '— Dr. A.P.J. Abdul Kalam',
+        featured: true
+    },
+    sarabhai: {
+        key: 'sarabhai',
+        badge: 'Father of Indian Space Programme',
+        name: 'Dr. Vikram Sarabhai',
+        subtitle: 'Founder of INCOSPAR / ISRO • Visionary Physicist & Institution Builder',
+        imgSrc: 'https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Dr.%20Vikram%20Sarabhai.jpg',
+        fallbackLocal: '',
+        quote: 'True national relevance comes from applying advanced science and technology directly to solve the real, everyday challenges of society.',
+        attribution: '— Inspired by Dr. Vikram Sarabhai',
+        featured: false
+    },
+    dhawan: {
+        key: 'dhawan',
+        badge: 'Former ISRO Chairman • Mentorship & Systems Leadership',
+        name: 'Prof. Satish Dhawan',
+        subtitle: 'Aerospace Engineer & Teacher • Architect of Modern ISRO Leadership',
+        imgSrc: 'https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Prof.%20Satish%20Dhawan.jpg',
+        fallbackLocal: '',
+        quote: 'True leadership means absorbing accountability when setbacks happen and passing all recognition to the team when breakthroughs succeed.',
+        attribution: '— Inspired by Prof. Satish Dhawan',
+        featured: false
+    },
+    isroPillars: {
+        key: 'isroPillars',
+        badge: 'Space Exploration & Systems Engineering',
+        name: 'The Pillars of the Indian Space Research Organisation (ISRO)',
+        subtitle: 'Launch Vehicles, Satellites, Propulsion, Telemetry & Mission Systems',
+        imgSrc: 'https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/The%20Pillars%20of%20the%20Indian%20Space%20Research%20Organisation%20%28ISRO%29.webp',
+        fallbackLocal: '',
+        quote: 'Space technology serves as a vital catalyst for national development, connecting remote communities and turning bold scientific goals into everyday utility.',
+        attribution: '— On ISRO & Indian Space Systems',
+        featured: false
+    },
+    igmp: {
+        key: 'igmp',
+        badge: 'DRDO • Integrated Guided Missile Development Programme',
+        name: 'Indian Guided Missile Programme (IGMP)',
+        subtitle: 'Prithvi, Agni, Akash, Trishul & Nag • Indigenous Systems Integration',
+        imgSrc: 'https://raw.githubusercontent.com/rames-qa/Prof-J.K/main/Indian%20Guided%20Missile%20Programme%20%28IGMP%29.png',
+        fallbackLocal: '',
+        quote: 'When young engineering minds unite around a shared mission of self-reliance, even the steepest technological barriers can be overcome.',
+        attribution: '— On Indigenous Missiles & Self-Reliance',
+        featured: false
+    },
+
+    // --- INDIAN SCIENTISTS, MATHEMATICIANS & INNOVATORS (6–30) ---
+    cvRaman: {
+        key: 'cvRaman',
+        badge: 'Nobel Laureate in Physics • Bharat Ratna',
+        name: 'Sir C.V. Raman',
+        subtitle: 'Discoverer of the Raman Effect • Pioneer of Modern Indian Physics',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chandrasekhara_Venkata_Raman.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'The essence of science lies not in costly apparatus, but in independent thinking, sharp observation, and relentless curiosity.',
+        attribution: '— Inspired by Sir C.V. Raman',
+        featured: false
+    },
+    ramanujan: {
+        key: 'ramanujan',
+        badge: 'Mathematical Genius • FRS',
+        name: 'Srinivasa Ramanujan',
+        subtitle: 'Self-Taught Mathematician • Master of Number Theory & Infinite Series',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Srinivasa_Ramanujan_-_OPC_-_1.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'For a devoted mathematician, an equation carries no real meaning unless it expresses a profound truth of the universe.',
+        attribution: '— Inspired by Srinivasa Ramanujan',
+        featured: false
+    },
+    bhabha: {
+        key: 'bhabha',
+        badge: 'Father of Indian Nuclear Programme',
+        name: 'Dr. Homi J. Bhabha',
+        subtitle: 'Founder of TIFR & BARC • Theoretical Physicist & Institution Builder',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Homi_Jehangir_Bhabha_1960s.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'When India builds world-class scientific institutions at home, its brightest minds will stay to build the nation’s future.',
+        attribution: '— Inspired by Dr. Homi J. Bhabha',
+        featured: false
+    },
+    jcBose: {
+        key: 'jcBose',
+        badge: 'Polymath • Radio & Plant Physiology Pioneer',
+        name: 'Sir Jagadish Chandra Bose',
+        subtitle: 'Inventor of the Crescograph • Pioneer of Millimeter-Wave Radio',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jagadish_Chandra_Bose_1926.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'In the pursuit of knowledge, the real laboratory is the human mind, and its greatest instrument is patient, fearless inquiry.',
+        attribution: '— Inspired by Sir J.C. Bose',
+        featured: false
+    },
+    snBose: {
+        key: 'snBose',
+        badge: 'Quantum Physics Pioneer • Padma Vibhushan',
+        name: 'Satyendra Nath Bose',
+        subtitle: 'Co-creator of Bose-Einstein Statistics • Namesake of the Boson',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Satyendra_Nath_Bose_1925.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Scientific breakthroughs emerge when we challenge conventional assumptions and follow mathematical logic wherever it leads.',
+        attribution: '— Inspired by Satyendra Nath Bose',
+        featured: false
+    },
+    meghnadSaha: {
+        key: 'meghnadSaha',
+        badge: 'Astrophysicist • Thermal Ionization Pioneer',
+        name: 'Dr. Meghnad Saha',
+        subtitle: 'Creator of the Saha Ionization Equation • Architect of River Valley Planning',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Meghnad_Saha_1950s.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Understanding the stars begins with mastering the fundamental laws of physics right here on Earth.',
+        attribution: '— Inspired by Dr. Meghnad Saha',
+        featured: false
+    },
+    chandrasekhar: {
+        key: 'chandrasekhar',
+        badge: 'Nobel Laureate in Astrophysics',
+        name: 'Dr. Subrahmanyan Chandrasekhar',
+        subtitle: 'Discoverer of the Chandrasekhar Limit • Stellar Evolution Theorist',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Subrahmanyan_Chandrasekhar.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'The pursuit of science is often a solitary climb, rewarded by the quiet beauty of discovering order in the cosmos.',
+        attribution: '— Inspired by Dr. S. Chandrasekhar',
+        featured: false
+    },
+    visvesvaraya: {
+        key: 'visvesvaraya',
+        badge: 'Bharat Ratna • Father of Indian Engineering',
+        name: 'Sir M. Visvesvaraya',
+        subtitle: 'Statesman & Civil Engineer • Architect of Krishnaraja Sagara Dam',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mokshagundam_Visvesvaraya.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Industrialize or perish—disciplined engineering, meticulous planning, and hard work are the bedrock of national prosperity.',
+        attribution: '— Inspired by Sir M. Visvesvaraya',
+        featured: false
+    },
+    swaminathan: {
+        key: 'swaminathan',
+        badge: 'Bharat Ratna • Father of Green Revolution in India',
+        name: 'Dr. M.S. Swaminathan',
+        subtitle: 'Agricultural Scientist • Champion of Food Security & Sustainable Farming',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/M._S._Swaminathan.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'If agriculture goes wrong, nothing else in a nation’s economy will have a chance to go right.',
+        attribution: '— Inspired by Dr. M.S. Swaminathan',
+        featured: false
+    },
+    kurien: {
+        key: 'kurien',
+        badge: 'Padma Vibhushan • Father of White Revolution',
+        name: 'Dr. Verghese Kurien',
+        subtitle: 'Architect of Operation Flood • Social Entrepreneur & Dairy Pioneer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Verghese_Kurien.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'True empowerment happens when modern management and technology are placed directly in the hands of rural producers.',
+        attribution: '— Inspired by Dr. Verghese Kurien',
+        featured: false
+    },
+    kalpanaChawla: {
+        key: 'kalpanaChawla',
+        badge: 'First Woman of Indian Origin in Space',
+        name: 'Dr. Kalpana Chawla',
+        subtitle: 'NASA Astronaut & Aerospace Engineer • Space Shuttle Columbia Crew',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kalpana_Chawla,_NASA_photo_portrait_in_orange_suit.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'The path from dreams to reality does exist; you only need the vision to find it, the courage to step onto it, and the perseverance to follow it.',
+        attribution: '— Inspired by Dr. Kalpana Chawla',
+        featured: false
+    },
+    sunitaWilliams: {
+        key: 'sunitaWilliams',
+        badge: 'Veteran NASA Astronaut • ISS Commander',
+        name: 'Sunita Williams',
+        subtitle: 'Naval Aviator & Spacewalker • Pioneer of Long-Duration Spaceflight',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sunita_Williams_in_2018.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Looking down at Earth from orbit reminds you that borders disappear and all of humanity shares one fragile spacecraft.',
+        attribution: '— Inspired by Sunita Williams',
+        featured: false
+    },
+    tessyThomas: {
+        key: 'tessyThomas',
+        badge: 'Missile Woman of India • DRDO',
+        name: 'Dr. Tessy Thomas',
+        subtitle: 'Project Director for Agni-IV & Agni-V • Aerospace Systems Leader',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tessy_Thomas.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Science and engineering recognize no gender barriers—only dedication, precision, and the determination to deliver under pressure.',
+        attribution: '— Inspired by Dr. Tessy Thomas',
+        featured: false
+    },
+    janakiAmmal: {
+        key: 'janakiAmmal',
+        badge: 'Padma Shri • Pioneering Indian Botanist',
+        name: 'Dr. E.K. Janaki Ammal',
+        subtitle: 'Cytogeneticist & Plant Breeder • Champion of Biodiversity Conservation',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/E._K._Janaki_Ammal.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Preserving native flora and understanding plant genetics are essential duties toward future generations.',
+        attribution: '— Inspired by Dr. E.K. Janaki Ammal',
+        featured: false
+    },
+    asimaChatterjee: {
+        key: 'asimaChatterjee',
+        badge: 'Padma Bhushan • Organic Chemist',
+        name: 'Dr. Asima Chatterjee',
+        subtitle: 'First Woman D.Sc. from an Indian University • Medicinal Plant Researcher',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Asima_Chatterjee.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Nature holds extraordinary medicinal remedies waiting to be unlocked through disciplined chemical research.',
+        attribution: '— Inspired by Dr. Asima Chatterjee',
+        featured: false
+    },
+    pcRay: {
+        key: 'pcRay',
+        badge: 'Father of Indian Chemistry',
+        name: 'Acharya Prafulla Chandra Ray',
+        subtitle: 'Chemist, Educator & Industrialist • Founder of Bengal Chemicals',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Prafulla_Chandra_Ray.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Science can wait for political freedom, but self-reliance in industry and education must be built every single day.',
+        attribution: '— Inspired by Acharya P.C. Ray',
+        featured: false
+    },
+    birbalSahni: {
+        key: 'birbalSahni',
+        badge: 'Father of Indian Palaeobotany',
+        name: 'Prof. Birbal Sahni',
+        subtitle: 'Geologist & Botanist • Founder of the Institute of Palaeosciences',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Birbal_Sahni.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Fossils are Earth’s silent archives, teaching us how life adapts and endures across millions of years.',
+        attribution: '— Inspired by Prof. Birbal Sahni',
+        featured: false
+    },
+    khorana: {
+        key: 'khorana',
+        badge: 'Nobel Laureate in Medicine',
+        name: 'Dr. Har Gobind Khorana',
+        subtitle: 'Biochemist • Decoder of the Genetic Code & Synthetic Gene Pioneer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Har_Gobind_Khorana_nobel.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Unraveling the chemical language of DNA opens the door to understanding life at its most fundamental level.',
+        attribution: '— Inspired by Dr. Har Gobind Khorana',
+        featured: false
+    },
+    venkiRamakrishnan: {
+        key: 'venkiRamakrishnan',
+        badge: 'Nobel Laureate in Chemistry • OM',
+        name: 'Dr. Venkatraman Ramakrishnan',
+        subtitle: 'Structural Biologist • Mapped the Atomic Structure of the Ribosome',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Venkatraman_Ramakrishnan_2015.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Crossing disciplines—from physics to biology—often provides the sharpest lens for solving nature’s toughest puzzles.',
+        attribution: '— Inspired by Dr. Venki Ramakrishnan',
+        featured: false
+    },
+    cnrRao: {
+        key: 'cnrRao',
+        badge: 'Bharat Ratna • Solid-State & Materials Chemist',
+        name: 'Prof. C.N.R. Rao',
+        subtitle: 'Pioneer in Nanomaterials & Superconductivity • Scientific Advisor',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/C._N._R._Rao_2014.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Passion and perseverance in the laboratory matter far more than privilege; relentless effort always finds a way.',
+        attribution: '— Inspired by Prof. C.N.R. Rao',
+        featured: false
+    },
+    urRao: {
+        key: 'urRao',
+        badge: 'Padma Vibhushan • Satellite Man of India',
+        name: 'Prof. Udupi Ramachandra Rao',
+        subtitle: 'Former ISRO Chairman • Architect of India’s First Satellite Aryabhata',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/U._R._Rao.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Building our own satellites transformed India from a spectator of the space age into a self-reliant spacefaring nation.',
+        attribution: '— Inspired by Prof. U.R. Rao',
+        featured: false
+    },
+    kasturirangan: {
+        key: 'kasturirangan',
+        badge: 'Padma Vibhushan • Space Scientist & Educationist',
+        name: 'Dr. K. Kasturirangan',
+        subtitle: 'Former ISRO Chairman • Architect of Chandrayaan-1 & NEP Vision',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/K._Kasturirangan.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Combining scientific excellence with holistic education empowers young minds to innovate for humanity.',
+        attribution: '— Inspired by Dr. K. Kasturirangan',
+        featured: false
+    },
+    sivan: {
+        key: 'sivan',
+        badge: 'Rocket Man • Former ISRO Chairman',
+        name: 'Dr. K. Sivan',
+        subtitle: 'Aerospace Engineer • Architect of GSLV Cryogenic & Chandrayaan-2 Missions',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kailasavadivoo_Sivan.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Humble beginnings are never a limit when paired with determination, integrity, and a refusal to quit after setbacks.',
+        attribution: '— Inspired by Dr. K. Sivan',
+        featured: false
+    },
+    somanath: {
+        key: 'somanath',
+        badge: 'Former ISRO Chairman • Launch Vehicle Architect',
+        name: 'Dr. S. Somanath',
+        subtitle: 'Leader of Chandrayaan-3 & Aditya-L1 • LVM3 Systems Designer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/S._Somanath.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Every failed test is a goldmine of engineering data; studying why something failed is the surest step toward historic success.',
+        attribution: '— Inspired by Dr. S. Somanath',
+        featured: false
+    },
+    rakeshSharma: {
+        key: 'rakeshSharma',
+        badge: 'Ashoka Chakra • First Indian in Space',
+        name: 'Wg Cdr Rakesh Sharma',
+        subtitle: 'IAF Test Pilot & Cosmonaut • Soyuz T-11 / Salyut 7 Mission',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rakesh_Sharma.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Looking at India from space, its mountains, rivers, and coastlines appear unified and breathtakingly beautiful—truly beyond compare.',
+        attribution: '— Inspired by Rakesh Sharma',
+        featured: false
+    },
+
+    // --- INDIAN LEADERS, PHILOSOPHERS, REFORMERS & ICONS (31–55) ---
+    vivekananda: {
+        key: 'vivekananda',
+        badge: 'Philosopher & Youth Icon',
+        name: 'Swami Vivekananda',
+        subtitle: 'Spiritual Leader • Champion of Strength, Fearlessness & Service',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Swami_Vivekananda-1893-09-signed.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Arise, awake, and do not pause until your goal is achieved—all power to shape your destiny resides within you.',
+        attribution: '— Inspired by Swami Vivekananda',
+        featured: false
+    },
+    gandhi: {
+        key: 'gandhi',
+        badge: 'Father of the Nation • Apostle of Non-Violence',
+        name: 'Mahatma Gandhi',
+        subtitle: 'Leader of India’s Freedom Movement • Pioneer of Satyagraha',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mahatma-Gandhi,_studio,_1931.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Live every day as if your learning will last forever, and embody the positive change you wish to see in the world.',
+        attribution: '— Inspired by Mahatma Gandhi',
+        featured: false
+    },
+    ambedkar: {
+        key: 'ambedkar',
+        badge: 'Bharat Ratna • Architect of the Indian Constitution',
+        name: 'Dr. B.R. Ambedkar',
+        subtitle: 'Jurist, Economist & Social Reformer • Champion of Liberty & Equality',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dr._Bhimrao_Ambedkar.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Cultivation of the mind through education should be the ultimate aim of human existence, paving the path to dignity and justice.',
+        attribution: '— Inspired by Dr. B.R. Ambedkar',
+        featured: false
+    },
+    tagore: {
+        key: 'tagore',
+        badge: 'Nobel Laureate in Literature • Gurudev',
+        name: 'Rabindranath Tagore',
+        subtitle: 'Poet, Composer & Educator • Founder of Visva-Bharati',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rabindranath_Tagore_in_1909.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'You cannot cross the ocean merely by standing on the shore and staring at the waves; true growth requires stepping forward.',
+        attribution: '— Inspired by Rabindranath Tagore',
+        featured: false
+    },
+    subhasBose: {
+        key: 'subhasBose',
+        badge: 'Netaji • Freedom Fighter & Strategist',
+        name: 'Netaji Subhas Chandra Bose',
+        subtitle: 'Leader of the Indian National Army • Symbol of Unyielding Courage',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Subhas_Chandra_Bose_NRB.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'No real transformation in history has ever been achieved through timid compromise; bold conviction moves nations.',
+        attribution: '— Inspired by Netaji Subhas Chandra Bose',
+        featured: false
+    },
+    sardarPatel: {
+        key: 'sardarPatel',
+        badge: 'Bharat Ratna • Iron Man of India',
+        name: 'Sardar Vallabhbhai Patel',
+        subtitle: 'First Deputy Prime Minister • Architect of India’s Political Integration',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sardar_patel_(cropped).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Individual strength can achieve little alone, but united action turns a diverse people into an unstoppable force.',
+        attribution: '— Inspired by Sardar Vallabhbhai Patel',
+        featured: false
+    },
+    bhagatSingh: {
+        key: 'bhagatSingh',
+        badge: 'Shaheed-e-Azam • Revolutionary Thinker',
+        name: 'Bhagat Singh',
+        subtitle: 'Freedom Fighter & Writer • Symbol of Youthful Sacrifice & Reason',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bhagat_Singh_1929.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Individuals can be silenced, but fearless ideas sharpened on the whetstone of reason live on to awaken generations.',
+        attribution: '— Inspired by Bhagat Singh',
+        featured: false
+    },
+    savitribaiPhule: {
+        key: 'savitribaiPhule',
+        badge: 'Pioneer of Women’s Education in India',
+        name: 'Savitribai Phule',
+        subtitle: 'Educator, Poet & Social Reformer • Founder of India’s First Girls’ School',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Savitribai_Phule.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Awaken, arise, and educate—knowledge is the sharpest tool to dismantle ignorance and uplift every section of society.',
+        attribution: '— Inspired by Savitribai Phule',
+        featured: false
+    },
+    thiruvalluvar: {
+        key: 'thiruvalluvar',
+        badge: 'Classical Tamil Poet & Philosopher',
+        name: 'Thiruvalluvar',
+        subtitle: 'Author of the Tirukkural • Timeless Teacher of Ethics & Governance',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Thiruvalluvar_Statue_Kanyakumari.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Unfading wealth is learning and wisdom; persistent effort can conquer even what fate seems to deny.',
+        attribution: '— Inspired by Thiruvalluvar',
+        featured: false
+    },
+    bharathiyar: {
+        key: 'bharathiyar',
+        badge: 'Mahakavi • Poet of Freedom & Social Reform',
+        name: 'Subramania Bharati',
+        subtitle: 'Tamil Poet, Journalist & Freedom Fighter • Champion of Women’s Rights',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Subramania_Bharati.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Hold your head high with fearless resolve; if a single person is denied food or dignity, society must rise to correct it.',
+        attribution: '— Inspired by Mahakavi Bharathiyar',
+        featured: false
+    },
+    jrdTata: {
+        key: 'jrdTata',
+        badge: 'Bharat Ratna • Father of Indian Civil Aviation',
+        name: 'J.R.D. Tata',
+        subtitle: 'Aviator, Industrialist & Philanthropist • Builder of Ethical Enterprise',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/J._R._D._Tata_1955.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Always aim for perfection in every endeavor; even if you fall slightly short, you will still achieve excellence.',
+        attribution: '— Inspired by J.R.D. Tata',
+        featured: false
+    },
+    ratanTata: {
+        key: 'ratanTata',
+        badge: 'Padma Vibhushan • Industrialist & Philanthropist',
+        name: 'Ratan Tata',
+        subtitle: 'Chairman Emeritus of Tata Sons • Champion of Compassionate Leadership',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ratan_Tata_photo.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'If you want to walk fast, walk alone; if you want to walk far and build lasting impact, walk together.',
+        attribution: '— Inspired by Ratan Tata',
+        featured: false
+    },
+    narayanaMurthy: {
+        key: 'narayanaMurthy',
+        badge: 'Padma Vibhushan • Indian IT Industry Pioneer',
+        name: 'N.R. Narayana Murthy',
+        subtitle: 'Co-founder of Infosys • Advocate of Compassionate Capitalism',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/N._R._Narayana_Murthy_2013.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Performance leads to recognition, recognition brings respect, and respect creates the power to make a difference.',
+        attribution: '— Inspired by N.R. Narayana Murthy',
+        featured: false
+    },
+    azimPremji: {
+        key: 'azimPremji',
+        badge: 'Padma Vibhushan • Tech Pioneer & Philanthropist',
+        name: 'Azim Premji',
+        subtitle: 'Founder Chairman of Wipro • Champion of Public Education Reform',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Azim_Premji_2012.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'If people do not initially call your goals ambitious or unrealistic, you are probably not thinking big enough.',
+        attribution: '— Inspired by Azim Premji',
+        featured: false
+    },
+    kiranMazumdar: {
+        key: 'kiranMazumdar',
+        badge: 'Padma Bhushan • Biotechnology Pioneer',
+        name: 'Dr. Kiran Mazumdar-Shaw',
+        subtitle: 'Founder of Biocon • Innovator in Affordable Healthcare & Biologics',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kiran_Mazumdar-Shaw_2014.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Turning scientific research into affordable healthcare is the highest purpose of innovation.',
+        attribution: '— Inspired by Dr. Kiran Mazumdar-Shaw',
+        featured: false
+    },
+    motherTeresa: {
+        key: 'motherTeresa',
+        badge: 'Nobel Peace Laureate • Bharat Ratna',
+        name: 'Mother Teresa',
+        subtitle: 'Humanitarian & Missionary • Symbol of Compassionate Service',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mother_Teresa_1.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Not all of us can perform grand historic feats, but every person can perform small acts of kindness with great care.',
+        attribution: '— Inspired by Mother Teresa',
+        featured: false
+    },
+    kailashSatyarthi: {
+        key: 'kailashSatyarthi',
+        badge: 'Nobel Peace Laureate • Child Rights Advocate',
+        name: 'Kailash Satyarthi',
+        subtitle: 'Founder of Bachpan Bachao Andolan • Champion of Universal Education',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Kailash_Satyarthi_2014.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Every child deserves the freedom to dream, learn, and grow—protecting childhood is protecting humanity’s future.',
+        attribution: '— Inspired by Kailash Satyarthi',
+        featured: false
+    },
+    sreedharan: {
+        key: 'sreedharan',
+        badge: 'Padma Vibhushan • Metro Man of India',
+        name: 'Dr. E. Sreedharan',
+        subtitle: 'Civil Engineer • Architect of Konkan Railway & Delhi Metro',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/E._Sreedharan.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Integrity, punctuality, and respect for every minute of public time can turn impossible infrastructure into reality.',
+        attribution: '— Inspired by Dr. E. Sreedharan',
+        featured: false
+    },
+    samManekshaw: {
+        key: 'samManekshaw',
+        badge: 'Padma Vibhushan • Field Marshal',
+        name: 'Field Marshal Sam Manekshaw',
+        subtitle: 'Chief of the Army Staff • Architect of the 1971 Victory',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sam_Manekshaw.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'A true leader possesses moral courage—the willingness to stand firm for what is right even when standing alone.',
+        attribution: '— Inspired by Field Marshal Sam Manekshaw',
+        featured: false
+    },
+    arjanSingh: {
+        key: 'arjanSingh',
+        badge: 'Padma Vibhushan • Marshal of the Indian Air Force',
+        name: 'Marshal Arjan Singh',
+        subtitle: 'Five-Star Air Force Officer • Aviator & Wartime Commander',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Arjan_Singh.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Leading from the front and trusting your team’s training creates resilience in the most demanding skies.',
+        attribution: '— Inspired by Marshal Arjan Singh',
+        featured: false
+    },
+    aryabhata: {
+        key: 'aryabhata',
+        badge: 'Classical Indian Mathematician & Astronomer',
+        name: 'Aryabhata',
+        subtitle: 'Author of the Aryabhatiya • Pioneer of Place-Value & Planetary Motion',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Aryabhata_statue_at_IUCAA.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Careful observation of the heavens and rigorous mathematics allow human reason to measure the cosmos.',
+        attribution: '— Inspired by Aryabhata',
+        featured: false
+    },
+    sushruta: {
+        key: 'sushruta',
+        badge: 'Ancient Pioneer of Surgery',
+        name: 'Sushruta',
+        subtitle: 'Author of the Sushruta Samhita • Early Innovator in Reconstructive Surgery',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sushruta.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Theoretical study without hands-on practice is incomplete; true mastery blends deep knowledge with disciplined skill.',
+        attribution: '— Inspired by Sushruta',
+        featured: false
+    },
+    siddharthaGautama: {
+        key: 'siddharthaGautama',
+        badge: 'Philosopher & Teacher of Mindfulness',
+        name: 'Gautama Buddha',
+        subtitle: 'Founder of Buddhism • Teacher of Compassion, Wisdom & Inner Peace',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Buddha_in_Sarnath_Museum_(Dhammajak_Mutra).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Mastering one’s own mind is a far greater triumph than conquering thousands in external conflict.',
+        attribution: '— Inspired by Gautama Buddha',
+        featured: false
+    },
+    krishnan: {
+        key: 'krishnan',
+        badge: 'Padma Bhushan • Co-discoverer of Raman Scattering',
+        name: 'Sir K.S. Krishnan',
+        subtitle: 'Physicist & First Director of NPL • Pioneer in Condensed Matter Physics',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/K._S._Krishnan.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Humility in scholarship and joy in mentoring young researchers keep the spirit of discovery alive.',
+        attribution: '— Inspired by Sir K.S. Krishnan',
+        featured: false
+    },
+    kalamVision2020: {
+        key: 'kalamVision2020',
+        badge: 'National Development Blueprint',
+        name: 'Technology Vision & PURA Initiative',
+        subtitle: 'Providing Urban Amenities in Rural Areas • Dr. Kalam’s Inclusive Growth Model',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/A._P._J._Abdul_Kalam_in_2008.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'True national development requires bridging the rural-urban divide through knowledge, connectivity, and sustainable enterprise.',
+        attribution: '— Inspired by Dr. A.P.J. Abdul Kalam',
+        featured: false
+    },
+
+    // --- GLOBAL SCIENTISTS, INVENTORS & EXPLORERS (56–80) ---
+    einstein: {
+        key: 'einstein',
+        badge: 'Nobel Laureate • Theoretical Physicist',
+        name: 'Albert Einstein',
+        subtitle: 'Architect of Relativity • Pioneer of Quantum Theory',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Einstein_1921_by_F_Schmutzer_-_restoration.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Imagination stretches beyond accumulated facts—while knowledge defines what is known, imagination unlocks everything yet to be discovered.',
+        attribution: '— Inspired by Albert Einstein',
+        featured: false
+    },
+    marieCurie: {
+        key: 'marieCurie',
+        badge: 'Two-Time Nobel Laureate • Physics & Chemistry',
+        name: 'Marie Skłodowska-Curie',
+        subtitle: 'Pioneer of Radioactivity Research • Discoverer of Polonium & Radium',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Marie_Curie_c._1920s.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Nothing in the natural world is meant to be feared; everything is waiting to be understood through patient investigation.',
+        attribution: '— Inspired by Marie Curie',
+        featured: false
+    },
+    isaacNewton: {
+        key: 'isaacNewton',
+        badge: 'Architect of Classical Mechanics',
+        name: 'Sir Isaac Newton',
+        subtitle: 'Mathematician & Physicist • Formulator of Gravity & Calculus',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Portrait_of_Sir_Isaac_Newton,_1689.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Every breakthrough builds upon centuries of prior inquiry; seeing further comes from standing on the shoulders of earlier thinkers.',
+        attribution: '— Inspired by Sir Isaac Newton',
+        featured: false
+    },
+    nikolaTesla: {
+        key: 'nikolaTesla',
+        badge: 'Electrical Engineer & Futurist',
+        name: 'Nikola Tesla',
+        subtitle: 'Pioneer of Alternating Current • Inventor & Wireless Energy Visionary',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tesla_circa_1890.jpeg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'The present belongs to contemporary critics, but the future belongs to inventors who dedicate their lives to bold ideas.',
+        attribution: '— Inspired by Nikola Tesla',
+        featured: false
+    },
+    thomasEdison: {
+        key: 'thomasEdison',
+        badge: 'Prolific Inventor • Industrial R&D Pioneer',
+        name: 'Thomas Alva Edison',
+        subtitle: 'Creator of Practical Electric Lighting & Phonograph • 1,093 Patents',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Thomas_Edison2.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Every unsuccessful prototype is simply a step forward—discovering thousands of ways that do not work brings you closer to the one that does.',
+        attribution: '— Inspired by Thomas Edison',
+        featured: false
+    },
+    galileo: {
+        key: 'galileo',
+        badge: 'Father of Observational Astronomy',
+        name: 'Galileo Galilei',
+        subtitle: 'Astronomer & Physicist • Champion of Experimental Method',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Justus_Sustermans_-_Portrait_of_Galileo_Galilei,_1636.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Measure what can be measured, and invent instruments to make measurable what has not yet been measured.',
+        attribution: '— Inspired by Galileo Galilei',
+        featured: false
+    },
+    stephenHawking: {
+        key: 'stephenHawking',
+        badge: 'Cosmologist & Theoretical Physicist',
+        name: 'Prof. Stephen Hawking',
+        subtitle: 'Pioneer of Black Hole Thermodynamics • Author of A Brief History of Time',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Stephen_Hawking.StarChild.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Keep your gaze fixed upward at the stars rather than down at your feet, and never surrender your curiosity about the universe.',
+        attribution: '— Inspired by Stephen Hawking',
+        featured: false
+    },
+    richardFeynman: {
+        key: 'richardFeynman',
+        badge: 'Nobel Laureate • Quantum Electrodynamics',
+        name: 'Richard P. Feynman',
+        subtitle: 'Physicist & Master Educator • Pioneer of Nanotechnology Concepts',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Richard_Feynman_Nobel.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'If you cannot explain a complex concept in simple, clear language, you have not yet understood it deeply enough yourself.',
+        attribution: '— Inspired by Richard Feynman',
+        featured: false
+    },
+    leonardoDaVinci: {
+        key: 'leonardoDaVinci',
+        badge: 'Renaissance Polymath • Artist & Engineer',
+        name: 'Leonardo da Vinci',
+        subtitle: 'Painter, Anatomist & Inventor • Pioneer of Flight & Mechanical Design',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Francesco_Melzi_-_Portrait_of_Leonardo.png',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Simplicity is the highest form of sophistication; true understanding unites art, anatomy, mechanics, and nature.',
+        attribution: '— Inspired by Leonardo da Vinci',
+        featured: false
+    },
+    charlesDarwin: {
+        key: 'charlesDarwin',
+        badge: 'Naturalist • Evolutionary Biologist',
+        name: 'Charles Darwin',
+        subtitle: 'Author of On the Origin of Species • Pioneer of Natural Selection',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Charles_Darwin_by_Julia_Margaret_Cameron_2.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Adaptability to changing environments—not sheer strength or intellect alone—determines which species endure and thrive.',
+        attribution: '— Inspired by Charles Darwin',
+        featured: false
+    },
+    louisPasteur: {
+        key: 'louisPasteur',
+        badge: 'Founder of Microbiology & Immunology',
+        name: 'Louis Pasteur',
+        subtitle: 'Chemist & Microbiologist • Pioneer of Vaccines & Pasteurization',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Louis_Pasteur,_foto_av_Paul_Nadar,_Crisco_edit.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'In scientific observation, fortunate discoveries favor only the mind that has been rigorously prepared through study.',
+        attribution: '— Inspired by Louis Pasteur',
+        featured: false
+    },
+    alexanderFleming: {
+        key: 'alexanderFleming',
+        badge: 'Nobel Laureate • Discoverer of Penicillin',
+        name: 'Sir Alexander Fleming',
+        subtitle: 'Bacteriologist • Pioneer of Modern Antibiotic Medicine',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Alexander_Fleming_3.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Nature often places breakthroughs right before our eyes; disciplined attention turns an unexpected observation into a lifesaving medicine.',
+        attribution: '— Inspired by Sir Alexander Fleming',
+        featured: false
+    },
+    michaelFaraday: {
+        key: 'michaelFaraday',
+        badge: 'Father of Electromagnetism',
+        name: 'Michael Faraday',
+        subtitle: 'Experimental Physicist & Chemist • Discoverer of Electromagnetic Induction',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Michael_Faraday_Millikan-Gale-1906.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Nothing is too wonderful to be true if it remains consistent with the fundamental laws of nature.',
+        attribution: '— Inspired by Michael Faraday',
+        featured: false
+    },
+    jamesClerkMaxwell: {
+        key: 'jamesClerkMaxwell',
+        badge: 'Unifier of Electricity, Magnetism & Light',
+        name: 'James Clerk Maxwell',
+        subtitle: 'Mathematical Physicist • Formulator of Maxwell’s Equations',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/James_Clerk_Maxwell.png',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Thoroughly conscious ignorance is the healthy prelude to every genuine advance in scientific understanding.',
+        attribution: '— Inspired by James Clerk Maxwell',
+        featured: false
+    },
+    adaLovelace: {
+        key: 'adaLovelace',
+        badge: 'World’s First Computer Programmer',
+        name: 'Ada Lovelace',
+        subtitle: 'Mathematician & Writer • Visionary of Algorithmic Computing',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Ada_Lovelace_portrait.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Analytical engines can weave algebraic patterns just as looms weave flowers—when guided by human imagination.',
+        attribution: '— Inspired by Ada Lovelace',
+        featured: false
+    },
+    alanTuring: {
+        key: 'alanTuring',
+        badge: 'Father of Theoretical Computer Science & AI',
+        name: 'Alan Turing',
+        subtitle: 'Mathematician & Cryptanalyst • Architect of the Turing Machine',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Alan_Turing_Aged_16.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Those who dare to imagine things no one else considers possible are often the very ones who build the future.',
+        attribution: '— Inspired by Alan Turing',
+        featured: false
+    },
+    katherineJohnson: {
+        key: 'katherineJohnson',
+        badge: 'Presidential Medal of Freedom • NASA Mathematician',
+        name: 'Katherine Johnson',
+        subtitle: 'Orbital Mechanics Pioneer • Calculated Trajectories for Apollo 11',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Katherine_Johnson_1983.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Master the fundamentals of mathematics, take pride in precision, and never let prejudice limit where your mind can soar.',
+        attribution: '— Inspired by Katherine Johnson',
+        featured: false
+    },
+    neilArmstrong: {
+        key: 'neilArmstrong',
+        badge: 'Apollo 11 Commander • First Human on the Moon',
+        name: 'Neil Armstrong',
+        subtitle: 'Test Pilot, Aerospace Engineer & Astronaut • Lunar Pioneer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Neil_Armstrong_pose.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'A single footprint on the Moon represents the collective triumph of hundreds of thousands of engineers, scientists, and dreamers.',
+        attribution: '— Inspired by Neil Armstrong',
+        featured: false
+    },
+    yuriGagarin: {
+        key: 'yuriGagarin',
+        badge: 'First Human in Outer Space',
+        name: 'Yuri Gagarin',
+        subtitle: 'Cosmonaut & Pilot • Vostok 1 Orbital Pioneer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Yuri_Gagarin_(1961)_-_Restoration.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Orbiting Earth in a spacecraft reveals how precious and unified our planet truly is—we must protect it together.',
+        attribution: '— Inspired by Yuri Gagarin',
+        featured: false
+    },
+    wrightBrothers: {
+        key: 'wrightBrothers',
+        badge: 'Pioneers of Powered Controlled Flight',
+        name: 'Orville & Wilbur Wright',
+        subtitle: 'Aviation Inventors • Builders of the 1903 Wright Flyer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wright_brothers_1909.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Sustained flight became possible not through guesswork, but through wind-tunnel testing, patience, and systematic engineering.',
+        attribution: '— Inspired by the Wright Brothers',
+        featured: false
+    },
+    timBernersLee: {
+        key: 'timBernersLee',
+        badge: 'Inventor of the World Wide Web',
+        name: 'Sir Tim Berners-Lee',
+        subtitle: 'Computer Scientist • Advocate of Open Knowledge & Web Standards',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sir_Tim_Berners-Lee_(cropped).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'An open, decentralized web empowers every individual on Earth to share knowledge and collaborate across borders.',
+        attribution: '— Inspired by Sir Tim Berners-Lee',
+        featured: false
+    },
+    rosalindFranklin: {
+        key: 'rosalindFranklin',
+        badge: 'Chemist & X-Ray Crystallographer',
+        name: 'Dr. Rosalind Franklin',
+        subtitle: 'Pioneer of DNA Double Helix Imaging • Structural Virologist',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Rosalind_Franklin_(1955).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Science and everyday life cannot and should not be separated; rigorous data reveals the hidden architecture of life.',
+        attribution: '— Inspired by Dr. Rosalind Franklin',
+        featured: false
+    },
+    janeGoodall: {
+        key: 'janeGoodall',
+        badge: 'Primatologist & Conservationist',
+        name: 'Dr. Jane Goodall',
+        subtitle: 'UN Messenger of Peace • Pioneer of Wildlife Conservation',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Jane_Goodall_2015.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Every individual makes an impact every single day—and every person gets to choose what kind of difference they make.',
+        attribution: '— Inspired by Dr. Jane Goodall',
+        featured: false
+    },
+    carlSagan: {
+        key: 'carlSagan',
+        badge: 'Astronomer & Science Communicator',
+        name: 'Dr. Carl Sagan',
+        subtitle: 'Planetary Scientist • Creator of Cosmos & Voyager Golden Record',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Carl_Sagan_Planetary_Society.JPG',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Somewhere across the vast cosmos, extraordinary truths are waiting to be known by curious minds willing to explore.',
+        attribution: '— Inspired by Dr. Carl Sagan',
+        featured: false
+    },
+    wernherVonBraun: {
+        key: 'wernherVonBraun',
+        badge: 'Rocket Engineer & Space Architect',
+        name: 'Dr. Wernher von Braun',
+        subtitle: 'Chief Architect of the Saturn V Moon Rocket • Spaceflight Pioneer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wernher_von_Braun_1960.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Research is what I am doing when I do not yet know what I am doing—turning bold engineering dreams into orbital reality.',
+        attribution: '— Inspired by Dr. Wernher von Braun',
+        featured: false
+    },
+
+    // --- GLOBAL LEADERS, HUMANITARIANS & THINKERS (81–100) ---
+    nelsonMandela: {
+        key: 'nelsonMandela',
+        badge: 'Nobel Peace Laureate • Bharat Ratna',
+        name: 'Nelson Mandela',
+        subtitle: 'Former President of South Africa • Symbol of Reconciliation & Freedom',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Nelson_Mandela_1994.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Education is the single most powerful instrument you can wield to transform society, and every great goal seems impossible until accomplished.',
+        attribution: '— Inspired by Nelson Mandela',
+        featured: false
+    },
+    mlkJr: {
+        key: 'mlkJr',
+        badge: 'Nobel Peace Laureate • Civil Rights Leader',
+        name: 'Dr. Martin Luther King Jr.',
+        subtitle: 'Architect of Nonviolent Civil Rights Movement • Orator & Reformer',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Martin_Luther_King,_Jr..jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Faith means taking the very first step forward even before the entire staircase comes into view.',
+        attribution: '— Inspired by Dr. Martin Luther King Jr.',
+        featured: false
+    },
+    abrahamLincoln: {
+        key: 'abrahamLincoln',
+        badge: '16th President of the United States',
+        name: 'Abraham Lincoln',
+        subtitle: 'Preserver of the Union • Champion of Emancipation & Democracy',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Abraham_Lincoln_O-77_matte_collodion_print.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'The most reliable way to predict your future is to actively shape and create it through preparation and integrity.',
+        attribution: '— Inspired by Abraham Lincoln',
+        featured: false
+    },
+    eleanorRoosevelt: {
+        key: 'eleanorRoosevelt',
+        badge: 'Chair of UN Human Rights Commission',
+        name: 'Eleanor Roosevelt',
+        subtitle: 'Diplomat & Humanitarian • Co-architect of Universal Declaration of Human Rights',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Eleanor_Roosevelt_portrait_1933.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'The future belongs to those who believe in the power and beauty of their constructive dreams.',
+        attribution: '— Inspired by Eleanor Roosevelt',
+        featured: false
+    },
+    winstonChurchill: {
+        key: 'winstonChurchill',
+        badge: 'Nobel Laureate in Literature • Wartime Statesman',
+        name: 'Sir Winston Churchill',
+        subtitle: 'Prime Minister & Historian • Symbol of Perseverance in Adversity',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sir_Winston_Churchill_-_19086236948.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Success is never final, and setbacks are never fatal—what truly counts is the courage to keep moving forward.',
+        attribution: '— Inspired by Sir Winston Churchill',
+        featured: false
+    },
+    malala: {
+        key: 'malala',
+        badge: 'Youngest Nobel Peace Laureate',
+        name: 'Malala Yousafzai',
+        subtitle: 'Global Advocate for Girls’ Education • Author & Humanitarian',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Malala_Yousafzai_2015.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'One child, one dedicated teacher, one book, and one pen hold the power to transform the entire world.',
+        attribution: '— Inspired by Malala Yousafzai',
+        featured: false
+    },
+    wangariMaathai: {
+        key: 'wangariMaathai',
+        badge: 'Nobel Peace Laureate • Environmental Pioneer',
+        name: 'Dr. Wangari Maathai',
+        subtitle: 'Founder of the Green Belt Movement • Champion of Reforestation & Democracy',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Wangari_Maathai_no_Brasil.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Planting a tree is planting a seed of hope—small, consistent environmental actions restore ecosystems and communities.',
+        attribution: '— Inspired by Dr. Wangari Maathai',
+        featured: false
+    },
+    socrates: {
+        key: 'socrates',
+        badge: 'Classical Greek Philosopher',
+        name: 'Socrates',
+        subtitle: 'Pioneer of Critical Inquiry & Ethics • Teacher of Self-Examination',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Socrates_Louvre.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'True wisdom begins with recognizing the limits of what we know and questioning assumptions with humility.',
+        attribution: '— Inspired by Socrates',
+        featured: false
+    },
+    aristotle: {
+        key: 'aristotle',
+        badge: 'Philosopher & Polymath',
+        name: 'Aristotle',
+        subtitle: 'Founder of Formal Logic & Natural Philosophy • Teacher of Virtue Ethics',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Aristotle_Altemps_Inv8575.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Excellence is never a random accident; it is a disciplined habit forged through repeated, thoughtful practice.',
+        attribution: '— Inspired by Aristotle',
+        featured: false
+    },
+    confucius: {
+        key: 'confucius',
+        badge: 'Philosopher & Educator',
+        name: 'Confucius',
+        subtitle: 'Teacher of Ethics, Harmony & Lifelong Learning',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Confucius_Tang_Dynasty.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'It does not matter how slowly you advance, so long as you never stop learning and cultivating character.',
+        attribution: '— Inspired by Confucius',
+        featured: false
+    },
+    marcusAurelius: {
+        key: 'marcusAurelius',
+        badge: 'Stoic Philosopher & Roman Emperor',
+        name: 'Marcus Aurelius',
+        subtitle: 'Author of Meditations • Teacher of Inner Resilience & Duty',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Marcus_Aurelius_Metropolitan_Museum.png',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'You hold power over your own mind, not over external events—realize this, and you will discover unshakeable strength.',
+        attribution: '— Inspired by Marcus Aurelius',
+        featured: false
+    },
+    helenKeller: {
+        key: 'helenKeller',
+        badge: 'Author, Lecturer & Disability Rights Pioneer',
+        name: 'Helen Keller',
+        subtitle: 'First Deafblind Person to Earn a Bachelor of Arts • Humanitarian',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Helen_Keller_circa_1920_-_restored.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Optimism is the quiet faith that leads to achievement; nothing meaningful can be accomplished without hope and confidence.',
+        attribution: '— Inspired by Helen Keller',
+        featured: false
+    },
+    mayaAngelou: {
+        key: 'mayaAngelou',
+        badge: 'Poet, Memoirist & Civil Rights Activist',
+        name: 'Dr. Maya Angelou',
+        subtitle: 'Presidential Medal of Freedom Recipient • Voice of Resilience & Dignity',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Angelou_at_Clinton_inauguration_(cropped_2).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'People may forget the exact words you spoke, but they will always remember how your kindness and courage made them feel.',
+        attribution: '— Inspired by Dr. Maya Angelou',
+        featured: false
+    },
+    steveJobs: {
+        key: 'steveJobs',
+        badge: 'Technology Visionary & Design Pioneer',
+        name: 'Steve Jobs',
+        subtitle: 'Co-founder of Apple • Champion of the Intersection of Technology & Liberal Arts',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Steve_Jobs_Headshot_2010-CROP_(cropped_2).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Stay hungry for knowledge, stay foolish enough to take bold risks, and pour passion into crafting tools that elevate humanity.',
+        attribution: '— Inspired by Steve Jobs',
+        featured: false
+    },
+    billGates: {
+        key: 'billGates',
+        badge: 'Software Pioneer & Global Health Philanthropist',
+        name: 'Bill Gates',
+        subtitle: 'Co-founder of Microsoft • Champion of Vaccine Equity & Clean Energy',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Bill_Gates_in_WEF,_2007.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'We often overestimate what can change in a single year, yet vastly underestimate what dedicated effort can achieve in ten.',
+        attribution: '— Inspired by Bill Gates',
+        featured: false
+    },
+    sundarPichai: {
+        key: 'sundarPichai',
+        badge: 'Padma Bhushan • Global Technology Leader',
+        name: 'Sundar Pichai',
+        subtitle: 'CEO of Alphabet & Google • Champion of Accessible AI & Digital Tools',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Sundar_Pichai_-_2023_(cropped).jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Keep an open mind, stay curious, and work alongside people who challenge you—technology achieves its purpose when it helps everyone.',
+        attribution: '— Inspired by Sundar Pichai',
+        featured: false
+    },
+    satyaNadella: {
+        key: 'satyaNadella',
+        badge: 'Padma Bhushan • Cloud & AI Leader',
+        name: 'Satya Nadella',
+        subtitle: 'Chairman & CEO of Microsoft • Advocate of Growth Mindset & Empathy',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Satya_Nadella_2017.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'A learn-it-all mindset will always outperform a know-it-all mindset; empathy is the true source of lasting innovation.',
+        attribution: '— Inspired by Satya Nadella',
+        featured: false
+    },
+    indraNooyi: {
+        key: 'indraNooyi',
+        badge: 'Padma Bhushan • Global Business Leader',
+        name: 'Indra Nooyi',
+        subtitle: 'Former Chair & CEO of PepsiCo • Advocate of Performance with Purpose',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indra_Nooyi_-_World_Economic_Forum_Annual_Meeting_2010.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Whatever role you take on, throw your full intellect and heart into it, and never stop being a lifelong student.',
+        attribution: '— Inspired by Indra Nooyi',
+        featured: false
+    },
+    chandrayaanMission: {
+        key: 'chandrayaanMission',
+        badge: 'ISRO Lunar Exploration Milestone',
+        name: 'Chandrayaan Lunar Programme',
+        subtitle: 'First Soft Landing Near the Lunar South Pole • Frugal Space Engineering',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chandrayaan-3_Integrated_Module.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Reaching the lunar south pole proved that focused teamwork, resilient engineering, and frugal innovation can achieve global firsts.',
+        attribution: '— On India’s Lunar Exploration Programme',
+        featured: false
+    },
+    mangalyaanMission: {
+        key: 'mangalyaanMission',
+        badge: 'ISRO Interplanetary Milestone',
+        name: 'Mars Orbiter Mission (Mangalyaan)',
+        subtitle: 'First Asian Nation to Reach Martian Orbit on Maiden Attempt',
+        imgSrc: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mars_Orbiter_Mission_-_India_-_ArtistsConcept.jpg',
+        fallbackLocal: 'Picture1.jpg',
+        quote: 'Achieving Martian orbit on the very first attempt showed the world what indigenous talent and disciplined systems engineering can accomplish.',
+        attribution: '— On India’s Mars Orbiter Mission',
+        featured: false
+    }
+};
 
         const kalamInspiringQuotes = [
             {
@@ -3263,7 +4316,7 @@
             imgEl.alt = activeQuoteSubject.name;
             imgEl.src = isSafeUrl(resolved) ? resolved : createPlaceholderDataUrl(activeQuoteSubject.name);
             imgEl.onerror = function () {
-                handleImageFallback(this, activeQuoteSubject.fallbackLocal || 'Picture1.jpg', '', activeQuoteSubject.name);
+                handleImageFallback(this, activeQuoteSubject.fallbackLocal || '', '', activeQuoteSubject.name);
             };
             titleEl.textContent = activeQuoteSubject.name;
             subEl.textContent = activeQuoteSubject.subtitle;
@@ -3283,7 +4336,7 @@
                 const safeSrc = isSafeUrl(resolved) ? resolved : createPlaceholderDataUrl(s.name);
                 const safeTitleJs = escapeJsSingle(`${s.name} — ${s.subtitle}`);
                 const safeSrcJs = escapeJsSingle(safeSrc);
-                const safeFallbackJs = escapeJsSingle(s.fallbackLocal || 'Picture1.jpg');
+                const safeFallbackJs = escapeJsSingle(s.fallbackLocal || '');
                 return `
                     <div class="tribute-card ${s.featured ? 'featured-tribute' : ''}">
                         <div class="tribute-media" onclick="openLightbox('${safeSrcJs}', '${safeTitleJs}')">
@@ -3304,8 +4357,11 @@
         }
 
         function renderHeritageTributes() {
+            const homeGrid = document.getElementById('heritageTributesGrid');
             const aboutGrid = document.getElementById('aboutTributesGrid');
-            if (aboutGrid) aboutGrid.innerHTML = buildTributeCardsHtml();
+            const cardsHtml = buildTributeCardsHtml();
+            if (homeGrid) homeGrid.innerHTML = cardsHtml;
+            if (aboutGrid) aboutGrid.innerHTML = cardsHtml;
         }
 
         function fetchPhilosopherQuote() {
