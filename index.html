@@ -4368,7 +4368,7 @@ const heritageSubjects = {
             const quoteAuthorEl = document.getElementById('quoteAuthor');
             const quoteStatusEl = document.getElementById('quoteStatus');
 
-            const hourSlot = Math.floor(Date.now() / 3600000);
+            const tenMinuteSlot = Math.floor(Date.now() / (10 * 60 * 1000));
             const selected = kalamInspiringQuotes[hourSlot % kalamInspiringQuotes.length];
             const subject = heritageSubjects[selected.subjectKey] || heritageSubjects.kalam;
 
