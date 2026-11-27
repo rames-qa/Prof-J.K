@@ -1221,23 +1221,23 @@
         .btn-whatsapp {
             background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
             color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.22);
+            border: 1px solid rgba(134, 239, 172, 0.35);
             padding: 10px 20px;
             border-radius: 9px;
             font-weight: 600;
+            cursor: pointer;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 7px;
             font-size: 0.9rem;
             letter-spacing: -0.005em;
-            box-shadow: 0 4px 14px rgba(21, 128, 61, 0.32);
+            box-shadow: 0 4px 14px rgba(22, 163, 74, 0.28);
             transition: transform 0.18s ease, box-shadow 0.2s ease, background 0.2s ease;
         }
-
         .btn-whatsapp:hover {
             transform: translateY(-1px);
-            box-shadow: 0 6px 18px rgba(21, 128, 61, 0.42);
+            box-shadow: 0 6px 18px rgba(22, 163, 74, 0.38);
             background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
         }
     </style>
@@ -1284,8 +1284,8 @@
              <div class="hero-actions">
                     <button type="button" class="btn-primary" onclick="navigateTo('gallery')">🖼️ View Photo Gallery</button>
                     <button type="button" class="btn-outline" onclick="navigateTo('notice-board')">📌 Full Notice Board</button>
-                    <button type="button" class="btn-outline" onclick="navigateTo('contact')">✉️ Contact &amp; Inquiries</button>
-                    <a href="https://wa.me/919449050624?text=Hello%20Prof.%20K.%20Jayaraman%2C%20I%20would%20like%20to%20connect." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">🟢 WhatsApp – Chat with Us</a>
+                    <button type="button" class="btn-outline" onclick="navigateTo('contact')">📞 Contact</button>
+                    <a id="heroWhatsAppLink" href="https://wa.me/919449050624" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">✆ WhatsApp</a>
                 </div>
             </div>
 
@@ -2206,6 +2206,12 @@
             const sideCall = document.getElementById('sidebarCallLink');
             sideCall.href = 'tel:' + cleanTel;
             sideCall.textContent = '📞 Call: ' + p.phone;
+            
+            const cleanWaNumber = (p.phone || '').replace(/\D/g, '');
+            const heroWhatsApp = document.getElementById('heroWhatsAppLink');
+            if (heroWhatsApp && cleanWaNumber) {
+                heroWhatsApp.href = 'https://wa.me/' + cleanWaNumber;
+            }
 
             document.getElementById('heroTitle').textContent = p.name;
             document.getElementById('heroSubtitle').textContent = p.subtitle;
