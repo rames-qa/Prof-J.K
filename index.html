@@ -2213,11 +2213,11 @@
             
            const cleanWaNumber = (p.phone || '').replace(/\D/g, '');
            const heroWhatsApp = document.getElementById('heroWhatsAppLink');
-           if (heroWhatsApp && cleanWaNumber) {
-           const greetingText = encodeURIComponent(`Hello ${p.name || 'Prof. K. Jayaraman'}, I would like to connect with you.`);
-           heroWhatsApp.href = `https://wa.me/${cleanWaNumber}?text=${greetingText}`;
-            }
-
+          if (heroWhatsApp && cleanWaNumber) {
+          const cleanName = (p.name || 'Prof. K. Jayaraman').replace(/\s*\([^)]*\)/g, '').trim() || 'Prof. K. Jayaraman';
+          const greetingText = encodeURIComponent(`Hello ${cleanName} , I would like to connect with you.`);
+          heroWhatsApp.href = `https://wa.me/${cleanWaNumber}?text=${greetingText}`;
+         }
             document.getElementById('heroTitle').textContent = p.name;
             document.getElementById('heroSubtitle').textContent = p.subtitle;
             document.getElementById('heroBio').textContent = p.bio;
