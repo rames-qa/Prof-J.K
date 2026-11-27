@@ -2211,10 +2211,11 @@
             sideCall.href = 'tel:' + cleanTel;
             sideCall.textContent = '📞 Call: ' + p.phone;
             
-            const cleanWaNumber = (p.phone || '').replace(/\D/g, '');
-            const heroWhatsApp = document.getElementById('heroWhatsAppLink');
-            if (heroWhatsApp && cleanWaNumber) {
-                heroWhatsApp.href = 'https://wa.me/' + cleanWaNumber;
+           const cleanWaNumber = (p.phone || '').replace(/\D/g, '');
+           const heroWhatsApp = document.getElementById('heroWhatsAppLink');
+           if (heroWhatsApp && cleanWaNumber) {
+           const greetingText = encodeURIComponent(`Hello ${p.name || 'Prof. K. Jayaraman'}, I would like to connect with you.`);
+           heroWhatsApp.href = `https://wa.me/${cleanWaNumber}?text=${greetingText}`;
             }
 
             document.getElementById('heroTitle').textContent = p.name;
